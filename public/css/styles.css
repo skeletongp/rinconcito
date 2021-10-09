@@ -23,12 +23,6 @@ html {
 body {
   margin: 0;
 }
-#sidebar{
-  transition: all 1s ease-in-out;
-}
-/**
- * Render the `main` element consistently in IE.
- */
 
 main {
   display: block;
