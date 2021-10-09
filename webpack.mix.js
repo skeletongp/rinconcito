@@ -17,3 +17,4 @@ mix.js("resources/js/app.js", "public/js").postCss(
     [require("tailwindcss")]
 );
 mix.postCss('resources/css/styles.css',"public/css");
+mix.postCss('resources/css/menu.css',"public/css");

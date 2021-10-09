@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +17,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth']);
+})->middleware(['auth'])->name('home');
 
-Route::get('/products', function () {
-    return view('pages.products');
-})->name('products');
+
 
 /* Auth Routes */
 Route::get('/auth/login', [AuthController::class,'login'])->name('auth.login');
 Route::get('/auth/register', [AuthController::class,'register'])->name('auth.register');
-Route::get('/auth/store', [AuthController::class,'store'])->name('auth.store');
+Route::get('/auth/logout', [AuthController::class,'logout'])->name('auth.logout');
+Route::post('/auth/access', [AuthController::class,'access'])->name('auth.access');
+Route::post('/auth/store', [AuthController::class,'store'])->name('auth.store');
+
+/* Others Routes */
+Route::middleware(['auth'])->group(function () {
+    Route::resource('products',ProductController::class)->names('products');
+});

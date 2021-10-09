@@ -7,7 +7,7 @@
         <!--Screen-->
         <div class="min-h-screen flex flex-col">
             <!--Header Section Starts Here-->
-            <header class="bg-nav top-0 fixed w-full">
+            <header class="bg-nav top-0 fixed w-full z-20">
                 <div class="flex justify-between">
                     <div class="p-1 mx-3 inline-flex items-center">
                         <i class="fas fa-bars pr-2 text-white cursor-pointer " onclick="sidebarToggle()"></i>
@@ -17,7 +17,7 @@
                         <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full"
                             src="https://therichpost.com/wp-content/uploads/2021/03/avatar2.png" alt="">
                         <a href="#" onclick="profileToggle()"
-                            class="text-white p-2 no-underline hidden md:block lg:block">Jassa The Rich</a>
+                            class="text-white p-2 no-underline hidden md:block lg:block">{{Auth::user()->fullname}}</a>
                         <div id="ProfileDropDown"
                             class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r top-2">
                             <ul class="list-reset">
@@ -29,7 +29,7 @@
                                 <li>
                                     <hr class="border-t mx-2 border-grey-light">
                                 </li>
-                                <li><a href="#"
+                                <li><a href="{{route('auth.logout')}}"
                                         class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
                             </ul>
                         </div>
@@ -40,53 +40,15 @@
 
             <div class="flex flex-1 py-12">
                 <!--Sidebar-->
-                <aside id="sidebar"
-                    class="fixed h-screen z-20 bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block ">
-
-                    <ul class="list-reset flex flex-col">
-                        <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
-                            <a href="/"
-                                class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
-                                <i class="fas fa-tachometer-alt float-left mx-2"></i>
-                                Dashboard
-                                <span><i class="fas fa-angle-right float-right"></i></span>
-                            </a>
-                        </li>
-                        <li class="w-full h-full py-3 px-2">
-                            <a href="{{ route('products') }}"
-                                class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
-                                <i class="far fa-file float-left mx-2"></i>
-                                Pages
-                                <span><i class="fa fa-angle-down float-right"></i></span>
-                            </a>
-                            <ul class="list-reset -mx-2 bg-white-medium-dark">
-                                <li class="border-t mt-2 border-light-border w-full h-full px-2 py-3">
-                                    <a href="/login"
-                                        class="mx-4 font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
-                                        Login Page
-                                        <span><i class="fa fa-angle-right float-right"></i></span>
-                                    </a>
-                                </li>
-                                <li class="border-t border-light-border w-full h-full px-2 py-3">
-                                    <a href="/register"
-                                        class="mx-4 font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
-                                        Register Page
-                                        <span><i class="fa fa-angle-right float-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                </aside>
+               <x-menu></x-menu>
                 <!--/Sidebar-->
                 <!--Main-->
-                <main class="bg-white-300 flex-1 p-3 overflow-hidden max-w-7xl mx-auto">
+                <main class="bg-white-300 flex-1 p-3 lg:px-8 overflow-hidden max-w-7xl mx-auto">
 
                     @hasSection('body')
                         @yield('body')
                     @else
-                      @for ($i = 0; $i < 10; $i++)
+                      @for ($i = 0; $i < 1; $i++)
                       <div class="flex flex-col my-8">
                         <!-- Stats Row Starts Here -->
                         <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
