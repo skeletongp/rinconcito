@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth']);
-Route::get('/login', [AuthController::class,'login'])->name('login');
-Route::get('/register', [AuthController::class,'register'])->name('register');
 
 Route::get('/products', function () {
     return view('pages.products');
 })->name('products');
+
+/* Auth Routes */
+Route::get('/auth/login', [AuthController::class,'login'])->name('auth.login');
+Route::get('/auth/register', [AuthController::class,'register'])->name('auth.register');
+Route::get('/auth/store', [AuthController::class,'store'])->name('auth.store');

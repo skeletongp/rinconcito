@@ -12,6 +12,10 @@ class AuthRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        $this->request->add(['fullname'=>$this->name.' '.$this->lastname]);
+    }
     
     public function rules()
     {

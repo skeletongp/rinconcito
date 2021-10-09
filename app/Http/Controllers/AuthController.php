@@ -17,6 +17,6 @@ class AuthController extends Controller
    }
    public function store(AuthRequest $request )
    {
-       
+       dd($request->all());
    }
 }
