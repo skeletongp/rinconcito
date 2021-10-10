@@ -2,71 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chart;
+use App\Models\Detail;
 use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        $carts=Chart::active()->get();
+      
+
+        $invoice=Invoice::create($request->all());
+        $invoice->number="Fct. ".str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
+        $invoice->save();
+        foreach ($carts as $cart) {
+            Detail::create([
+                'invoice_id'=>$invoice->id,
+                'product_id'=>$cart->product_id,
+                'cant'=>$cart->cant,
+                'client_id'=>$request->client_id,
+                'user_id'=>$request->user_id,
+            ]);
+            $product=Product::find($cart->product_id);
+            $product->stock=$product->stock-$cart->cant;
+            $product->save();
+            $cart->delete();
+        }
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
     public function show(Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(Invoice $invoice)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Invoice $invoice)
     {
         //

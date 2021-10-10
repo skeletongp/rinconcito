@@ -10,7 +10,7 @@ class ProductController extends Controller
     
     public function index()
     {
-        $products=Product::paginate(6);
+        $products=Product::search(request('q'))->paginate(6);
         return view('pages.products.index')->with(['products'=>$products]);
     }
 

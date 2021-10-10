@@ -65,7 +65,7 @@
                 {{ $slot }}
             </div>
             <!--Footer-->
-            <div class="flex justify-end pt-2 space-x-2 ">
+            <div class="flex justify-end items-center pt-2 space-x-2 ">
                 {{$saveButton}}
                 <x-button class="bg-blue-200 text-black modal-close">Cancelar
                 </x-button>

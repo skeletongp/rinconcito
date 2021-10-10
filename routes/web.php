@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\DetailController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +34,7 @@ Route::post('/auth/store', [AuthController::class,'store'])->name('auth.store');
 /* Others Routes */
 Route::middleware(['auth'])->group(function () {
     Route::resource('products',ProductController::class)->names('products');
+    Route::resource('details',DetailController::class)->names('details');
+    Route::resource('charts',ChartController::class)->names('charts');
+    Route::resource('invoices',InvoiceController::class)->names('invoices');
 });

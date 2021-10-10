@@ -18,7 +18,9 @@ class CreateInvoicesTable extends Migration
             $table->string('number')->nullable();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->decimal('subtotal');
             $table->decimal('total');
+            $table->softDeletes();
             $table->decimal('discount');
             $table->decimal('payed');
             $table->timestamps();

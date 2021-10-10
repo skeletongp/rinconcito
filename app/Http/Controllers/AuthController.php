@@ -22,7 +22,7 @@ class AuthController extends Controller
        $request->merge(['password'=>bcrypt($request->password)]);
         $user=User::create($request->all());
         Auth::login($user);
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
    }
 
    public function logout()

@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->decimal('utility');
             $table->integer('stock');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
