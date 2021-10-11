@@ -16,7 +16,7 @@
                     </div>
                     <x-dropdown>
                         <x-slot name="trigger">
-                            <div class="flex items-center space-x-1 cursor-pointer">
+                            <div class="flex items-center space-x-1 cursor-pointer mt-3">
                                 <img class="inline-block h-8 w-8 rounded-full" src="{{ Auth::user()->photo }}" alt="">
                                 <a href="#"
                                     class="text-white p-2 no-underline hidden md:block lg:block">{{ Auth::user()->fullname }}</a>
