@@ -63,8 +63,8 @@
             <footer class="fixed bottom-0 z-30 bg-left text-blue-900 font-bold p-2 flex justify-between w-screen lg:px-8"
                 style="background-image: url('/fondo.jpg')">
                 <div class="">&copy; 2021</div>
-            <div class=" f">Distributed by: <a
-                        href="https://therichpost.com/" target=" _blank">Jassa</a></div>
+            <div class=" f">Creado by: <a
+                        href="https://ismaeldigitador.com/" target=" _blank">Ismael Contreras</a></div>
             </footer>
             <!--/footer-->
         </div>
