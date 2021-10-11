@@ -10,6 +10,7 @@ trait ChartTrait
         if ($status) {
             return $query->where('status','=','PENDIENTE');
         }
+        $salud="hola";
         return $query->where('status','!=','PENDIENTE');
     }
 }
