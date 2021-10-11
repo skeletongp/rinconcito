@@ -10,8 +10,8 @@
                         @csrf
                         <h1 class="text-gray-800 mb-4  text-center text-lg font-bold uppercase">Iniciar Sesión</h1>
                         <div class="">
-                            <x-label for=" email">Correo Electrónico</x-label>
-                            <x-input name="email" placeholder="Correo Electrónico" id="email" type="email">
+                            <x-label for="username">Nombre de Usuario</x-label>
+                            <x-input name="username" placeholder="Nombre de Usuario" id="username" type="text">
                                 <x-slot name="icon"><span class="fas fa-user"></span></x-slot>
                             </x-input>
                         </div>
@@ -25,10 +25,7 @@
                         <div class="mt-4 flex items-center justify-end">
                             <x-button class=" bg-gray-900 text-white rounded" type="submit">Login</x-button>
                         </div>
-                        <a class="inline-block right-0 align-baseline font-bold text-md text-500 hover:text-blue-800"
-                            href="{{ route('auth.register') }}">
-                            ¿Nuevo Usuario
-                        </a>
+                       
                     </form>
 
                 </div>

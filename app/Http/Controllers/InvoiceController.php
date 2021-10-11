@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-   
+
     public function index()
     {
         //
@@ -21,26 +21,34 @@ class InvoiceController extends Controller
         //
     }
 
-    
+
     public function store(Request $request)
     {
-        $carts=Chart::active()->get();
-      
+        $carts = Chart::active()->get();
 
-        $invoice=Invoice::create($request->all());
-        $invoice->number="Fct. ".str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
+
+        $invoice = Invoice::create($request->all());
+        $invoice->number = "Fct. " . str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
         $invoice->save();
         foreach ($carts as $cart) {
             Detail::create([
-                'invoice_id'=>$invoice->id,
-                'product_id'=>$cart->product_id,
-                'cant'=>$cart->cant,
-                'client_id'=>$request->client_id,
-                'user_id'=>$request->user_id,
+                'invoice_id' => $invoice->id,
+                'product_id' => $cart->product_id,
+                'cant' => $cart->cant,
+                'client_id' => $request->client_id,
+                'user_id' => $request->user_id,
             ]);
-            $product=Product::find($cart->product_id);
-            $product->stock=$product->stock-$cart->cant;
-            $product->save();
+            $product = Product::find($cart->product_id);
+            if ($product->type == 'OTRO') {
+                $product->stock = $product->stock - $cart->cant;
+                $product->save();
+            } else {
+                foreach ($product->ingredients as $ing) {
+                   $ing->stock=$ing->stock-($ing->pivot->cant*$cart->cant);
+                   $ing->save();
+                }
+            }
+
             $cart->delete();
         }
         return redirect()->back();
@@ -51,13 +59,13 @@ class InvoiceController extends Controller
         //
     }
 
-   
+
     public function edit(Invoice $invoice)
     {
         //
     }
 
-    
+
     public function update(Request $request, Invoice $invoice)
     {
         //

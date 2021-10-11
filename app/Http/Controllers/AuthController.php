@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function __construct() {
+        $this->middleware(['auth','role:admin'])->only('register');
+    }
    public function login()
    {
+       if (Auth::user()) {
+           return redirect()->route('home');
+       }
        return view('auth.login');
    }
    public function register()
@@ -33,13 +39,13 @@ class AuthController extends Controller
    public function access(Request $request)
    {
     $credentials = $request->validate([
-        'email' => ['required', 'email'],
+        'username' => ['required', 'string'],
         'password' => ['required'],
     ]);
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
-        return redirect()->intended('dashboard');
+        return redirect()->intended(route('home'));
     }
     return back()->withErrors([
         'error' => 'Los datos suministrados no son válidos.',

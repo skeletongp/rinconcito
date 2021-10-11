@@ -17,4 +17,13 @@ $("document").ready(function () {
     $('#makeInvoive').click(function(){
         $('#formInvoice').submit();
     })
+    
+    $('#textPhoto').click(function(){
+        $('#photo').trigger('click');
+    })
+
+    $('#photo').on('input', function(){
+        var filename = $('#photo').val().split('\\').pop();
+        $('#namePhoto').text(filename)
+    })
 });

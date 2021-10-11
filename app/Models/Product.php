@@ -39,4 +39,26 @@ class Product extends Model
     {
         return $this->hasOne(Chart::class);
     }
+    public function ingredients()
+    {
+        return $this->belongsToMany(Ingredient::class, 'ingredient_products')->withPivot('cant');
+    }
+    public function hasStock()
+    {
+        if ($this->type=='COMIDA') {
+            if ($this->ingredients->count()) {
+               foreach ($this->ingredients as $ing) {
+                   if (!$ing->stock) {
+                       return 0;
+                   }
+               }
+            } else {
+                return 0;
+            }
+            return 10;
+        } else {
+            return $this->stock;
+        }
+        
+    }
 }

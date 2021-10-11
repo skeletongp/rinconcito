@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('fullname');
             $table->string('slug')->unique();
-            $table->string('email')->unique();
+            $table->string('username')->unique();
             $table->string('phone');
             $table->string('photo');
             $table->enum('darkmode',['Y','N'])->default('N');

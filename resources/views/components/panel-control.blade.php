@@ -1,4 +1,4 @@
-<div class="flex flex-col my-8">
+<div class="flex flex-col my-8 bg-white p-4 rounded-xl">
   
     <!-- Stats Row Starts Here -->
     <h1 class="text-center uppercase font-bold text-lg lg:text-3xl mb-4">Ventas de la semana</h1>

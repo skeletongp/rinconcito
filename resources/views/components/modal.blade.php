@@ -61,7 +61,7 @@
                 </div>
             </div>
             <!--Body-->
-            <div class="my-5">
+            <div class="my-2 lg:my-5">
                 {{ $slot }}
             </div>
             <!--Footer-->

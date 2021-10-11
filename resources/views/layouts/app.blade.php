@@ -25,6 +25,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
     <script src="{{mix('js/main.js')}}" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
 <body class="text-black dark:text-white">
