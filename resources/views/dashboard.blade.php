@@ -43,7 +43,7 @@
             </header>
             <!--/Header-->
 
-            <div class="flex flex-1 py-12 bg-no-repeat bg-right lg:bg-cover "
+            <div class="flex flex-1 py-12 bg-no-repeat bg-right bg-fixed lg:bg-cover "
                 style="background-image:url('{{ asset('/fondo.jpg') }}')">
                 <!--Sidebar-->
                 <x-menu></x-menu>
