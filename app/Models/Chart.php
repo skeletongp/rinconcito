@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Traits\ChartTrait;
+use App\Traits\ChartTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
