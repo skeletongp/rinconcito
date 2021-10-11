@@ -22,7 +22,7 @@
                                         <div class="text-right">
                                             <p class="text-md font-semibold"> {{ $cart->cant }} x
                                                 ${{ number_format($cart->product->price, 2) }}</p>
-                                            <p class="text-lg font-semibold">Total.
+                                            <p class=" text-sm md:text-lg font-semibold">Total.
                                                 ${{ number_format($cart->cant * $cart->product->price, 2) }}</p>
 
                                         </div>
