@@ -58,7 +58,11 @@ class ChartController extends Controller
     
     public function update(Request $request, $id)
     {
-        //
+        $chart=Chart::find($id);
+        $chart->update($request->all());
+        $chart->total=$chart->price*$chart->cant;
+        $chart->save();
+        return redirect(request()->header('Referer'));
     }
 
     
@@ -67,7 +71,7 @@ class ChartController extends Controller
         $cart=Chart::find($id);
         $cart->delete();
         Session::flash('success', 'Retirado del carrito');
-        return redirect()->route('products.index');
+        return redirect(request()->header('Referer'));
     }
 
     public function empty()

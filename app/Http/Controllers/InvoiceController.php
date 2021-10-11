@@ -25,8 +25,7 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $carts = Chart::active()->get();
-
-
+        dd($request->all());
         $invoice = Invoice::create($request->all());
         $invoice->number = "Fct. " . str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
         $invoice->save();
@@ -49,7 +48,8 @@ class InvoiceController extends Controller
                 }
             }
 
-            $cart->delete();
+            $cart->status='VENDIDO';
+            $cart->save();
         }
         return redirect()->back();
     }

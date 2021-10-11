@@ -14,8 +14,8 @@ $("document").ready(function () {
         subtotal=subtotal.substring(1)*100;
         $("#total").val(parseFloat(subtotal) - discount);
         $("#payed").val($("#total").val());
-        $("#spTotal").val($("#total").val());
-        $('#spDesc').val(discount)
+        $("#spTotal").val('$'+parseFloat($("#total").val()));
+        $('#spDesc').val('$'+parseFloat(discount))
         console.log( $('#spDesc').val())
     });
 

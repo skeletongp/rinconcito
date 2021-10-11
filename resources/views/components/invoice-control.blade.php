@@ -28,7 +28,7 @@
         @endforeach
     @endif
 </div>
-<div class="flex items-center justify-between space-x-3 ">
+<div class="flex items-center {{$carts->count()?:'hidden'}} justify-between space-x-3 ">
 
     <x-dropdown-link href="{{ route('charts.index') }}">
         Facturar

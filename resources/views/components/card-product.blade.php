@@ -34,7 +34,7 @@
                             class="font-medium capitalize">{{ $code }}</span>-<span
                             class="text-green-800 font-bold">{{ $price }}</span></h3>
                     <div class="flex justify-between items-center w-72 ">
-                        <span class="card__status text-black">{{ $stock }} en Stock</span>
+                        <span class="card__status text-black">{{ $type=='OTRO'?$stock.' en':($stock?'En':'Sin ') }}  Stock</span>
                         @if (!$stock)
                             <span class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">Faltan ingredientes</span>
                         @endif
