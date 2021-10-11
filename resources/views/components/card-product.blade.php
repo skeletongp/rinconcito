@@ -30,7 +30,7 @@
                    <div class="flex justify-between items-center w-72 ">
                     <span class="card__status text-black">{{ $stock }} en Stock</span>
                     @if (!$stock)
-                        <span  class="text-sm text-red-500 font-semibold mr-10">Faltan ingredientes</span>
+                        <span  class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">Faltan ingredientes</span>
                     @endif
                    </div>
                 </div>
