@@ -1,7 +1,7 @@
 <aside id="sidebar"
-    class="fixed h-screen z-20  bg-right bg-cover w-2/3 md:w-1/3 lg:w-1/6 border-r border-side-nav hidden  lg:block "
-    style="background-image: url('/fondo.jpg'); transform:scaleX(-1);">
-    <ul class="p-4 font-bold flex flex-col space-y-4" style="transform:scaleX(-1);">
+    class="fixed h-screen z-20  bg-left bg-cover w-2/3 md:w-1/3 lg:w-1/6 hidden  lg:block "
+    style="background-image: url('/fondo.jpg'); ">
+    <ul class="p-4 font-bold flex flex-col space-y-4" >
         <x-dropdown-link :active="request()->routeIs('dashboard')" href="{{ route('home') }}"
             class="flex justify-start space-x-2 items-center hover:bg-gray-900 hover:text-white p-3 border-b-2">
             <div class="w-1/6 h-full">
