@@ -31,7 +31,7 @@
             <span>Ventas</span>
         </x-dropdown-link>
         <x-dropdown-link id="linkcart"
-            class=" flex justify-start space-x-2 items-center hover:bg-gray-900 hover:text-white p-3 border-b-2">
+            class=" flex justify-start space-x-2 items-center cursor-pointer hover:bg-gray-900 hover:text-white p-3 border-b-2">
             <div class="w-1/6 h-full">
                 <span class="fas fa-shopping-cart text-lg"></span>
             </div>
@@ -42,9 +42,9 @@
 
         </x-dropdown-link>
         
-        <x-dropdown-link id="divcart" class=" flex w-full justify-start cursor-pointer space-x-2 items-center bg-white p-3 ">
+        <div id="divcart" class="  w-full items-center bg-white p-3 ">
           <x-invoice-control></x-invoice-control>
-        </x-dropdown-link>
+        </div>
     </ul>
 
 

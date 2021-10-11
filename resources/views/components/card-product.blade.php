@@ -1,4 +1,4 @@
-@props(['name', 'stock', 'code', 'price', 'url' => '', 'photo', 'id', 'type'])
+@props(['name', 'stock', 'code', 'price', 'url' => '', 'photo', 'id', 'type', 'show' => false])
 <li class="relative shadow-xl max-w-sm ">
     <form id="frm{{ $id }}" action="{{ route('charts.store') }}" method="POST" class="card frmChart "
         disabled>
@@ -12,8 +12,14 @@
             </div>
             <input type="hidden" name="product_id" value="{{ $id }}">
         </div>
-        <div class="card_image w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url({{$photo}})">
-
+        <div class="card_image w-full h-full bg-cover bg-center bg-no-repeat "
+            style="background-image: url({{ $photo }})">
+            @if ($show)
+                <a href="{{ route('products.show', $id) }}"
+                    class=" absolute right-4 top-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                    <span class="fas fa-eye text-xl"></span>
+                </a>
+            @endif
         </div>
         <img src="" class="card__image" alt="" />
         <div class="card__overlay">
@@ -21,24 +27,25 @@
 
                 <div class="card__thumb flex items-center justify-center {{ $stock ? 'bg-green-500' : 'bg-red-500' }}"
                     alt="">
-                        <span class="fas {{$stock?'fa-check':'fa-times'}} text-white"></span>
+                    <span class="fas {{ $stock ? 'fa-check' : 'fa-times' }} text-white"></span>
                 </div>
                 <div class="card__header-text">
                     <h3 class="card__title flex space-x-2"><span
                             class="font-medium capitalize">{{ $code }}</span>-<span
                             class="text-green-800 font-bold">{{ $price }}</span></h3>
-                   <div class="flex justify-between items-center w-72 ">
-                    <span class="card__status text-black">{{ $stock }} en Stock</span>
-                    @if (!$stock)
-                        <span  class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">Faltan ingredientes</span>
-                    @endif
-                   </div>
+                    <div class="flex justify-between items-center w-72 ">
+                        <span class="card__status text-black">{{ $stock }} en Stock</span>
+                        @if (!$stock)
+                            <span class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">Faltan ingredientes</span>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="flex justify-between  items-center">
                 <p class="card__description leading-5 text-black lg:text-lg">{{ $name }}</p>
                 @if ($type == 'COMIDA')
-                    <a class="mr-4 px-2 py-1 rounded-lg bg-black text-white" href="{{route('ingredients.ingredients', $id)}}">Ingredientes</a>
+                    <a class="mr-4 px-2 py-1 rounded-lg bg-black text-white"
+                        href="{{ route('ingredients.ingredients', $id) }}">Ingredientes</a>
                 @endif
             </div>
         </div>

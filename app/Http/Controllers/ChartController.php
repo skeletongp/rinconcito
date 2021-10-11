@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ChartRequest;
 use App\Models\Chart;
+use App\Models\Client;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -13,7 +14,14 @@ class ChartController extends Controller
   
     public function index()
     {
-        //
+        $carts = Chart::active()->get();
+        $clients = Client::get();
+
+        return view('pages.carts.index')
+        ->with([
+            'carts'=>$carts,
+            'clients'=>$clients,
+        ]);
     }
 
     
@@ -37,7 +45,8 @@ class ChartController extends Controller
    
     public function show($id)
     {
-       
+        
+
     }
 
     

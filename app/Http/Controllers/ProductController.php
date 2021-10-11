@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingredient;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,6 +15,9 @@ class ProductController extends Controller
     {
         $products = Product::search(request('q'))->paginate(6);
         return view('pages.products.index')->with(['products' => $products]);
+    }
+    public function __construct() {
+        $this->middleware(['role:admin'])->except('index','show');
     }
 
 
@@ -50,7 +54,14 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        //
+        $dt = Carbon::now();
+        $today = $dt->toDateString();
+        $details=$product->details()->whereDate('created_at', '=', $today)->get();
+        return view('pages.products.show')
+        ->with([
+            'product'=>$product,
+            'details'=>$details,
+        ]);
     }
 
 
