@@ -32,7 +32,9 @@ Route::get('/auth/register', [AuthController::class,'register'])->name('auth.reg
 Route::get('/auth/logout', [AuthController::class,'logout'])->name('auth.logout');
 Route::post('/auth/access', [AuthController::class,'access'])->name('auth.access');
 Route::post('/auth/store', [AuthController::class,'store'])->name('auth.store');
-
+Route::get('/offline', function () {    
+    return view('modules/laravelpwa/offline');
+});
 /* Others Routes */
 Route::middleware(['auth'])->group(function () {
     /* Products Routes */

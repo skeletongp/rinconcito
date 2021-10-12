@@ -15,9 +15,9 @@
                                 <div class="flex flex-col justify-between w-full pb-4">
                                     <div class="flex justify-between w-full pb-2 space-x-2">
                                         <div class="space-y-1 w-full">
-                                            <h3 class="text-lg font-semibold leading-snug sm:pr-8">
+                                            <h3 class="text-lg md:text-xl font-semibold leading-snug sm:pr-8">
                                                 {{ $cart->product->code }}</h3>
-                                            <p class="text-sm dark:text-coolGray-400">{{ $cart->product->name }}</p>
+                                            <p class="text-sm md:text-base dark:text-coolGray-400">{{ $cart->product->name }}</p>
                                         </div>
                                         <div class="text-right w-full">
                                             <p class="text-md font-semibold"> {{ $cart->cant }} x

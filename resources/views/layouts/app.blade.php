@@ -27,7 +27,7 @@
     <script src="{{mix('js/main.js')}}" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-price-format/2.2.0/jquery.priceformat.min.js" integrity="sha512-qHlEL6N+fxDGsJoPhq/jFcxJkRURgMerSFixe39WoYaB2oj91lvJXYDVyEO1+tOuWO+sBtUGHhl3v3hUp1tGMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    @laravelPWA
 </head>
 
 <body class="text-black dark:text-white">
