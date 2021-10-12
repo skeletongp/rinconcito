@@ -34,7 +34,13 @@ $("document").ready(function () {
     $("#namePhoto").text(filename);
   });
   $('.bg-white').each(function () {
-    $(this).css('background-color', '#aaa');
+    $(this).css('background-color', '#eee');
+  });
+  $('.text-white').each(function () {
+    $(this).css('color', '#eee');
+  });
+  $('input').each(function () {
+    $(this).css('background-color', '#eee');
   });
 });
 /******/ })()
