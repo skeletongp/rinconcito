@@ -34,7 +34,7 @@ $("document").ready(function () {
     });
 
     $('.bg-white').each(function(){
-        $(this).css('background-color', 'white');
+        $(this).css('background-color', '#aaa');
 
     })
     
