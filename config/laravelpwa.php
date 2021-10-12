@@ -6,6 +6,7 @@ return [
         'name' => env('APP_NAME', 'CoffeTech'),
         'short_name' => 'CTech',
         'start_url' => '/',
+        'dark_mode'=>false,
         'background_color' => '#ffffff',
         'theme_color' => '#ffffff',
         'display' => 'standalone',
