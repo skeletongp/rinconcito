@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="max-w-3xl mx-auto bg-white p-2 px-4 rounded-xl">
-        <div class="flex flex-col max-w-3xl p-6 space-y-4 md:px-6 md:py-4  dark:bg-coolGray-900 dark:text-coolGray-100">
+        <div class="flex flex-col max-w-3xl p-6 space-y-4 md:px-6 md:py-4  ">
             <h2 class="text-xl font-semibold">Artículos para facturar</h2>
             <ul class="flex flex-col divide-y divide-coolGray-700">
                 {{-- Producto --}}
