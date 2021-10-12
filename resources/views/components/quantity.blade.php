@@ -1,7 +1,7 @@
 @props(['id', 'stock'])
 @php
 $product = App\Models\Product::find($id);
-$cant = optional($product->chart)->cant;
+$cant = optional($product->chart('PENDIENTE'))->cant;
 @endphp
 <div class="flex flex-col items-center px-2 py-0 rounded-full select-none text-xl lg:text-2xl">
     <span id="plus{{ $id }}" class="my-0 cursor-pointer font-bold text-green-600">+</span>

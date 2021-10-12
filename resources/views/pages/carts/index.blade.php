@@ -66,15 +66,15 @@
         {{-- Totales --}}
         <div class="space-y-1 text-right ">
             <p>Subtotal:
-                <input type=" text" disabled class="font-semibold money w-16 text-right" id="spSubtotal"
+                <input type=" text" disabled class="font-semibold  w-16 text-right" id="spSubtotal"
                     value="${{ number_format($carts->sum('total'), 2) }}" />
             </p>
             <p>Desc:
-                <input type="text" disabled class="font-semibold  w-16 text-right money" id="spDesc"
+                <input type="text" disabled class="font-semibold  w-16 text-right " id="spDesc"
                     value="${{ number_format(0, 2) }}" />
             </p>
             <p>Total:
-                <input type="text" disabled class="font-semibold money w-16 text-right" id="spTotal"
+                <input type="text" disabled class="font-semibold  w-16 text-right" id="spTotal"
                     value="${{ number_format($carts->sum('total'), 2) }}" />
             </p>
         </div>
@@ -113,7 +113,7 @@
                     <div class="">
                                 <div class=" w-full">
                         <x-label>Descuento</x-label>
-                        <x-input id="discount" class="text-right " money="true" type="text" name="discount" required
+                        <x-input id="discount" class="text-right "  type="text" name="discount" required
                             value="0" min="0" max="{{ $carts->sum('total') }}">
                         </x-input>
                     </div>

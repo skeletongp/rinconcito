@@ -17,6 +17,9 @@
         @if (Session::has('success'))
             <x-alert type="success"></x-alert>
         @endif
+        @if (Session::has('error'))
+        <x-alert type="error"></x-alert>
+    @endif
         <div>
             <form action="{{ route('products.index') }}" class="px-3 lg:px-8">
                 <div class="md:w-1/2 lg:w-1/3 md:pl-8 lg:px-0">

@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
     /* Ingredients Routes */
     Route::get('ingredients/view/{product}',[IngredientController::class,'ingredients'])->name('ingredients.ingredients');
-    Route::get('ingredients/remove/{$product}/{ingredient}',[IngredientController::class,'remove'])->name('ingredients.remove');
+    Route::put('ingredients/remove',[IngredientController::class,'remove'])->name('ingredients.remove');
     Route::resource('ingredients',IngredientController::class)->names('ingredients');
 
 });

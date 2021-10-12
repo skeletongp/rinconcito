@@ -41,7 +41,7 @@ class ProductController extends Controller
         $filename = time() . '.' . request()->photo->getClientOriginalExtension();
         request()->photo->move(public_path('images'), $filename);
         $data = $request->all();
-        $data['photo'] = 'images/' . $filename;
+        $data['photo'] = '/images/' . $filename;
         $product = Product::create($data);
         $product->code = $this->createAcronym($product->name) . $product->id;
         $product->save();
@@ -56,7 +56,7 @@ class ProductController extends Controller
     {
         $dt = Carbon::now();
         $today = $dt->toDateString();
-        $details=$product->details()->whereDate('created_at', '=', $today)->get();
+        $details=$product->details()->whereDate('created_at', '=', $today)->orderBY('created_at','desc')->paginate(3);
         return view('pages.products.show')
         ->with([
             'product'=>$product,
@@ -67,19 +67,28 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        //
+        return view('pages.products.edit')
+        ->with(['product'=>$product]);
     }
 
 
     public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->all();
+        if ($request->hasFile('photo')) {
+            $filename = time() . '.' . request()->photo->getClientOriginalExtension();
+            request()->photo->move(public_path('images'), $filename);
+            $data['photo'] = '/images/' . $filename;
+        }
+        $product->update($data);
+        return redirect()->route('products.show', $product);
     }
 
   
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
     public function add_ingredients(Request $request, Product $product)
     {   

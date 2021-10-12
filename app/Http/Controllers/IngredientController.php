@@ -11,7 +11,7 @@ class IngredientController extends Controller
 
     public function index()
     {
-        $ingredients=Ingredient::get();
+        $ingredients=Ingredient::paginate(8);
         return view('pages.ingredients.index')
         ->with(['ingredients'=>$ingredients]);
     }
@@ -24,7 +24,8 @@ class IngredientController extends Controller
 
     public function store(Request $request)
     {
-        //
+       Ingredient::updateOrCreate(['name'=>$request->name],$request->all());
+       return redirect()->route('ingredients.index');
     }
 
     public function show(Ingredient $ingredient)
@@ -60,8 +61,11 @@ class IngredientController extends Controller
                 'ingredients' => $ingredients,
             ]);
     }
-    public function remove(Product $product, Ingredient $ingredient)
+    public function remove(Request $request)
     {
-       dd($product, $ingredient);
+       $product=Product::find($request->product);
+       $ingredient=Ingredient::find($request->ingredient);
+       $product->ingredients()->detach($ingredient);
+       return redirect()->back();
     }
 }

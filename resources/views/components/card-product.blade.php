@@ -19,6 +19,17 @@
                     class=" absolute right-4 top-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
                     <span class="fas fa-eye text-xl"></span>
                 </a>
+            @else
+                <div class=" flex flex-col space-y-3 absolute right-4 top-4">
+                    <a href="{{ route('products.edit', $id) }}"
+                        class="  w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                        <span class="fas fa-pen text-xl text-green-500"></span>
+                    </a>
+                    <x-button form="formDelete" onclick="return confirm('¿Eliminar este producto?')" class=" w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                        <span class="fas fa-trash-alt text-xl text-red-500"></span>
+                    </x-button>
+                    
+                </div>
             @endif
         </div>
         <img src="" class="card__image" alt="" />
@@ -34,7 +45,9 @@
                             class="font-medium capitalize">{{ $code }}</span>-<span
                             class="text-green-800 font-bold">{{ $price }}</span></h3>
                     <div class="flex justify-between items-center w-72 ">
-                        <span class="card__status text-black">{{ $type=='OTRO'?$stock.' en':($stock?'En':'Sin ') }}  Stock</span>
+                        <span
+                            class="card__status text-black">{{ $type == 'OTRO' ? $stock . ' en' : ($stock ? 'En' : 'Sin ') }}
+                            Stock</span>
                         @if (!$stock)
                             <span class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">Faltan ingredientes</span>
                         @endif
@@ -49,5 +62,9 @@
                 @endif
             </div>
         </div>
+    </form>
+    <form id="formDelete" action="{{route('products.destroy', $id)}}" method="POST">
+        @method('delete')
+        @csrf
     </form>
 </li>

@@ -42,8 +42,8 @@
                         </div>
                         <div class="w-1/6 text-xl bg-blue-300 px-4 py-2 rounded-r-xl">
                             <div class="w-7 h-7 text-center font-semibold rounded-full bg-white">
-                                <form action="{{ route('ingredients.remove',[$product, $ing]) }}" method="POST">
-                                    @method('delete')
+                                <form action="{{ route('ingredients.remove',['product'=>$product,'ingredient'=> $ing]) }}" method="POST">
+                                    @method('put')
                                     @csrf
                                     <button onclick="return confirm('Remover ingrediente?')"
                                         class="fas fa-times cursor-pointer text-red-500"></button>

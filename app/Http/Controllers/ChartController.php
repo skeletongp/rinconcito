@@ -16,7 +16,10 @@ class ChartController extends Controller
     {
         $carts = Chart::active()->get();
         $clients = Client::get();
-
+        if (!$carts->count()) {
+            return redirect()->route('products.index')
+            ->with(['error'=>'No hay productos en el carrito']);
+        }
         return view('pages.carts.index')
         ->with([
             'carts'=>$carts,
@@ -35,11 +38,13 @@ class ChartController extends Controller
     {
         $product=Product::find($request->product_id);
         request()->request->add(['price'=>$product->price]);
+        request()->request->add(['status'=>'PENDIENTE']);
         request()->request->add(['total'=>$product->price*$request->cant]);
         $chart=Chart::updateOrCreate(['product_id'=>$request->product_id], $request->all());
        if($chart){
         return redirect()->back()->with(['success'=>'Añadido al carrito']);
        }
+       return redirect()->back()->with(['error'=>'No pudo añadirse']);
     }
 
    

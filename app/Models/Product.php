@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 class Product extends Model
 {
-    use HasFactory, SearchableTrait;
+    use HasFactory, SearchableTrait, SoftDeletes;
     protected $searchable = [
        
         'columns' => [
@@ -35,10 +36,11 @@ class Product extends Model
        }
        return $this->photo;
     }
-    public function chart()
+    public function chart($status='PENDIENTE')
     {
-        return $this->hasOne(Chart::class);
+        return $this->hasOne(Chart::class)->where('status','=',$status)->first();
     }
+    
     public function ingredients()
     {
         return $this->belongsToMany(Ingredient::class, 'ingredient_products')->withPivot('cant');
@@ -48,7 +50,7 @@ class Product extends Model
         if ($this->type=='COMIDA') {
             if ($this->ingredients->count()) {
                foreach ($this->ingredients as $ing) {
-                   if (!$ing->stock) {
+                   if ($ing->stock<1.00 ) {
                        return 0;
                    }
                }
