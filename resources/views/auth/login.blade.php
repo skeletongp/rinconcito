@@ -5,7 +5,7 @@
         <div class="container mx-auto h-full flex flex-1 justify-center items-center">
             <div class="w-full max-w-lg">
                 <div class="leading-loose">
-                    <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl space-y-4"
+                    <form class="max-w-xl m-4 p-10 bg-white dark:bg-white rounded shadow-xl space-y-4"
                         action="{{ route('auth.access') }}" method="POST">
                         @csrf
                         <h1 class="text-gray-800 mb-4  text-center text-lg font-bold uppercase">Iniciar Sesión</h1>
