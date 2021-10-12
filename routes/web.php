@@ -6,6 +6,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::get('/offline', function () {
 });
 /* Others Routes */
 Route::middleware(['auth'])->group(function () {
+
     /* Products Routes */
     Route::post('products/add_ingredients/{product}',[ProductController::class,'add_ingredients'])->name('products.add_ingredients');
     Route::resource('products',ProductController::class)->names('products');
@@ -56,4 +58,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('ingredients/remove',[IngredientController::class,'remove'])->name('ingredients.remove');
     Route::resource('ingredients',IngredientController::class)->names('ingredients');
 
+    /* Users Routes */
+    Route::resource('users',UserController::class)->middleware(['role:admin'])->names('users');
 });

@@ -31,7 +31,7 @@
             <span>Clientes</span>
         </x-dropdown-link>
         @role('admin')
-        <x-dropdown-link :active="request()->routeIs('ingredients.index')" href="{{ route('ingredients.index') }}"
+        <x-dropdown-link :active="request()->routeIs('users.index')" href="{{ route('users.index') }}"
             class="flex justify-start space-x-2 items-center hover:bg-gray-900 hover:text-white p-3 border-b-2">
             <div class="w-1/6 h-full">
                 <span class="fas fa-user-tie text-lg"></span>
