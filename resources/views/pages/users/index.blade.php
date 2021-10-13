@@ -10,7 +10,7 @@
                         <div class="w-full h-24 bg-cover bg-center flex flex-col justify-center rounded-xl "
                             style="background-image: url(/fondo.jpg)">
                             <div class="  h-full flex items-center space-x-3 bg-gray-50 p-4 bg-opacity-60 relative">
-                                <div class="w-16 h-16 rounded-full bg-contain bg-center "
+                                <div class="w-16 h-16 rounded-full bg-cover bg-center "
                                     style="background-image: url('{{ $user->photo }}')">
                                 </div>
                                 <div class="flex flex-col justify-end">
