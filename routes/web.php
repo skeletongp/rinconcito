@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InvoiceController;
@@ -60,4 +61,7 @@ Route::middleware(['auth'])->group(function () {
 
     /* Users Routes */
     Route::resource('users',UserController::class)->middleware(['role:admin'])->names('users');
+
+    /* Clients Routes */
+    Route::resource('clients',ClientController::class)->names('clients');
 });

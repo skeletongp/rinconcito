@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('fullname');
-            $table->string('slug')->unique();
-            $table->string('username')->unique();
+            $table->string('slug');
+            $table->string('username');
+            $table->string('email');
             $table->string('phone');
             $table->string('photo');
             $table->enum('darkmode',['Y','N'])->default('N');
@@ -27,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

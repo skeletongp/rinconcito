@@ -33,15 +33,6 @@ $("document").ready(function () {
     var filename = $("#photo").val().split("\\").pop();
     $("#namePhoto").text(filename);
   });
-  $('.bg-white').each(function () {
-    $(this).css('background-color', '#eee');
-  });
-  $('.text-white').each(function () {
-    $(this).css('color', '#eee');
-  });
-  $('input').each(function () {
-    $(this).css('background-color', '#eee');
-  });
 });
 /******/ })()
 ;

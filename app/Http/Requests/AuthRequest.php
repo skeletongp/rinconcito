@@ -16,8 +16,11 @@ class AuthRequest extends FormRequest
     {
         $this->request->add(['fullname' => $this->name . ' ' . $this->lastname]);
         $this->request->add(['slug' => Str::slug($this->fullname, '-')]);
-       
-        $this->photo?'':$this->request->add(['photo'=>'profile.png']);;
+        $pos=strpos($this->email,'@');
+        $username=substr($this->email, 0, $pos);
+        $this->request->add(['username'=>$username]);
+        $this->request->add(['password'=>bcrypt($username)]);
+        $this->photo?'':$this->request->add(['photo'=>'https://ui-avatars.com/api/?name='.str_replace(' ','+',$this->fullname).'&color=FFFFFF&background=F400A0']);;
        
     }
     
@@ -26,8 +29,9 @@ class AuthRequest extends FormRequest
         return [
             'fullname'=>'required|max:120',
             'name'=>'required|max:50',
+            'email'=>'required|unique:users,email,'.$this->id.',id,deleted_at,NULL',
             'lastname'=>'required|max:50',
-            'password'=>'required|min:8|confirmed',
+            'password'=>'required|min:8',
         ];
     }
 }

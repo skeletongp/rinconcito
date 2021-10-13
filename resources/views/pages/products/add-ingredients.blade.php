@@ -3,6 +3,7 @@
 @section('body')
 
     <div class="max-w-xl mx-auto bg-white p-4 rounded-xl">
+        @role('admin')
         <h1 class="text-center font-bold uppercase text-xl mt-4 lg:mt-16 mb-4">Añadir ingredientes</h1>
         <form action="{{ route('products.add_ingredients', $product) }}" method="POST">
             @csrf
@@ -26,6 +27,7 @@
                 <x-button class="bg-black text-white hover:text-black">Añadir</x-button>
             </div>
         </form>
+        @endrole
 
         @if ($product->ingredients->count())
             <h1 class="text-center text-xl font-bold uppercase ">Ingredientes de <br> {{ $product->name }}</h1>
@@ -42,7 +44,8 @@
                         </div>
                         <div class="w-1/6 text-xl bg-blue-300 px-4 py-2 rounded-r-xl">
                             <div class="w-7 h-7 text-center font-semibold rounded-full bg-white">
-                                <form action="{{ route('ingredients.remove',['product'=>$product,'ingredient'=> $ing]) }}" method="POST">
+                                <form action="{{ route('ingredients.remove', ['product' => $product, 'ingredient' => $ing]) }}"
+                                    method="POST">
                                     @method('put')
                                     @csrf
                                     <button onclick="return confirm('Remover ingrediente?')"
@@ -54,6 +57,8 @@
 
                 @endforeach
             </div>
+        @else
+            <h1 class="my-6 text-center font-bold uppercase text-xl">Este producto no lleva ingredientes</h1>
         @endif
 
     </div>
