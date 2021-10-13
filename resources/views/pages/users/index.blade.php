@@ -10,11 +10,11 @@
                         <div class="w-full h-24 bg-cover bg-center flex flex-col justify-center rounded-xl "
                             style="background-image: url(/fondo.jpg)">
                             <div class="  h-full flex items-center space-x-3 bg-gray-50 p-2 md:p-4 bg-opacity-60 relative">
-                                <div class="w-16 h-16 rounded-full bg-cover bg-center "
+                                <div class="h-12 w-12 md:w-16 md:h-16 rounded-full bg-cover bg-center "
                                     style="background-image: url('{{ $user->photo }}')">
                                 </div>
                                 <div class="flex flex-col justify-end">
-                                    <span class="text-xl font-bold">{{ $user->fullname }}</span>
+                                    <span class="text-base md:text-xl font-bold">{{ $user->fullname }}</span>
                                     <p class="text-sm w-max font-bold leading-4 mt-2">
                                         {{ $user->phone }}
                                         <br>{{ $user->role }}
