@@ -22,7 +22,7 @@
                                     </p>
 
                                 </div>
-                                <div class="absolute flex flex-col px-2 py-1 justify-center space-y-8 h-full right-1 ">
+                                <div class="absolute flex flex-col px-2 py-1 justify-center space-y-4 md:space-y-8 h-full right-1 ">
                                     <a href="{{ route('users.edit', $user) }}">
                                         <span class="fas fa-pen text-blue-700"></span>
                                     </a>
