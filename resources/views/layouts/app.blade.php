@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{Auth::user()?(Auth::user()->dark=='Y'?'dark':''):''}}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
 <head>
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
     @laravelPWA
 </head>
 
-<body class="text-black dark:text-white">
+<body class="text-black ">
     @yield('content')
     <script>
         var sidebar = $('#sidebar');
