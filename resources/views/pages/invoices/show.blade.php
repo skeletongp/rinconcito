@@ -2,10 +2,10 @@
     <div class="turn">
         <span style="color: white">{{ $invoice->fromToday()->count() }}</span>
     </div>
-    <div class="back hide-print">
+   {{--  <div class="back hide-print">
         <a href="{{ route('invoices.index') }}">
             <- Volver</a>
-    </div>
+    </div> --}}
     <div class="invoice-title">
         <div id="main-title">
             <h4>FACTURA</h4>
@@ -64,14 +64,14 @@
             </tbody>
         </table>
     </div>
-    <div class="invoice-footer">
+    <div class="invoice-footer" style="bottom: 0; position:absolute">
         <span style="font-size: medium; margin-top:10px; font-weight:bold"> {{ env('COMPANY_NAME') }}</span>
         <span style="font-size: small; "> {{ $invoice->user->fullname }}</span>
         <span style="font-size: small; margin-bottom:10px"> {{ env('COMPANY_PHONE') }}</span>
         <span style="font-size: small"> Gracias por su compra</span>
     </div>
 </div>
-<button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button>
+{{-- <button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button> --}}
 <script>
     window.addEventListener('load', function() {
         /*  window.print();
@@ -118,6 +118,7 @@
         margin-top: 5px;
         min-height: 25em;
         width: 78mm;
+        height: max-content;
         background-color: #fff;
         border-radius: 5px;
         border-bottom: dashed 2.5px #aaa;
@@ -183,11 +184,11 @@
     }
 
     .invoice-details {
-        flex: 1;
+        
         border-top: 0.5px dashed grey;
         border-bottom: 0.5px dashed grey;
-        display: flex;
         align-items: center;
+        padding-top: 2rem
     }
 
     .invoice-table {
@@ -225,15 +226,11 @@
     }
 
     .invoice-footer {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        position: absolute;
+        bottom: 0;
     }
 
-    .invoice-footer #later {
-        margin-right: 5px;
-    }
+    
 
     .calc-row {
         font-size: small;

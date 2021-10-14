@@ -7,7 +7,7 @@ use App\Models\Detail;
 use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class InvoiceController extends Controller
 {
 
@@ -60,11 +60,15 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         $user = $invoice->user;
-        return view('pages.invoices.show')
+        $pdf = PDF::loadView('pages.invoices.show', ['invoice' => $invoice,
+        'user'=>$user,])->setOptions(['defaultFont' => 'sans-serif']);
+    
+        return $pdf->stream('invoice.pdf');
+        /* return view('pages.invoices.show')
             ->with([
                 'invoice' => $invoice,
                 'user'=>$user,
-            ]);
+            ]); */
     }
 
 
