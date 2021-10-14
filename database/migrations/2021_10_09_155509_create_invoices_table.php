@@ -19,6 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('client_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->decimal('subtotal');
+            $table->enum('status',['PENDIENTE','ENTREGADO']);
             $table->decimal('total');
             $table->softDeletes();
             $table->decimal('discount');

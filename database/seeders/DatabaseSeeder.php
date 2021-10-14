@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $user->assignRole($admin);
         Client::create([
             'name'=>'Genérico',
-            'phone'=>'0000000000'
+            'phone'=>'809-765-4321'
         ]);
     }
 }

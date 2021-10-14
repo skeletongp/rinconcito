@@ -33,27 +33,29 @@
             <h1 class="text-center text-xl font-bold uppercase ">Ingredientes de <br> {{ $product->name }}</h1>
             <div class="max-w-sm mx-auto">
                 @foreach ($product->ingredients as $ing)
-                    <div class=" flex items-center  my-2">
-                        <div class="w-1/6 text-center text-xl bg-blue-300 px-4 py-2 rounded-l-xl">
-                            <div class=" h-7 font-semibold rounded-full ">
-                                <span>{{ $ing->pivot->cant }}</span>
-                            </div>
-                        </div>
-                        <div class="w-4/6 text-xl bg-green-300 px-4 py-2 ">
-                            <span>{{ $ing->name }}</span>
-                        </div>
-                        <div class="w-1/6 text-xl bg-blue-300 px-4 py-2 rounded-r-xl">
-                            <div class="w-7 h-7 text-center font-semibold rounded-full bg-white">
-                                <form action="{{ route('ingredients.remove', ['product' => $product, 'ingredient' => $ing]) }}"
-                                    method="POST">
-                                    @method('put')
-                                    @csrf
-                                    <button onclick="return confirm('Remover ingrediente?')"
-                                        class="fas fa-times cursor-pointer text-red-500"></button>
-                                </form>
-                            </div>
+                <div class=" flex items-center  my-2 rounded-xl shadow-xl bg-gray-100 {{$ing->stock>0?'':'line-through'}}">
+                    <div class="w-1/6 text-center text-xl  px-4 py-2 rounded-l-xl">
+                        <div class=" h-7 font-semibold rounded-full ">
+                            <span>{{ $ing->pivot->cant ?: 'X' }}</span>
                         </div>
                     </div>
+                    <div class="w-8/12 text-xl px-4 py-2  text-black">
+                        <span>{{ $ing->name }}</span>
+                    </div>
+                    <div class="w-3/12 text-xl  px-4 py-2 rounded-r-xl flex items-center space-x-4 justify-end">
+                        <div class="w-7 h-7 text-center  font-semibold rounded-full bg-white">
+                            <form action="{{ route('ingredients.remove') }}" method="POST">
+                                @method('delete')
+                                @csrf
+                                <input type="hidden" name="ingredient" value="{{$ing->id}}">
+                                <input type="hidden" name="product" value="{{$product->id}}">
+                                <button onclick="return confirm('¿Remover ingrediente?')"
+                                    class="fas fa-times cursor-pointer text-red-500"></button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
 
                 @endforeach
             </div>

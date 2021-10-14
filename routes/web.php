@@ -41,6 +41,7 @@ Route::get('/offline', function () {
 Route::middleware(['auth'])->group(function () {
 
     /* Products Routes */
+    Route::post('products/upstock/{product}',[ProductController::class, 'upstock'])->name('products.upstock');
     Route::post('products/add_ingredients/{product}',[ProductController::class,'add_ingredients'])->name('products.add_ingredients');
     Route::resource('products',ProductController::class)->names('products');
 
@@ -55,8 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('invoices',InvoiceController::class)->names('invoices');
 
     /* Ingredients Routes */
+    Route::delete('ingredients/remove',[IngredientController::class,'remove'])->name('ingredients.remove');
     Route::get('ingredients/view/{product}',[IngredientController::class,'ingredients'])->name('ingredients.ingredients');
-    Route::put('ingredients/remove',[IngredientController::class,'remove'])->name('ingredients.remove');
     Route::resource('ingredients',IngredientController::class)->names('ingredients');
 
     /* Users Routes */

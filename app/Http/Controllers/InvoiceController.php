@@ -13,7 +13,9 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        //
+        $invoices = Invoice::paginate(6);
+        return view('pages.invoices.index')
+            ->with(['invoices' => $invoices]);
     }
 
     public function create()
@@ -25,7 +27,7 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $carts = Chart::active()->get();
-        $data=$request->all();
+        $data = $request->all();
 
         $invoice = Invoice::create($data);
         $invoice->number = "Fct. " . str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
@@ -44,21 +46,26 @@ class InvoiceController extends Controller
                 $product->save();
             } else {
                 foreach ($product->ingredients as $ing) {
-                   $ing->stock=$ing->stock-($ing->pivot->cant*$cart->cant);
-                   $ing->save();
+                    $ing->stock = $ing->stock - ($ing->pivot->cant * $cart->cant);
+                    $ing->save();
                 }
             }
 
-            $cart->status='VENDIDO';
+            $cart->status = 'VENDIDO';
             $cart->save();
         }
         return redirect()->route('products.index')
-        ->with(['success'=>'Productos facturados']);
+            ->with(['success' => 'Productos facturados']);
     }
 
     public function show(Invoice $invoice)
     {
-        //
+        $user = $invoice->user;
+        return view('pages.invoices.show')
+            ->with([
+                'invoice' => $invoice,
+                'user'=>$user,
+            ]);
     }
 
 

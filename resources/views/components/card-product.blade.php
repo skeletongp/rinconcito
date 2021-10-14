@@ -30,6 +30,7 @@
                         class=" w-8 h-8 bg-white rounded-full flex items-center justify-center">
                         <span class="fas fa-trash-alt text-xl text-red-500"></span>
                     </x-button>
+                    
 
                 </div>
                 @endrole
@@ -44,15 +45,21 @@
                     <span class="fas {{ $stock ? 'fa-check' : 'fa-times' }} text-white"></span>
                 </div>
                 <div class="card__header-text">
-                    <h3 class="card__title flex space-x-2"><span
-                            class="font-medium capitalize">{{ $code }}</span>-<span
-                            class="text-green-800 font-bold">{{ $price }}</span></h3>
+                    <h3 class="card__title flex justify-between {{ $stock ? '' : 'line-through' }}">
+                        <div>
+                            <span class="font-medium capitalize">{{ $code }}</span>-
+                            <span class="text-green-800 font-bold">{{ $price }}</span>
+                        </div>
+                        
+                    </h3>
                     <div class="flex justify-between items-center w-72 ">
                         <span
                             class="card__status text-black">{{ $type == 'OTRO' ? $stock . ' en' : ($stock ? 'En' : 'Sin ') }}
                             Stock</span>
                         @if (!$stock)
-                            <span class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">Faltan ingredientes</span>
+                            <span class="text-sm text-red-500 font-semibold mr-12 lg:mr-8">
+                                {{ $type == 'COMIDA' ? 'Faltan ingredientes' : 'Agotado' }}
+                            </span>
                         @endif
                     </div>
                 </div>

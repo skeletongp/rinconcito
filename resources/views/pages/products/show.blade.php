@@ -5,10 +5,25 @@
     <div class="max-w-6xl mx-auto">
 
         <div class="bg-white p-4 lg:p-8 max-w-lg mx-auto rounded-xl">
+            <x-dropdown contentClasses=" border-none outline-none p-1 w-ma bg-white " align='left'>
+                <x-slot name="trigger">
+                    <span class="fas fa-plus cursor-pointer"></span>
+                </x-slot>
+                <x-slot name="content">
+                    <form action="{{route('products.upstock', $product)}}" method="POST" id="formadd">
+                        @csrf
+                        <div class="space-x-2 flex items-center">
+                            <x-input name="stock" form="formadd" class="h-8" placeholder="Sumar stock" required min="1"></x-input>
+                            <button form="formadd" class="w-7 h-7 rounded-full bg-green-500"><span class="fas fa-check text-white"></span></button>
+                        </div>
+                    </form>
+                </x-slot>
+            </x-dropdown>
             <div class=" max-w-lg mx-auto my-3">
                 <ul class="cards m-8">
                     <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->precio"
                         :code="$product->code" :photo="$product->pict" :id="$product->id" :type="$product->type" />
+                        
                 </ul>
             </div>
             <div class="max-w-xl mx-auto">
@@ -58,6 +73,9 @@
 
             </div>
         </div>
+        @if (Session::has('success'))
+            <x-alert type="success"></x-alert>
+        @endif
     </div>
 
 @endsection

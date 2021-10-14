@@ -60,7 +60,7 @@
                </div>
             </x-slot>
         </x-dropdown>
-        <x-dropdown contentClasses="bg-menu py-3 px-2">
+        <x-dropdown contentClasses="bg-menu py-3 px-2 hidden">
             <x-slot name="trigger">
                 <x-dropdown-link  :active="request()->routeIs('clients.*')"
                     class="flex justify-start space-x-2 items-center cursor-pointer hover:bg-gray-900 hover:text-white p-3 border-b-2">

@@ -38,10 +38,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $filename = time() . '.' . request()->photo->getClientOriginalExtension();
-        request()->photo->move(public_path('images'), $filename);
+        $filename = null;
         $data = $request->all();
-        $data['photo'] = '/images/' . $filename;
+        if ($request->hasFile('photo')) {
+            $filename=time() . '.' . request()->photo->getClientOriginalExtension();
+            request()->photo->move(public_path('images'), $filename);
+            $data['photo'] = '/images/' . $filename;
+        }
         $product = Product::create($data);
         $product->code = $this->createAcronym($product->name) . $product->id;
         $product->save();
@@ -81,6 +84,7 @@ class ProductController extends Controller
             $data['photo'] = '/images/' . $filename;
         }
         $product->update($data);
+
         return redirect()->route('products.show', $product);
     }
 
@@ -101,5 +105,12 @@ class ProductController extends Controller
         }
         $product->ingredients()->attach($ingredient_id, ['cant'=>$request->cant]);
         return redirect(request()->header('Referer'));
+    }
+    public function upstock(Request $request, Product $product)
+    {
+        $product->stock=$product->stock+$request->stock;
+        $product->save();
+        return redirect()->route('products.show', $product)
+        ->with(['success'=> 'Añadidos '.$request->stock.' '.$product->name.'    al inventario']);
     }
 }

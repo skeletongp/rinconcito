@@ -11,13 +11,13 @@
                 <div class="flex items-center space-x-2  ">
                     <div class="w-3/4">
                         <x-label>Nombre</x-label>
-                        <x-input name="name" value="{{ old('name', request('name')) }}" type="text" placeholder="Nombre">
+                        <x-input name="name" value="{{ old('name', request('name')) }}" type="text" placeholder="Nombre" required>
                         </x-input>
                     </div>
                     <div class="w-1/4">
                         <x-label>Cantidad</x-label>
                         <x-input name="stock" value="{{ old('stock', request('stock')) }}" type="number" step="0.5"
-                            placeholder="Cantidad"></x-input>
+                            placeholder="Cantidad" required></x-input>
                     </div>
                 </div>
                 <div class="flex justify-end my-4">
