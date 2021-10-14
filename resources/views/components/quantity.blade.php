@@ -3,7 +3,7 @@
 $product = App\Models\Product::find($id);
 $cant = optional($product->chart('PENDIENTE'))->cant;
 @endphp
-<div class="flex flex-col items-center px-2 py-0 rounded-full select-none text-3xl lg:text-4xl">
+<div class="flex flex-col items-center space-y-4 px-2 py-0 rounded-full select-none text-3xl lg:text-4xl">
     <span id="plus{{ $id }}" class="my-0 cursor-pointer font-bold text-green-600">+</span>
     <input id="inp{{ $id }}" type="number" required
         class="outline-none text-center  my-0 py-0 px-2  text-green-600 " name="cant"
