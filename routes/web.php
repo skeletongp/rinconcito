@@ -7,6 +7,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -65,4 +66,7 @@ Route::middleware(['auth'])->group(function () {
 
     /* Clients Routes */
     Route::resource('clients',ClientController::class)->names('clients');
+
+    /* Sales Routes */
+    Route::get('sales',[SaleController::class, 'index'])->middleware(['role:admin'])->name('sales.index');
 });

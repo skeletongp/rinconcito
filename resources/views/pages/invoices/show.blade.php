@@ -2,6 +2,9 @@
     <div class="turn">
         <span style="color: white">{{$invoice->fromToday()->count()}}</span>
     </div>
+    <div class="back">
+        <a href="{{url()->previous()}}"><- Volver</a>
+    </div>
     <div class="invoice-title">
         <div id="main-title">
             <h4>FACTURA</h4>
@@ -129,7 +132,17 @@
         justify-content: center;
 
     }
+    .back{
+        position: absolute;
+        top: 0.5em;
+        left: 0.5em;
+        font-weight: bold;
 
+    }
+    .back a{
+        text-decoration: none;
+        color: black;
+    }
 
     .invoice-title {
         flex: 3;
@@ -233,7 +246,10 @@
         border: solid 1px #aaa;
         border-radius: 1em;
     }
-
- 
+    @media print {
+       #printbtn{
+           display: none;
+       }
+      }
 
 </style>

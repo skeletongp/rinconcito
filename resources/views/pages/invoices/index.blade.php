@@ -40,7 +40,7 @@
                 </li>
             @endforeach
         @else
-            <h1 class="text-center my-8 uppercase text-lg">No has añadido ningún invoiceo</h1>
+            <h1 class="text-center my-8 uppercase text-lg">No has añadido ningún factura</h1>
         @endif
     </ul>
     <div class="mx-4 md:mx-8"> 

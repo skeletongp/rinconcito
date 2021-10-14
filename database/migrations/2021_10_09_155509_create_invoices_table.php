@@ -24,6 +24,7 @@ class CreateInvoicesTable extends Migration
             $table->softDeletes();
             $table->decimal('discount');
             $table->decimal('payed');
+            $table->date('day');
             $table->timestamps();
         });
     }
