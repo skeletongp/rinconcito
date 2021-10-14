@@ -3,9 +3,26 @@
 @section('body')
     <div class="max-w-3xl mx-auto bg-white p-2 px-4 rounded-xl">
         <div class="flex flex-col max-w-3xl p-6 space-y-4 md:px-6 md:py-4  ">
-            <h2 class="text-xl font-semibold">Pedidos pendientes</h2>
             @if ($invoices->count())
+                <h2 class="text-xl font-semibold">{{ $invoices->total() }} Pedidos pendientes</h2>
                 @foreach ($invoices as $invoice)
+                    {{-- Botón --}}
+                    @if ($invoices->count())
+                        <div class="flex justify-end space-x-4">
+                            <form action="{{ route('invoices.complete') }}" method="POST" id="formInvoice">
+                                @method('put')
+                                @csrf
+                                <input type="hidden" name="invoice" value="{{ $invoice->id }}">
+                            </form>
+
+                            <button type=" submit" form="formInvoice"
+                                class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-2xl  font-bold flex items-center space-x-3">
+                                <span class="fas fa-check text-green-500"></span>
+                                <span>Entregado</span>
+                            </button>
+                        </div>
+                        {{--  --}}
+                    @endif
                     <ul class="flex flex-col divide-y divide-coolGray-700">
                         {{-- Producto --}}
                         @if ($invoice->details->count())
@@ -77,28 +94,16 @@
                         </p>
                     </div>
                 @endforeach
+            @else
+                <h1 class="font-bold uppercase text-center  my-8 text-2xl">NO hay pedidos pendientes</h1>
             @endif
         </div>
         <div class="my-3">
-           {{ $invoices->links() }}
-       </div>
-
-        {{-- Botones --}}
-        <div class="flex justify-end space-x-4">
-            <form action="{{ route('invoices.complete') }}" method="POST" id="formInvoice">
-                @method('put')
-                @csrf
-                <input type="hidden" name="invoice" value="{{ $invoice->id }}">
-            </form>
-
-            <button type=" submit"
-                form="formInvoice"
-                class=" bg-black text-white px-6 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-2xl lg:text-4xl font-bold">
-                Entregado
-                </button>
-            </div>
-            {{--  --}}
+            {{ $invoices->links() }}
         </div>
-        <!---->
 
-    @endsection
+
+    </div>
+    <!---->
+
+@endsection

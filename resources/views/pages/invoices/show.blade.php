@@ -1,19 +1,20 @@
 <div class="invoice-card">
     <div class="turn">
-        <span style="color: white">{{$invoice->fromToday()->count()}}</span>
+        <span style="color: white">{{ $invoice->fromToday()->count() }}</span>
     </div>
-    <div class="back">
-        <a href="{{route('invoices.index')}}"><- Volver</a>
+    <div class="back hide-print">
+        <a href="{{ route('invoices.index') }}">
+            <- Volver</a>
     </div>
     <div class="invoice-title">
         <div id="main-title">
             <h4>FACTURA</h4>
-            <span>{{$invoice->num}}</span>
+            <span>{{ $invoice->num }}</span>
         </div>
 
         <div class="div-date">
-            <span id="date">{{$invoice->day}}</span>
-            <span id="date">{{$invoice->client->name}}</span>
+            <span id="date">{{ $invoice->day }}</span>
+            <span id="date">{{ $invoice->client->name }}</span>
         </div>
     </div>
 
@@ -35,7 +36,7 @@
                                 {{ $detail->product->name }}
                             </span>
                         </td>
-                        <td >
+                        <td>
                             <span class="span-content">
                                 {{ $detail->cant }}
                             </span>
@@ -47,30 +48,36 @@
                         </td>
                     </tr>
                 @endforeach
+                <tr class="subtotal">
+                    <td colspan="2">Descuento</td>
+                    <td>
+                        <span>${{ number_format($invoice->discount, 2) }}</span>
+                    </td>
+                </tr>
                 <tr class="calc-row">
                     <td colspan="2">Total</td>
                     <td>
-                        <span>${{number_format($invoice->payed,2)}}</span>
+                        <span>${{ number_format($invoice->payed, 2) }}</span>
                     </td>
-                  </tr>
+                </tr>
 
             </tbody>
         </table>
     </div>
     <div class="invoice-footer">
-        <span style="font-size: medium; margin-top:10px; font-weight:bold"> {{env('COMPANY_NAME')}}</span>
-        <span style="font-size: small; "> {{$invoice->user->fullname}}</span>
-        <span style="font-size: small; margin-bottom:10px"> {{env('COMPANY_PHONE')}}</span>
+        <span style="font-size: medium; margin-top:10px; font-weight:bold"> {{ env('COMPANY_NAME') }}</span>
+        <span style="font-size: small; "> {{ $invoice->user->fullname }}</span>
+        <span style="font-size: small; margin-bottom:10px"> {{ env('COMPANY_PHONE') }}</span>
         <span style="font-size: small"> Gracias por su compra</span>
     </div>
 </div>
-<button class="btn btn-primary" id="printbtn">IMPRIMIR</button>
+<button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button>
 <script>
-    window.addEventListener('load', function(){
-       /*  window.print();
- */
-        const btn=document.getElementById('printbtn');
-        btn.addEventListener('click', function(){
+    window.addEventListener('load', function() {
+        /*  window.print();
+         */
+        const btn = document.getElementById('printbtn');
+        btn.addEventListener('click', function() {
             window.print();
         })
     })
@@ -78,9 +85,6 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-    :root {
-        --primary-color: #f5826e;
-    }
 
     * {
         margin: 0;
@@ -99,7 +103,7 @@
         text-align: center;
         font-weight: bold;
     }
-  
+
 
     .span-content {
         padding: 10px;
@@ -118,7 +122,8 @@
         border-radius: 5px;
         border-bottom: dashed 2.5px #aaa;
     }
-    .turn{
+
+    .turn {
         position: absolute;
         width: 3rem;
         height: 3rem;
@@ -132,14 +137,16 @@
         justify-content: center;
 
     }
-    .back{
+
+    .back {
         position: absolute;
         top: 0.5em;
         left: 0.5em;
         font-weight: bold;
 
     }
-    .back a{
+
+    .back a {
         text-decoration: none;
         color: black;
     }
@@ -154,11 +161,13 @@
         font-size: 12px;
         color: black;
     }
-    .div-date{
+
+    .div-date {
         display: flex;
         justify-content: space-between;
         color: black
     }
+
     .invoice-title #main-title {
         display: flex;
         justify-content: space-between;
@@ -212,7 +221,7 @@
     .invoice-table .row-data span {
         font-size: 13px;
         color: rgba(0, 0, 0, 0.6);
-        text-align: center  
+        text-align: center
     }
 
     .invoice-footer {
@@ -226,30 +235,49 @@
         margin-right: 5px;
     }
 
-    .calc-row{
+    .calc-row {
         font-size: small;
         text-transform: uppercase;
     }
-    .calc-row td span{
+    .calc-row td  {
         padding: 8px;
+        padding-top: 1px;
         text-transform: uppercase;
     }
-    #printbtn    {
+    .calc-row td span {
+        padding: 8px;
+        padding-top: 1px;
+        text-transform: uppercase;
+    }
+    .subtotal{
+        font-size: small;
+    }
+    .subtotal td{
+        padding: 1px !important;
+        padding-top: 1px;
+    }
+    .subtotal td span{
+        padding: 1px !important;
+    }
+    
+   
+    #printbtn {
         padding: 6px 8px;
         background: none;
         cursor: pointer;
         letter-spacing: 1px;
         outline: none;
         font-weight: bold;
-        margin-top: 8px; 
+        margin-top: 8px;
         margin-left: auto;
         border: solid 1px #aaa;
         border-radius: 1em;
     }
+
     @media print {
-       #printbtn{
-           display: none;
-       }
-      }
+        .hide-print {
+            display: none;
+        }
+    }
 
 </style>
