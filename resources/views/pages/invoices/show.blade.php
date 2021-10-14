@@ -1,4 +1,4 @@
-<div class="invoice-card">
+<div class="invoice-card" id="div">
     <div class="turn">
         <span style="color: white">{{ $invoice->fromToday()->count() }}</span>
     </div>
@@ -78,6 +78,7 @@
         
         const btn = document.getElementById('printbtn');
         btn.addEventListener('click', function() {
+            console.log(btn)
             window.print();
         })
     })

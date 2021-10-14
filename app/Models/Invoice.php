@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Spatie\Browsershot\Browsershot as BS;
 class Invoice extends Model
 {
     use HasFactory, SoftDeletes;
@@ -42,5 +42,19 @@ class Invoice extends Model
         $today = $dt->toDateString();
         $fromDay = Invoice::whereDate('created_at', '=', $today);
         return $fromDay;
+    }
+    public function pdf()
+    {
+        $content = view(
+            'pages.invoices.show',
+            [
+                'invoice' => $this,
+                'user' => $this->user,
+            ]
+        )->render();
+                return $content;
+        return BS::html($content)
+            
+            ->savePdf('example.pdf');
     }
 }

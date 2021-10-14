@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
+use App\View\Components\InvoiceControl;
 use Illuminate\Support\Facades\Route;
 
 /*
