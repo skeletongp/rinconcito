@@ -60,15 +60,15 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         $user = $invoice->user;
-        $pdf = PDF::loadView('pages.invoices.show', ['invoice' => $invoice,
+       /*  $pdf = PDF::loadView('pages.invoices.show', ['invoice' => $invoice,
         'user'=>$user,])->setOptions(['defaultFont' => 'sans-serif']);
     
-        return $pdf->stream('invoice.pdf');
-        /* return view('pages.invoices.show')
+        return $pdf->stream('invoice.pdf'); */
+        return view('pages.invoices.show')
             ->with([
                 'invoice' => $invoice,
                 'user'=>$user,
-            ]); */
+            ]);
     }
 
 
