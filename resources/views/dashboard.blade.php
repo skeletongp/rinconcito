@@ -12,7 +12,7 @@
                 <div class="flex justify-between">
                     <div class="p-1 mx-3 inline-flex items-center">
                         <i class="fas fa-bars pr-2 text-black lg:text-2xl cursor-pointer " onclick="sidebarToggle()"></i>
-                        <h1 class="text-black p-2">{{env('COMPANY_NAME','CoffeTech')}}</h1>
+                        <a href="{{route('home')}}" class="text-black p-2">{{env('COMPANY_NAME','CoffeTech')}}</a>
                     </div>
                     <x-dropdown>
                         <x-slot name="trigger">
