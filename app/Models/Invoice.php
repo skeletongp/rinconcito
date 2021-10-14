@@ -29,7 +29,7 @@ class Invoice extends Model
     /* Customs */
     public function getDateAttribute()
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d-m-Y');
+        return Carbon::createFromFormat('Y-m-d', $this->created_at)->format('d-m-Y');
     }
     public function getNumAttribute()
     {
