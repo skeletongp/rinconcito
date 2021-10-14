@@ -91,7 +91,7 @@ class InvoiceController extends Controller
     }
     public function pendings()
     {
-        $invoices=Invoice::where('status','=','PENDIENTE')->paginate(1);
+        $invoices=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->paginate(1);
         return view('pages.invoices.pendings')
         ->with([
             'invoices'=>$invoices,
