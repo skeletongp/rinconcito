@@ -54,7 +54,7 @@
             </tbody>
         </table>
     </div>
-
+    <button class="btn btn-primary" id="printbtn">IMPRIMIR</button>
     <div class="invoice-footer">
         <span style="font-size: medium; margin-top:10px"> {{env('COMPANY_NAME')}}</span>
         <span style="font-size: small; "> {{$invoice->user->fullname}}</span>
@@ -65,6 +65,11 @@
 <script>
     window.addEventListener('load', function(){
         window.print();
+
+        const btn=document.getElementById('printbtn');
+        btn.addEventListener('click', function(){
+            window.print();
+        })
     })
 </script>
 <style>
@@ -216,25 +221,19 @@
         padding: 8px;
         text-transform: uppercase;
     }
-    .btn {
-        border: none;
-        padding: 5px 0px;
+    #printbtn    {
+        padding: 6px 8px;
         background: none;
         cursor: pointer;
         letter-spacing: 1px;
         outline: none;
+        font-weight: bold;
+        margin-top: 8px; 
+        margin-left: auto;
+        border: solid 1px #aaa;
+        border-radius: 1em;
     }
 
-    .btn.btn-secondary {
-        color: rgba(0, 0, 0, 0.3);
-    }
-
-    .btn.btn-primary {
-        color: var(--primary-color);
-    }
-
-    .btn#later {
-        margin-right: 2em;
-    }
+ 
 
 </style>
