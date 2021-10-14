@@ -22,10 +22,10 @@
                                                     <p class="text-sm md:text-base dark:text-coolGray-400">
                                                         {{ $detail->product->name }}</p>
                                                 </div>
-                                                <div class="text-right w-full">
+                                                <div class="text-right w-full md:text-xl">
                                                     <p class="text-md font-semibold"> {{ $detail->cant }} x
                                                         ${{ number_format($detail->product->price, 2) }}</p>
-                                                    <p class=" text-sm md:text-lg font-semibold">Total.
+                                                    <p class=" text-sm md:text-2xl font-semibold">Total.
                                                         ${{ number_format($detail->cant * $detail->product->price, 2) }}
                                                     </p>
 
@@ -69,10 +69,10 @@
                         @endif
                     </ul>
                     {{-- Totales --}}
-                    <div class="space-y-1 text-right ">
+                    <div class="space-y-1 text-right md:text-xl">
 
                         <p>Total:
-                            <input type="text" disabled class="font-semibold  w-28 text-right" id="spTotal"
+                            <input type="text" disabled class="font-semibold  w-32 text-right " id="spTotal"
                                 value="${{ number_format($invoice->total, 2) }}" />
                         </p>
                     </div>
@@ -93,7 +93,7 @@
 
             <button type=" submit"
                 form="formInvoice"
-                class=" bg-black text-white px-6 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400">
+                class=" bg-black text-white px-6 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-2xl lg:text-4xl font-bold">
                 Entregado
                 </button>
             </div>
