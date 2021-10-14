@@ -54,8 +54,7 @@ class InvoiceController extends Controller
             $cart->status = 'VENDIDO';
             $cart->save();
         }
-        return redirect()->route('products.index')
-            ->with(['success' => 'Productos facturados']);
+        return redirect()->route('invoices.show', $invoice);
     }
 
     public function show(Invoice $invoice)
@@ -89,5 +88,20 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+    public function pendings()
+    {
+        $invoices=Invoice::where('status','=','PENDIENTE')->paginate(1);
+        return view('pages.invoices.pendings')
+        ->with([
+            'invoices'=>$invoices,
+        ]);
+    }
+    public function complete(Request $request)
+    {
+        $invoice=Invoice::find($request->invoice);
+        $invoice->status="ENTREGADO";
+        $invoice->save();
+        return redirect()->route('invoices.pendings');
     }
 }

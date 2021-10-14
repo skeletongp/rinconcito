@@ -3,7 +3,7 @@
         <span style="color: white">{{$invoice->fromToday()->count()}}</span>
     </div>
     <div class="back">
-        <a href="{{url()->previous()}}"><- Volver</a>
+        <a href="{{route('invoices.index')}}"><- Volver</a>
     </div>
     <div class="invoice-title">
         <div id="main-title">
@@ -12,7 +12,7 @@
         </div>
 
         <div class="div-date">
-            <span id="date">{{$invoice->date}}</span>
+            <span id="date">{{$invoice->day}}</span>
             <span id="date">{{$invoice->client->name}}</span>
         </div>
     </div>
@@ -57,18 +57,18 @@
             </tbody>
         </table>
     </div>
-    <button class="btn btn-primary" id="printbtn">IMPRIMIR</button>
     <div class="invoice-footer">
-        <span style="font-size: medium; margin-top:10px"> {{env('COMPANY_NAME')}}</span>
+        <span style="font-size: medium; margin-top:10px; font-weight:bold"> {{env('COMPANY_NAME')}}</span>
         <span style="font-size: small; "> {{$invoice->user->fullname}}</span>
         <span style="font-size: small; margin-bottom:10px"> {{env('COMPANY_PHONE')}}</span>
         <span style="font-size: small"> Gracias por su compra</span>
     </div>
 </div>
+<button class="btn btn-primary" id="printbtn">IMPRIMIR</button>
 <script>
     window.addEventListener('load', function(){
-        window.print();
-
+       /*  window.print();
+ */
         const btn=document.getElementById('printbtn');
         btn.addEventListener('click', function(){
             window.print();

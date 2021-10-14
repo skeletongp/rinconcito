@@ -1,144 +1,30 @@
-<div class="flex flex-col my-8 bg-white p-4 rounded-xl">
-
-    <!-- Stats Row Starts Here -->
-    <h1 class="text-center uppercase font-bold text-lg lg:text-3xl mb-4">Ventas de la semana</h1>
-    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-        <div
-            class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
-            <div class="p-4 flex flex-col">
-                <a href="#" class="no-underline text-white text-2xl">
-                    ${{ number_format($fromWeek, 2) }}
-                </a>
-                <a href="#" class="no-underline text-white text-lg">
-                    Vendido esta semana
-                </a>
-            </div>
+<div class=" bg-white rounded-xl py-2">
+    <div class="flex flex-col items-center w-full my-3 bg-white text-center p-4 rounded-xl">
+        <!-- Stats Row Starts Here -->
+        <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
+            <x-grid-stat dataUp="Productos" dataDown="Consulta el cátalogo" bg='bg-red-vibrant' icon="fa-layer-group" url="{{route('products.index')}}" />
+            <x-grid-stat dataUp="Facturas" dataDown="Historial de facturas" bg='bg-info' icon="fa-file-invoice-dollar" url="{{route('invoices.index')}}" />
+    
         </div>
-
-        <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
-            <div class="p-4 flex flex-col">
-                <a href="#" class="no-underline text-white text-2xl">
-                    ${{ number_format($fromDay, 2) }}
-                </a>
-                <a href="#" class="no-underline text-white text-lg">
-                    Ventas de hoy
-                </a>
-            </div>
+        <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
+            <x-grid-stat dataUp="Pendientes" dataDown="Pedidos por entregar" bg='bg-info'  icon="fa-hourglass-half" url="{{route('invoices.pendings')}}"/>
+            <x-grid-stat dataUp="Entregados" dataDown="Ventas de Hoy" bg='bg-red-vibrant' icon="fa-check-double" />
         </div>
-
-        <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
-            <div class="p-4 flex flex-col">
-                <a href="#" class="no-underline text-white text-2xl">
-                    {{ $fromProduct }}
-                </a>
-                <a href="#" class="no-underline text-white text-lg">
-                    Productos vendidos hoy
-                </a>
-            </div>
-        </div>
-
-        <div class="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
-            <div class="p-4 flex flex-col">
-                <a href="#" class="no-underline text-white text-2xl">
-                    {{ $fromClient }}
-                </a>
-                <a href="#" class="no-underline text-white text-lg">
-                    Clientes atendidos hoy
-                </a>
-            </div>
-        </div>
+       
     </div>
-
-    <!-- /Stats Row Ends Here -->
-
-    <!-- Card Sextion Starts Here -->
-    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-
-        <!-- card -->
-
-        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
-            @if ($lastSales->count())
-                <div class="lg:flex space-y-4 lg:space-y-0 px-2 lg:px-4 lg:space-x-4 items-center">
-                    <div class="w-full">
-                        {{-- Last sales --}}
-                        <div class="px-6 py-2 border-b border-light-grey">
-                            <div class="font-bold text-xl">Últimas ventas realizadas</div>
-                        </div>
-                        <div class="table-responsive max-w-xl">
-                            <table class="table text-grey-darkest">
-                                <thead class="bg-grey-dark text-white text-normal">
-                                    <tr>
-                                        <th scope="col">Hora</th>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Monto</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($lastSales as $sale)
-                                        <tr>
-                                            <th scope="row">
-                                                {{ $sale->created_at->toTimeString() }}
-                                            </th>
-                                            <td>
-                                                {{ $sale->client->name }}
-                                            </td>
-                                            <td>
-                                                ${{ number_format($sale->payed, 2) }}
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    {{-- Last products --}}
-                    <div class="w-full">
-                        <div class="px-6 py-2 border-b border-light-grey">
-                            <div class="font-bold text-xl">Últimos productos vendidos</div>
-                        </div>
-                        <div class="table-responsive max-w-xl">
-                            <table class="table text-grey-darkest">
-                                <thead class="bg-grey-dark text-white text-normal">
-                                    <tr>
-                                        <th scope="col">Producto</th>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Monto</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($lastProducts as $sale)
-                                        <tr>
-                                            <th scope="row">
-                                                {{ $sale->product->name }}
-                                            </th>
-                                            <td>
-                                                {{ $sale->client->name }}
-                                            </td>
-                                            <td>
-                                                ${{ number_format($sale->cant * $sale->product->price, 2) }}
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            @else
-                <h1 class="my-4 font-bold uppercase text-center text-xl lg:text-3xl">No hay estadísticas para mostrar
-                </h1>
-            @endif
+    <div class="flex flex-col items-center w-full my-3 bg-white text-center p-4 rounded-xl">
+        <!-- Stats Row Starts Here -->
+        <h1 class="text-center uppercase font-bold text-lg lg:text-3xl mb-4">Estadísticas de venta</h1>
+        <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
+            <x-grid-stat :dataUp="'$'.number_format($fromWeek, 2)" :dataDown="'Vendido esta semana'" bg='bg-red-dark' icon="fa-calendar-week" />
+            <x-grid-stat :dataUp="'$'.number_format($fromDay, 2)" :dataDown="'Ventas de hoy'" bg='bg-blue-dark ' icon="fa-calendar-day" />
+    
         </div>
-        <!-- /card -->
-
+        <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
+            <x-grid-stat :dataUp="$fromProduct" :dataDown="'Productos vendidos hoy'" bg='bg-blue-dark ' icon="fa-boxes" />
+            <x-grid-stat :dataUp="$fromClient" :dataDown="' Clientes atendidos hoy'" bg='bg-red-dark'  icon="fa-user" />
+        </div>
+       
     </div>
-    <!-- /Cards Section Ends Here -->
 </div>
+

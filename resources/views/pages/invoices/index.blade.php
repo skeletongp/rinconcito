@@ -18,7 +18,7 @@
                                 <p class="text-sm w-max font-bold leading-4 mt-2">
                                     {{ $invoice->client->phone }}
                                     <br>Total: ${{ number_format($invoice->payed,2) }}
-                                    <br>{{ $invoice->date}}
+                                    <br>{{ $invoice->day}}
                                 </p>
 
                             </div>

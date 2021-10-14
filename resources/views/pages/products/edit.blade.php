@@ -44,8 +44,8 @@
                 <div class="flex items-center space-x-2 ">
                     <div class="w-full">
                         <x-select name="type" id="type">
-                            <option {{$product->type='COMIDA'?'selected':''}} value="COMIDA">Con ingredientes</option>
-                            <option {{$product->type='TODO'?'selected':''}} value="OTRO">Sin Ingredientes</option>
+                            <option {{$product->type=='COMIDA'?'selected':''}} value="COMIDA">Con ingredientes</option>
+                            <option {{$product->type=='OTRO'?'selected':''}} value="OTRO">Sin Ingredientes</option>
                             <x-slot name="icon">
                                 <label for="type">
                                     <span class="fas fa-angle-down cursor-pointer
