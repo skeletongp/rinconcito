@@ -11,7 +11,7 @@
             </a>
             @endrole
         </div>
-        <div class="mx-8 mb-4">
+        <div class="mx-8 mb-4 mt-2">
             {{ $products->links() }}
         </div>
         @if (Session::has('success'))

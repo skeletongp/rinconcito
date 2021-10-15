@@ -29,7 +29,7 @@ class Invoice extends Model
     /* Customs */
     public function getDateAttribute()
     {
-        return Carbon::createFromFormat('Y-m-d', $this->created_at)->format('d-m-Y');
+        return Carbon::createFromFormat('Y-m-d', $this->day)->format('d/m/Y');
     }
     public function getNumAttribute()
     {
@@ -43,18 +43,5 @@ class Invoice extends Model
         $fromDay = Invoice::whereDate('created_at', '=', $today);
         return $fromDay;
     }
-    public function pdf()
-    {
-        $content = view(
-            'pages.invoices.show',
-            [
-                'invoice' => $this,
-                'user' => $this->user,
-            ]
-        )->render();
-                return $content;
-        return BS::html($content)
-            
-            ->savePdf('example.pdf');
-    }
+   
 }
