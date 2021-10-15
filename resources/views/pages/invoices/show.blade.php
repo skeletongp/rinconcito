@@ -43,7 +43,7 @@
                         </td>
                         <td>
                             <span class="span-content">
-                                ${{ round($detail->cant * $detail->product->price) }}
+                                ${{ round($detail->cant * $detail->price) }}
                             </span>
                         </td>
                     </tr>

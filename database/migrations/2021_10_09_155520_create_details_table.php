@@ -17,6 +17,7 @@ class CreateDetailsTable extends Migration
             $table->id();
             $table->foreignId('invoice_id')->constrained();
             $table->foreignId('product_id')->constrained();
+            $table->decimal('price');
             $table->softDeletes();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('user_id')->constrained();

@@ -34,13 +34,13 @@
     <script>
         $('#alert').toggle('',false);
         setTimeout(() => {
-            if ($('#alert').is('visible')) {
+            /* if ($('#alert').is('visible')) { */
                 $('#alert').toggle('', false);
-            }
-        }, 3500);
+           /*  } */
+        }, 3000);
 
-        $('#close').click(function(){
+   /*      $('#close').click(function(){
             $('#alert').toggle('', false);
-        });
+        }); */
     </script>
 </div>

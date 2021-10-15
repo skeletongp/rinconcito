@@ -37,6 +37,9 @@ class ChartController extends Controller
     public function store(Request $request)
     {
         $product=Product::find($request->product_id);
+        if ($product->hasStock()<$request->cant) {
+            return redirect()->back()->with(['error'=>'No pudo añadirse']);
+        }
         request()->request->add(['price'=>$product->price]);
         request()->request->add(['status'=>'PENDIENTE']);
         request()->request->add(['total'=>$product->price*$request->cant]);

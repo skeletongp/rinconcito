@@ -87,7 +87,12 @@
                     </ul>
                     {{-- Totales --}}
                     <div class="space-y-1 text-right md:text-xl">
-
+                        @if ($invoice->discount>0)
+                            <p class="text-base text-red-500">Descuento:
+                                <input type="text" disabled class="font-semibold  w-32 text-right " 
+                                    value="${{ number_format($invoice->discount, 2) }}" />
+                            </p>
+                        @endif
                         <p>Total:
                             <input type="text" disabled class="font-semibold  w-32 text-right " id="spTotal"
                                 value="${{ number_format($invoice->total, 2) }}" />

@@ -3,11 +3,11 @@
 @section('body')
     <div class="bg-white rounded-xl max-w-4xl p-4 lg:p-8 relative">
         <h1 class="text-center font-bold uppercase text-xl lg:text-2xl my-3">Listado de ventas</h1>
-        <div class="p-4 overflow-auto max-h-screen md:max-h-96">
+        <div class="p-4 pt-0 overflow-auto max-h-screen md:max-h-96">
             <table class=" relative border">
                 <tbody>
                     @foreach ($sales as $days)
-                        <thead class="md:sticky md:top-0">
+                        <thead class="md:sticky top-0">
                             <tr class="bg-blue-300">
 
                                 <th scope="col" colspan="4" class="font-bold text-xl">{{ $days[0]->date }}</th>
@@ -41,6 +41,14 @@
                                 </td>
                             </tr>
                         @endforeach
+                      
+                          <tr class="bg-indigo-200">
+                              <th scope="col" >Total</th>
+                              <th scope="col"></th>
+                              <th scope="col">${{number_format($days->sum('payed'),2)}}</th>
+                              <th scope="col"></th>
+                          </tr>
+                      
                     @endforeach
                 </tbody>
             </table>

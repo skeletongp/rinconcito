@@ -36,6 +36,7 @@ class InvoiceController extends Controller
             Detail::create([
                 'invoice_id' => $invoice->id,
                 'product_id' => $cart->product_id,
+                'price' => $cart->price,
                 'cant' => $cart->cant,
                 'client_id' => $request->client_id,
                 'user_id' => $request->user_id,
