@@ -6,6 +6,7 @@ use App\Models\Chart;
 use App\Models\Detail;
 use App\Models\Invoice;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -80,12 +81,7 @@ class InvoiceController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy(Invoice $invoice)
     {
         //
@@ -94,6 +90,18 @@ class InvoiceController extends Controller
     {
         $invoices=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->paginate(1);
         return view('pages.invoices.pendings')
+        ->with([
+            'invoices'=>$invoices,
+        ]);
+    }
+    public function delivered()
+    { 
+        $dt = Carbon::now();
+        $today = $dt->toDateString();
+        $invoices=Invoice::where('status','=','ENTREGADO')
+        ->whereDate('created_at','=',$today)
+        ->orderBy('created_at', 'desc')->paginate(1);
+        return view('pages.invoices.delivered')
         ->with([
             'invoices'=>$invoices,
         ]);

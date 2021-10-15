@@ -7,8 +7,8 @@
     
         </div>
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
-            <x-grid-stat dataUp="Pendientes" dataDown="Pedidos por entregar" bg='bg-info'  icon="fa-hourglass-half" url="{{route('invoices.pendings')}}"/>
-            <x-grid-stat dataUp="Entregados" dataDown="Ventas de Hoy" bg='bg-red-vibrant' icon="fa-check-double" />
+            <x-grid-stat dataUp="Pendientes" dataDown="{{$invoices->count()}} Pedidos por entregar" bg='bg-info'  icon="fa-hourglass-half" url="{{route('invoices.pendings')}}"/>
+            <x-grid-stat dataUp="Entregados" dataDown="Ventas de Hoy" bg='bg-red-vibrant' icon="fa-check-double" url="{{route('invoices.delivered')}}" />
         </div>
        
     </div>

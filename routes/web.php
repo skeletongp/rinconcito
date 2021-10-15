@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
     /* Invoices Routes */
     Route::get('invoices/pendings',[InvoiceController::class, 'pendings'])->name('invoices.pendings');
+    Route::get('invoices/delivered',[InvoiceController::class, 'delivered'])->name('invoices.delivered');
     Route::put('invoices/complete',[InvoiceController::class, 'complete'])->name('invoices.complete');
     Route::resource('invoices', InvoiceController::class)->names('invoices');
     

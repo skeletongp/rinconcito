@@ -18,6 +18,8 @@ class PanelControl extends Component
 
     public function render()
     {
+        $invoices=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->get();
+
         $searchDate = new Carbon();
         $lastMonday = Carbon::createFromTimeStamp(strtotime("last monday", $searchDate->timestamp));
         $nextSunday = Carbon::createFromTimeStamp(strtotime("next sunday", $searchDate->timestamp));
@@ -38,6 +40,7 @@ class PanelControl extends Component
                 'fromClient'=>$fromClient,
                 'lastSales'=>$lastSales,
                 'lastProducts'=>$lastProducts,
+                'invoices'=>$invoices,
             ]);
     }
 }
