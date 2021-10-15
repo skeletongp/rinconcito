@@ -11,7 +11,7 @@
                         <h1 class="text-gray-800 mb-4  text-center text-lg font-bold uppercase">Iniciar Sesión</h1>
                         <div class="">
                             <x-label for="username">Nombre de Usuario</x-label>
-                            <x-input name="username" placeholder="Nombre de Usuario" id="username" type="text">
+                            <x-input name="username" placeholder="Nombre de Usuario" id="username" type="text" value="{{old('username')}}">
                                 <x-slot name="icon"><span class="fas fa-user"></span></x-slot>
                             </x-input>
                         </div>

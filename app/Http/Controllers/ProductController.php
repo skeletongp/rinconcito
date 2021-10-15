@@ -33,7 +33,7 @@ class ProductController extends Controller
             $output .= $token[0];
             $token = strtok(' ');
         }
-        return $output;
+        return strtoupper($output);
     }
 
     public function store(Request $request)

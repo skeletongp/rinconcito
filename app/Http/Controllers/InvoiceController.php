@@ -30,6 +30,7 @@ class InvoiceController extends Controller
         $carts = Chart::active()->get();
         $data = $request->all();
         $data['day']=now();
+        $data['status']='PENDIENTE';
         $invoice = Invoice::create($data);
         $invoice->number = "Fct. " . str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
         $invoice->save();
