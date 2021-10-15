@@ -33,7 +33,9 @@ $("document").ready(function () {
         $("#namePhoto").text(filename);
     });
 
-  
+    $('.bg-white').each(function(){
+        $(this).css('background-color', 'white !important');
+    })
 
  
 });

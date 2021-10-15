@@ -33,6 +33,9 @@ $("document").ready(function () {
     var filename = $("#photo").val().split("\\").pop();
     $("#namePhoto").text(filename);
   });
+  $('.bg-white').each(function () {
+    $(this).css('background-color', 'white !important');
+  });
 });
 /******/ })()
 ;

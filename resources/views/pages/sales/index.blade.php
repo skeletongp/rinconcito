@@ -4,7 +4,7 @@
     <div class="bg-white rounded-xl max-w-4xl p-4 lg:p-8 relative">
         <h1 class="text-center font-bold uppercase text-xl lg:text-2xl my-3">Listado de ventas</h1>
         <div class="p-4 pt-0 overflow-auto max-h-screen md:max-h-96">
-            <table class=" relative border ">
+            <table class=" relative border">
                 <tbody>
                     @foreach ($sales as $days)
                         <thead class="md:sticky top-0">
