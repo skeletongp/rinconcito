@@ -26,7 +26,7 @@
                     </div>
                     <div class="w-1/3 md:w-1/4">
                         <x-label>Cantidad</x-label>
-                        <x-input name="stock" type="numbers" placeholder="Stock"></x-input>
+                        <x-input name="stock" type="numbers" value="{{ old('stock', $product->stock) }}" placeholder="Stock" required></x-input>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 ">

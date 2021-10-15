@@ -45,6 +45,7 @@ class ProductController extends Controller
             request()->photo->move(public_path('images'), $filename);
             $data['photo'] = '/images/' . $filename;
         }
+        $data['utily']=$data['price']-$data['cost'];
         $product = Product::create($data);
         $product->code = $this->createAcronym($product->name) . $product->id;
         $product->save();
@@ -83,8 +84,10 @@ class ProductController extends Controller
             request()->photo->move(public_path('images'), $filename);
             $data['photo'] = '/images/' . $filename;
         }
+        $data['utily']=$data['price']-$data['cost'];
         $product->update($data);
-
+        $product->code=$this->createAcronym($data['name']).$product->id;
+        $product->save();
         return redirect()->route('products.show', $product);
     }
 

@@ -15,7 +15,8 @@
         "nicolaslopezj/searchable": "^1.13",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/browsershot": "^3.50",
-        "spatie/laravel-permission": "^5.1"
+        "spatie/laravel-permission": "^5.1",
+        "ext-pdo_sqlite": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

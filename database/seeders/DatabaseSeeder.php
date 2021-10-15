@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'name'=>'Farlin',
             'lastname'=>'Mejía',
             'fullname'=>'Farlin Mejía',
+            'email'=>'fmejia@gmail.com',
             'slug'=>'farlin-mejía',
             'photo'=>'https://ui-avatars.com/api/?name=Farlin+Mejia&color=FFFFFF&background=F400A0',
             'username'=>'fmejia',
