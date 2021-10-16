@@ -1,4 +1,4 @@
-<aside id="sidebar" class="fixed  rounded-xl z-20  bg-left bg-cover w-2/3 md:w-1/2 lg:w-2/6 xl:w-1/6 hidden lg:block "
+<aside id="sidebar" class="fixed  rounded-xl z-20  bg-left bg-cover w-2/3 md:w-1/2 lg:w-2/6 xl:w-1/6 hidden xl:block "
     style="background-image: url('/fondo.jpg'); ">
     <ul class="p-4 font-bold flex flex-col space-y-4">
         <x-dropdown-link :active="request()->routeIs('home')" href="{{ route('home') }}"

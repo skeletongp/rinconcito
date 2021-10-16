@@ -38,7 +38,7 @@
         @method('delete')
         @csrf
         <button onclick="return confirm('Vaciar el carrito?')"
-            class='text-white px-2 py-1 rounded text-lg font-bold'><span class="text-red-700">Vaciar</span>
+            class='text-white px-2 py-1 rounded xl:text-lg font-bold'><span class="text-red-700">Vaciar</span>
         </button>
     </form>
 
