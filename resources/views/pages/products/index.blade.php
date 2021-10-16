@@ -34,7 +34,7 @@
                 </div>
             </form>
         </div>
-        <ul class="cards m-8">
+        <ul class="cards m-8 lg:grid-cols-2 xl:grid-cols-3">
             @if ($products->count())
                 @foreach ($products as $product)
                     <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->price"
