@@ -10,9 +10,9 @@
                 <span>Atrás</span>
             </a>
            <div class="absolute right-3 top-3">
-            <x-dropdown contentClasses=" border-none outline-none p-1 w-ma bg-white" align='right'>
+            <x-dropdown contentClasses=" border-none outline-none p-1 w-max bg-white z-20" align='right'>
                 <x-slot name="trigger">
-                    <span class="fas fa-plus cursor-pointer"></span>
+                    <span class="fas fa-plus cursor-pointer "></span>
                 </x-slot>
                 <x-slot name="content">
                     <form action="{{route('products.upstock', $product)}}" method="POST" id="formadd">

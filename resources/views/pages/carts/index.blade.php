@@ -21,9 +21,9 @@
                                         </div>
                                         <div class="text-right w-full">
                                             <p class="text-md font-semibold"> {{ $cart->cant }} x
-                                                ${{ number_format($cart->product->price, 2) }}</p>
+                                                ${{ number_format($cart->price, 2) }}</p>
                                             <p class=" text-sm md:text-lg font-semibold">Total.
-                                                ${{ number_format($cart->cant * $cart->product->price, 2) }}</p>
+                                                ${{ number_format($cart->cant * $cart->price, 2) }}</p>
 
                                         </div>
                                     </div>

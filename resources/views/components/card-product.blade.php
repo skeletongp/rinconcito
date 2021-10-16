@@ -21,18 +21,18 @@
                 </a>
             @else
                 @role('admin')
-                <div class=" flex flex-col space-y-3 absolute right-4 top-4">
-                    <a href="{{ route('products.edit', $id) }}"
-                        class="  w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                        <span class="fas fa-pen text-xl text-green-500"></span>
-                    </a>
-                    <x-button form="formDelete" onclick="return confirm('¿Eliminar este producto?')"
-                        class=" w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                        <span class="fas fa-trash-alt text-xl text-red-500"></span>
-                    </x-button>
-                    
+                    <div class=" flex flex-col space-y-3 absolute right-4 top-4">
+                        <a href="{{ route('products.edit', $id) }}"
+                            class="  w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <span class="fas fa-pen text-xl text-green-500"></span>
+                        </a>
+                        <x-button form="formDelete" onclick="return confirm('¿Eliminar este producto?')"
+                            class=" w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <span class="fas fa-trash-alt text-xl text-red-500"></span>
+                        </x-button>
 
-                </div>
+
+                    </div>
                 @endrole
             @endif
         </div>
@@ -42,21 +42,26 @@
 
                 <div class="card__thumb flex items-center justify-center {{ $stock ? 'bg-green-500' : 'bg-red-500' }}"
                     alt="">
-                    <span class="fas {{ $stock ? 'fa-check' : 'fa-times' }} text-white"></span>
+                    <button>
+                        <span class="fas {{ $stock ? 'fa-check' : 'fa-times' }} text-white">
+                        </span>
+                    </button>
                 </div>
                 <div class="card__header-text">
-                    <div class="card__title flex justify-start space-x-4 {{ $stock ? '' : 'line-through' }} mx-2 md:mx-0
+                    <div
+                        class="card__title flex justify-start space-x-4 {{ $stock ? '' : 'line-through' }} mx-2 md:mx-0
                     ">
                         <div class="flex items-center space-x-2">
-                            <span class="font-medium capitalize">{{ substr($name,0,20)}}</span>-
-                           <div class="w-24 ">
-                                <x-input type="number" name="price" value="{{old('price',$price)}}" class="">
-                                <x-slot name="icon">$</x-slot>
+                            <span class="font-medium capitalize">{{ substr($name, 0, 20) }}</span>-
+                            <div class="w-24 ">
+                                <x-input type="number" name="price" value="{{ old('price', $price) }}"
+                                    class="">
+                                    <x-slot name="icon">$</x-slot>
                                 </x-input>
                             </div>
                         </div>
-                       
-                        
+
+
                     </div>
                     <div class="flex justify-between items-center w-72 ">
                         <span
