@@ -10,7 +10,7 @@
                 <span>Atrás</span>
             </a>
            <div class="absolute right-3 top-3">
-            <x-dropdown contentClasses=" border-none outline-none p-1 w-ma bg-white " align='right'>
+            <x-dropdown contentClasses=" border-none outline-none p-1 w-ma bg-white" align='right'>
                 <x-slot name="trigger">
                     <span class="fas fa-plus cursor-pointer"></span>
                 </x-slot>
