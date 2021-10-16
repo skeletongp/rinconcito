@@ -40,9 +40,9 @@ class ChartController extends Controller
         if ($product->hasStock()<$request->cant) {
             return redirect()->back()->with(['error'=>'No pudo añadirse']);
         }
-        request()->request->add(['price'=>$product->price]);
+        request()->request->add(['price'=>$request->price]);
         request()->request->add(['status'=>'PENDIENTE']);
-        request()->request->add(['total'=>$product->price*$request->cant]);
+        request()->request->add(['total'=>$request->price*$request->cant]);
         $chart=Chart::updateOrCreate(['product_id'=>$request->product_id], $request->all());
        if($chart){
         return redirect()->back()->with(['success'=>'Añadido al carrito']);

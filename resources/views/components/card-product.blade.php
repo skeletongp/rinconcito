@@ -45,7 +45,7 @@
                     <span class="fas {{ $stock ? 'fa-check' : 'fa-times' }} text-white"></span>
                 </div>
                 <div class="card__header-text">
-                    <h3 class="card__title flex justify-between {{ $stock ? '' : 'line-through' }}">
+                    <div class="card__title flex justify-between {{ $stock ? '' : 'line-through' }} mx-2 md:mx-0">
                         <div>
                             <span class="font-medium capitalize">{{ $code }}</span>-
                             <span class="text-green-800 font-bold">{{ $price }}</span>
@@ -54,7 +54,7 @@
                            <x-input name="price" value="{{old('price',$price)}}" class=""></x-input>
                         </div>
                         
-                    </h3>
+                    </div>
                     <div class="flex justify-between items-center w-72 ">
                         <span
                             class="card__status text-black">{{ $type == 'OTRO' ? $stock . ' en' : ($stock ? 'En' : 'Sin ') }}
