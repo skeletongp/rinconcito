@@ -22,8 +22,8 @@
                         </thead>
                         @foreach ($days as $sale)
                             <tr>
-                                <td data-label="Fecha" class="md:hidden">{{ $sale->date }}</td>
-                                <td data-label="Número">{{ $sale->num }}</td>
+                                <td data-label="Fecha" class="md:hidden">{{ $sale->day }}</td>
+                                <td data-label="No. Factura">{{ $sale->num }}</td>
                                 <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
                                     <div class="md:flex md:items-center md:space-x-2">
                                         <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
