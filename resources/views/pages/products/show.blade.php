@@ -7,9 +7,9 @@
         <div class="bg-white p-4 lg:p-8 max-w-lg mx-auto rounded-xl relative">
             <a href="{{route('products.index')}}" class="absolute font-bold top-3 left-3 p-3 flex space-x-1 items-center">
                 <span  class="fas fa-angle-left"></span>
-                <span>Volver</span>
+                <span>Atrás</span>
             </a>
-           <div class="absolute right-3 top-3">
+           <div class="absolute right-3git rm --cached mylogfile.log top-3">
             <x-dropdown contentClasses=" border-none outline-none p-1 w-ma bg-white " align='right'>
                 <x-slot name="trigger">
                     <span class="fas fa-plus cursor-pointer"></span>
