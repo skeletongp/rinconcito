@@ -34,6 +34,10 @@ class Product extends Model
 
     }
     public function getPictAttribute(){
+        if (str_contains($this->photo,'http')) {
+            return $this->photo;
+        }
+
        if (!$this->photo || !file_exists(public_path($this->photo))) {
           return "https://res.cloudinary.com/dboafhu31/image/upload/v1615693056/sample_image.jpg";
        }
