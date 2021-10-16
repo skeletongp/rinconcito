@@ -110,7 +110,6 @@ class InvoiceController extends Controller
     public function complete(Request $request)
     {
         $invoice=Invoice::find($request->invoice);
-        $invoice->day=Carbon::now();
         $invoice->status="ENTREGADO";
         $invoice->save();
         return redirect()->route('invoices.pendings');

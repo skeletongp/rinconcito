@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('prueba', function(){
- dd(File::allFiles( database_path()));
+
+ return response()->download(database_path('database.sqlite'));
 });
