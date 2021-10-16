@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
+
+use function PHPUnit\Framework\fileExists;
+
 class Product extends Model
 {
     use HasFactory, SearchableTrait, SoftDeletes;
@@ -31,7 +34,7 @@ class Product extends Model
 
     }
     public function getPictAttribute(){
-       if (!$this->photo) {
+       if (!fileExists($this->photo)) {
           return "https://res.cloudinary.com/dboafhu31/image/upload/v1615693056/sample_image.jpg";
        }
        return $this->photo;
