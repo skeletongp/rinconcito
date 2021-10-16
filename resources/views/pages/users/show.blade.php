@@ -3,7 +3,7 @@
 @section('body')
     <div class="container mx-auto h-full flex flex-1 justify-center items-start">
         <div class="w-full max-w-lg relative">
-            <a href="{{route('users.index')}}" class="absolute font-bold top-3 left-3 p-3 flex space-x-1 items-center">
+            <a href="{{url()->previous()}}" class="absolute font-bold top-3 left-3 p-3 flex space-x-1 items-center">
                 <span  class="fas fa-angle-left"></span>
                 <span>Volver</span>
             </a>
@@ -12,7 +12,9 @@
                     action="{{ route('users.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="{{optional($user)->id}}">
-                    <h1 class="font-bold uppercase md:text-lg text-center mb-4">{{$user?'Edición':'Registro'}} de Usuario</h1>
+                    <input type="hidden" name="email" value="{{optional($user)->email}}">
+                    
+                    <h1 class="font-bold uppercase md:text-lg text-center mb-4">Actualiza tu Perfil</h1>
                     <x-input-error for="fullname">Revise el nombre y el apellido</x-input-error>
                     <div class="space-y-4 lg:space-y-0 lg:flex lg:space-x-4">
                         <div>
@@ -32,14 +34,24 @@
                             <x-input-error for="lastname"></x-input-error>
                         </div>
                     </div>
-                    <div>
-                        <x-label for="email">Correo Electrónico</x-label>
-                        <x-input placeholder="Correo Electrónico" type="email" for="email" name="email" id="email"
-                            value="{{ old('email', optional($user)->email) }}">
-                            <x-slot name="icon"> <span class="fas fa-at"></span></x-slot>
-                        </x-input>
-                        <x-input-error for="email"></x-input-error>
+                    <div class="space-y-4 lg:space-y-0 lg:flex lg:space-x-4">
+                        <div>
+                            <x-label for="name">Nueva contraseña</x-label>
+                            <x-input placeholder="Nueva contraseña" type="password" for="password" name="password" id="password" required>
+                                <x-slot name="icon"> <span class="fas fa-lock"></span></x-slot>
+                            </x-input>
+                           
+                        </div>
+                        <div>
+                            <x-label for="lastname">Confirmar contraseña</x-label>
+                            <x-input placeholder="Repita la contraseña" type="password" for="password_confirmation" name="password_confirmation" id="password_confirmation" required>
+                                <x-slot name="icon"> <span class="fas fa-lock"></span></x-slot>
+                            </x-input>
+                           
+                        </div>
                     </div>
+                    <x-input-error for="password"></x-input-error>
+                  
                     <div>
                         <x-label for="phone">No. Teléfono</x-label>
                         <x-input placeholder="No. Teléfono" type="tel" for="phone" name="phone" id="phone"
@@ -48,18 +60,10 @@
                         </x-input>
                         <x-input-error for="phone"></x-input-error>
                     </div>
-                    <div>
-                        <x-label for="role">Rol</x-label>
-                        <x-select required name="role" id="role">
-                            <x-slot name="icon"> <span class="fas fa-user-tag"></span></x-slot>
-                            <option value="seller">Cajero</option>
-                            <option value="cooker">Dependiente</option>
-                        </x-select>
-                        <x-input-error for="role"></x-input-error>
-                    </div>
+                   
                     <div class="flex justify-end items-center">
-                        <x-button class="bg-gray-900 text-white">
-                            Guardar
+                        <x-button onclick="return confirm('¿Actualizar datos?')" class="bg-gray-900 text-white">
+                            Actualizar
                         </x-button>
                     </div>
                 </form>

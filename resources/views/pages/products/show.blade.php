@@ -48,7 +48,7 @@
                                     Cliente
                                 </th>
                                 <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                                    Precio
+                                    Monto
                                 </th>
 
                             </tr>
@@ -66,7 +66,7 @@
                                         {{ $det->client->name }}
                                     </td>
                                     <td class="border-b-2 p-4 dark:border-dark-5">
-                                        ${{ number_format( $det->product->price, 2) }}
+                                        ${{ number_format( $det->price*$det->cant, 2) }}
                                     </td>
                                 </tr>
                             @endforeach

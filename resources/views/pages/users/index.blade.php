@@ -1,9 +1,12 @@
 @extends('dashboard')
 
 @section('body')
-    <div class="max-w-4xl mx-auto bg-white p-4 rounded-xl">
+    <div class="max-w-4xl mx-auto bg-white p-4 rounded-xl relative">
         <h1 class="text-center font-bold uppercase text-xl my-4">Usuarios registrados</h1>
         <ul class="cards grid grid-cols-1 md:grid-cols-2 m-3 lg:m-8">
+            <a href="{{route('users.create')}}" class="absolute font-bold top-3 left-3 p-3 flex space-x-1 items-center">
+                <span  class="fas fa-plus"></span>
+            </a>
             @if ($users->count())
                 @foreach ($users as $user)
                     <li class=" shadow-xl max-w-sm bg-white p-2 rounded-xl ">
@@ -22,6 +25,7 @@
                                     </p>
 
                                 </div>
+                                @if ($user->id!=Auth::user()->id)
                                 <div class="absolute flex flex-col px-2 py-1 justify-center space-y-4 md:space-y-8 h-full right-1 ">
                                     <a href="{{ route('users.edit', $user) }}">
                                         <span class="fas fa-pen text-blue-700"></span>
@@ -34,6 +38,7 @@
                                         </button>
                                     </form>
                                 </div>
+                                @endif
                             </div>
                         </div>
 

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $admin = Role::create(['name' => 'admin']);
         $seller = Role::create(['name' => 'seller']);
+        $cooker = Role::create(['name' => 'cooker']);
         $user=User::create([
             'name'=>'Farlin',
             'lastname'=>'Mejía',

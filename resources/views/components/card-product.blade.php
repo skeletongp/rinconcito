@@ -50,6 +50,9 @@
                             <span class="font-medium capitalize">{{ $code }}</span>-
                             <span class="text-green-800 font-bold">{{ $price }}</span>
                         </div>
+                        <div class="w-24 h-12">
+                           <x-input name="price" value="{{old('price',$price)}}" class=""></x-input>
+                        </div>
                         
                     </h3>
                     <div class="flex justify-between items-center w-72 ">
