@@ -55,7 +55,7 @@
                     </div>
                 @endforeach
             @else
-                <h1 class="font-bold uppercase text-center  my-8 text-2xl">No hay pedidos entregados</h1>
+                <h1 class="font-bold uppercase text-center  my-8 text-2xl">No hay pedidos entregados hoy</h1>
             @endif
         </div>
         <div class="my-3">
