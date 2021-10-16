@@ -10,7 +10,7 @@ class Invoice extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded=[];
-    protected $dateFormat = 'd-m-Y';
+   
     
     /* Relacionts */
     public function client()

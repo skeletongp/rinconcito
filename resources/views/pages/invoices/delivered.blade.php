@@ -18,24 +18,25 @@
                                         <div class="flex flex-col justify-between w-full pb-4">
                                             <div class="flex justify-between w-full pb-2 space-x-2">
                                                 <div class="space-y-1 w-full">
-                                                    <h3 class="text-lg md:text-xl font-semibold leading-snug sm:pr-8">
-                                                        {{ $detail->product->code }}</h3>
-                                                    <p class="text-sm md:text-base dark:text-coolGray-400">
-                                                        {{ $detail->product->name }}</p>
+                                                    <a href="{{route('products.show', $detail->product)}}" class="text-lg md:text-xl font-semibold leading-snug sm:pr-8">
+                                                        {{ $detail->product->code }}</a> <br>
+                                                    <a href="{{route('products.show', $detail->product)}}" class="text-sm md:text-base dark:text-coolGray-400">
+                                                        {{ $detail->product->name }}</a>
                                                         <p class="text-sm md:text-base dark:text-coolGray-400">
                                                             {{ $detail->updated_at }}</p>
                                                 </div>
                                                 <div class="text-right w-full md:text-xl">
                                                     <p class="text-md font-semibold"> {{ $detail->cant }} x
-                                                        ${{ number_format($detail->product->price, 2) }}</p>
+                                                        ${{ number_format($detail->price, 2) }}</p>
                                                     <p class=" text-sm md:text-2xl font-semibold">Total.
-                                                        ${{ number_format($detail->cant * $detail->product->price, 2) }}
+                                                        ${{ number_format($detail->cant * $detail->price, 2) }}
                                                     </p>
 
                                                 </div>
                                             </div>
                                     
                                         </div>
+                                    </div>
                                 </li>
                             @endforeach
                         @endif
