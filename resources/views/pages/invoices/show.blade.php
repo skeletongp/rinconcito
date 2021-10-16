@@ -1,7 +1,5 @@
 <div class="invoice-card" id="div">
-    <div class="turn">
-        <span style="color: white">{{ $invoice->fromToday()->count() }}</span>
-    </div>
+    
     <div class="back hide-print">
         <a href="{{ route('invoices.index') }}">
             <- Volver</a>
@@ -114,7 +112,7 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        padding: 2.5em 1em 2em 1em;
+        padding: 0.5em 1em 2em 1em;
         margin: auto;
         margin-top: 5px;
         min-height: 25em;
@@ -278,6 +276,9 @@
     @media print {
         .hide-print {
             display: none;
+        }
+        .invoice-card {
+            margin:5px;
         }
     }
 
