@@ -11,7 +11,7 @@
                         <li class="flex flex-col pb-3 pt-2 sm:flex-row sm:justify-between">
                             <div class="flex w-full space-x-2 sm:space-x-4">
                                 <img class="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-coolGray-500"
-                                    src="{{ $cart->product->Pict }}" alt="Polaroid camera">
+                                    src="{{ $cart->product->pict }}" alt="Polaroid camera">
                                 <div class="flex flex-col justify-between w-full pb-4">
                                     <div class="flex justify-between w-full pb-2 space-x-2">
                                         <div class="space-y-1 w-full">

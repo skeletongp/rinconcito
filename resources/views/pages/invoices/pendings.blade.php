@@ -30,7 +30,7 @@
                                 <li class="flex flex-col pb-3 pt-2 sm:flex-row sm:justify-between">
                                     <div class="flex w-full space-x-2 sm:space-x-4">
                                         <img class="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-coolGray-500"
-                                            src="{{ $detail->product->Pict }}" alt="Polaroid camera">
+                                            src="{{ $detail->product->pict }}" alt="Polaroid camera">
                                         <div class="flex flex-col justify-between w-full pb-4">
                                             <div class="flex justify-between w-full pb-2 space-x-2">
                                                 <div class="space-y-1 w-full">
@@ -48,38 +48,7 @@
 
                                                 </div>
                                             </div>
-                                            {{-- <div class="flex text-sm divide-x">
-                                                <div class="flex justify-between items-center w-full py-1 pl-0 space-x-1">
-                                                    <form class="w-full hover:text-red-400"
-                                                        action="{{ route('charts.destroy', $detail) }}" method="POST">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <button onclick="return confirm('¿Eliminar del carrito?')">
-                                                            <span class="fas fa-trash-alt"></span>
-                                                            <span>Remover</span>
-                                                        </button>
-                                                    </form>
-                                                    <form action="{{ route('charts.update', $detail) }}" method="POST">
-                                                        @method('put')
-                                                        @csrf
-                                                        <div>
-                                                            <x-label>Cant.</x-label>
-                                                            <div
-                                                                class="
-                                                            flex space-x-2 items-center">
-                                                                <x-input name="cant" type="number"
-                                                                    value="{{ $detail->cant }}" class="w-12 h-8">
-                                                                </x-input>
-                                                                <button
-                                                                    class="w-6 h-6 flex items-center justify-center rounded-full bg-green-400 text-white">
-                                                                    <span class="fas fa-check"></span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                            </div> --}}
+                                            
                                         </div>
                                 </li>
                             @endforeach
