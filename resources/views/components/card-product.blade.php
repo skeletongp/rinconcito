@@ -45,14 +45,17 @@
                     <span class="fas {{ $stock ? 'fa-check' : 'fa-times' }} text-white"></span>
                 </div>
                 <div class="card__header-text">
-                    <div class="card__title flex justify-between {{ $stock ? '' : 'line-through' }} mx-2 md:mx-0">
-                        <div>
+                    <div class="card__title flex justify-start space-x-4 {{ $stock ? '' : 'line-through' }} mx-2 md:mx-0
+                    ">
+                        <div class="flex items-center space-x-2">
                             <span class="font-medium capitalize">{{ $code }}</span>-
-                            <span class="text-green-800 font-bold">{{ $price }}</span>
+                           <div class="w-24 ">
+                                <x-input type="number" name="price" value="{{old('price',$price)}}" class="">
+                                <x-slot name="icon">$</x-slot>
+                                </x-input>
+                            </div>
                         </div>
-                        <div class="w-24 h-12">
-                           <x-input name="price" value="{{old('price',$price)}}" class=""></x-input>
-                        </div>
+                       
                         
                     </div>
                     <div class="flex justify-between items-center w-72 ">

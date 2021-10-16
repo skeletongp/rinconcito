@@ -37,7 +37,7 @@
         <ul class="cards m-8">
             @if ($products->count())
                 @foreach ($products as $product)
-                    <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->precio"
+                    <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->price"
                         :code="$product->code" :photo="$product->pict" :id="$product->id" :type="$product->type" :show="true" />
                 @endforeach
             @else
