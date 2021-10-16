@@ -20,7 +20,6 @@ class PanelControl extends Component
     {
         $pendings=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->get();
         $delivered=Invoice::where('status','=','ENTREGADO')->orderBy('created_at', 'desc')->get();
-
         $searchDate = new Carbon();
         $lastMonday = Carbon::createFromTimeStamp(strtotime("last monday", $searchDate->timestamp));
         $nextSunday = Carbon::createFromTimeStamp(strtotime("next sunday", $searchDate->timestamp));

@@ -6,12 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Browsershot\Browsershot as BS;
 class Invoice extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded=[];
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    protected $dateFormat = 'd-m-Y';
+    
     /* Relacionts */
     public function client()
     {
@@ -27,15 +27,13 @@ class Invoice extends Model
     }
 
     /* Customs */
-    public function getDateAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d', $this->day)->format('d/m/Y');
-    }
+    
     public function getNumAttribute()
     {
         $num=str_replace('Fct. ', 'Fct. #', $this->number);
         return $num;
     }
+
     public function fromToday()
     {
         $dt = Carbon::now();

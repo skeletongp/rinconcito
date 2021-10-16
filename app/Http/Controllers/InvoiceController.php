@@ -29,7 +29,7 @@ class InvoiceController extends Controller
     {
         $carts = Chart::active()->get();
         $data = $request->all();
-        $data['day']=now();
+        $data['day']=date('d-m-Y');
         $data['status']='PENDIENTE';
         $invoice = Invoice::create($data);
         $invoice->number = "Fct. " . str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
@@ -97,11 +97,11 @@ class InvoiceController extends Controller
     }
     public function delivered()
     { 
-        $dt = Carbon::now();
-        $today = $dt->toDateString();
+        $today = date('d-m-Y');
         $invoices=Invoice::where('status','=','ENTREGADO')
-        ->whereDate('created_at','=',$today)
+        ->where('day','=',$today)
         ->orderBy('created_at', 'desc')->paginate(1);
+        
         return view('pages.invoices.delivered')
         ->with([
             'invoices'=>$invoices,
@@ -110,6 +110,7 @@ class InvoiceController extends Controller
     public function complete(Request $request)
     {
         $invoice=Invoice::find($request->invoice);
+        $invoice->day=Carbon::now();
         $invoice->status="ENTREGADO";
         $invoice->save();
         return redirect()->route('invoices.pendings');

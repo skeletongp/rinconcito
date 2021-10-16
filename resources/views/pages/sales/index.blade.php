@@ -10,7 +10,7 @@
                         <thead class="md:sticky top-0">
                             <tr class="bg-blue-300">
 
-                                <th scope="col" colspan="4" class="font-bold text-xl">{{ $days[0]->date }}</th>
+                                <th scope="col" colspan="4" class="font-bold text-xl capitalize">{{ $days[0]->day-to }}</th>
                             </tr>
                             <tr>
                                 <th scope="col" class="md:hidden">Fecha</th>
