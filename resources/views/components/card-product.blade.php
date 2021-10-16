@@ -48,7 +48,7 @@
                     <div class="card__title flex justify-start space-x-4 {{ $stock ? '' : 'line-through' }} mx-2 md:mx-0
                     ">
                         <div class="flex items-center space-x-2">
-                            <span class="font-medium capitalize">{{ $name }}</span>-
+                            <span class="font-medium capitalize">{{ substr($name,0,20)}}</span>-
                            <div class="w-24 ">
                                 <x-input type="number" name="price" value="{{old('price',$price)}}" class="">
                                 <x-slot name="icon">$</x-slot>
