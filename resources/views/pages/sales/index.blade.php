@@ -23,10 +23,8 @@
                         @foreach ($days as $sale)
                             <tr>
                                 <td data-label="Fecha" class="md:hidden">{{ $sale->day }}</td>
+                                <td data-label="No. Factura"><a href="{{route('invoices.show',$sale)}}">{{ $sale->num }}</a></td>
                                 <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
-                                    <td data-label="No. Factura">
-                                        <x-dropdown-link href="{{route('invoices.show', $sale)}}">{{ $sale->num }}</x-dropdown-link>
-                                    </td>
                                     <div class="md:flex md:items-center md:space-x-2">
                                         <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
                                             style="background-image: url({{ $sale->client->photo }})"></div>
