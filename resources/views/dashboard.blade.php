@@ -28,6 +28,10 @@
                                 <span class="fas fa-user-cog"></span>
                                 <span>Mi cuenta</span>
                             </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('charts.index') }}" class="flex space-x-3 items-center  hover:text-blue-500">
+                                <span class="fas fa-shopping-cart"></span>
+                                <span>Ver Carrito</span>
+                            </x-dropdown-link>
                             <x-dropdown-link href="{{ route('auth.logout') }}" class="flex space-x-3 items-center hover:text-red-500">
                                 <span class="fas fa-power-off"></span>
                                 <span>Salir</span>

@@ -53,9 +53,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="my-2">
+       {{--  <div class="my-2">
             {{ $sales->links() }}
-        </div>
+        </div> --}}
     </div>
     <style>
         table {
