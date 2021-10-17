@@ -72,7 +72,7 @@
 <button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button>
 <script>
     window.addEventListener('load', function() {
-         window.print();
+        
         
         const btn = document.getElementById('printbtn');
         btn.addEventListener('click', function() {

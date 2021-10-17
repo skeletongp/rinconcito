@@ -26,13 +26,7 @@
                                 <a href="{{ route('invoices.show', $invoice) }}">
                                     <span class="fas fa-eye text-blue-700"></span>
                                 </a>
-                                <form action="{{ route('invoices.destroy', $invoice) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('¿Eliminar usuario?')" class=" outline-none">
-                                        <span class="fas fa-trash-alt text-red-700"></span>
-                                    </button>
-                                </form>
+                               
                             </div>
                         </div>
                     </div>
