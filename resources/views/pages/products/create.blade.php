@@ -30,7 +30,7 @@
                 <div class="flex items-center space-x-2 ">
                     <div class="w-full">
                         <x-label>Costo</x-label>
-                        <x-input type="number" name="cost" placeholder="Costo" required></x-input>
+                        <x-input type="number" name="cost" placeholder="Costo" value="0" required></x-input>
                     </div>
                     <div class="w-full">
                         <x-label>Precio</x-label>
@@ -40,8 +40,8 @@
                 <div class="flex items-center space-x-2 ">
                     <div class="w-full">
                         <x-select name="type" id="type">
-                            <option value="COMIDA">Con ingredientes</option>
                             <option value="OTRO">Sin ingredientes</option>
+                            <option value="COMIDA">Con ingredientes</option>
                             <x-slot name="icon">
                                 <label for="type">
                                     <span class="fas fa-angle-down cursor-pointer
