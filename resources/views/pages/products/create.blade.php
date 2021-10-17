@@ -30,7 +30,7 @@
                 <div class="flex items-center space-x-2 ">
                     <div class="w-full">
                         <x-label>Costo</x-label>
-                        <x-input type="number" name="cost" placeholder="Costo" value="0" required></x-input>
+                        <x-input type="number" name="cost" placeholder="Costo" value="0.00" required></x-input>
                     </div>
                     <div class="w-full">
                         <x-label>Precio</x-label>
