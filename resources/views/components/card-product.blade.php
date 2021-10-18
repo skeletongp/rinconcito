@@ -13,7 +13,7 @@
             <input type="hidden" name="product_id" value="{{ $id }}">
         </div>
         <div class="card_image w-full h-full bg-cover bg-center bg-no-repeat "
-            style="background-image: url({{ $photo }})">
+            style="background-image: url({{ asset($photo )}})">
             @if ($show)
                 <a href="{{ route('products.show', $id) }}"
                     class=" absolute right-4 top-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
