@@ -32,7 +32,7 @@ class InvoiceController extends Controller
         $data['day']=date('Y-m-d');
         $data['status']='PENDIENTE';
         $invoice = Invoice::create($data);
-        $invoice->number = "Fct. " . str_pad($invoice->id, 5, "0", STR_PAD_LEFT);
+        $invoice->number = "Fct. " . str_pad(Invoice::get()->count(), 5, "0", STR_PAD_LEFT);
         $invoice->save();
         foreach ($carts as $cart) {
             Detail::create([
