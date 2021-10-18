@@ -4,7 +4,7 @@
     <div class="max-w-4xl mx-auto bg-white p-4 rounded-xl">
         <h1 class="text-center font-bold uppercase text-xl my-4">Historial de facturas</h1>
         <form action="" class="max-w-sm mx-auto my-2">
-            <x-input name="s" type="text" placeholder="Buscar por número o vendedor">
+            <x-input name="s" type="search" value="{{request('s')}}" placeholder="Buscar por número o vendedor">
                 <x-slot name="icon">
                     <button>
                         <span class="fas fa-search text-blue-500"></span>
