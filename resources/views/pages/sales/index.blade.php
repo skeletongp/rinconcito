@@ -49,7 +49,7 @@
                                     <div class="md:flex md:items-center md:space-x-2">
                                         <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
                                             style="background-image: url({{ $sale->user->photo }})"></div>
-                                        <span>{{ $sale->user->fullname }}</span>
+                                        <span>{{ $sale->user->name }}</span>
                                     </div>
                                 </td>
                             </tr>
