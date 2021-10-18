@@ -69,11 +69,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('ingredients', IngredientController::class)->names('ingredients');
 
     /* Users Routes */
-    Route::resource('users', UserController::class)->middleware(['role:admin'])->names('users');
+    Route::resource('users', UserController::class)->names('users');
 
     /* Clients Routes */
     Route::resource('clients', ClientController::class)->names('clients');
 
     /* Sales Routes */
-    Route::get('sales', [SaleController::class, 'index'])->middleware(['role:admin'])->name('sales.index');
+    Route::get('sales', [SaleController::class, 'index'])->middleware(['role:admin|seller'])->name('sales.index');
 });

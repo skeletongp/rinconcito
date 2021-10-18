@@ -28,7 +28,10 @@ class AuthController extends Controller
        $request->merge(['password'=>bcrypt($request->password)]);
         $user=User::create($request->all());
         Auth::login($user);
-        return redirect()->route('home');
+        if ($user->hasRole(['admin','cooker'])) {
+            return redirect()->route('home');
+        }
+        return redirect()->route('invoices.pendings');
    }
 
    public function logout()
@@ -45,6 +48,9 @@ class AuthController extends Controller
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
+        if (Auth::user()->hasRole('cooker')) {
+            return redirect()->route('invoices.pendings');
+        }
         return redirect()->intended(route('home'));
     }
     return back()->withErrors([

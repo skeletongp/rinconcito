@@ -52,9 +52,9 @@
                         <x-label for="role">Rol</x-label>
                         <x-select required name="role" id="role">
                             <x-slot name="icon"> <span class="fas fa-user-tag"></span></x-slot>
-                            <option value="admin">Dependiente</option>
-                            <option value="cooker">Dependiente</option>
+                            <option value="admin">Admin</option>
                             <option value="seller">Cajero</option>
+                            <option value="cooker">Dependiente</option>
                         </x-select>
                         <x-input-error for="role"></x-input-error>
                     </div>

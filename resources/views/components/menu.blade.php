@@ -113,6 +113,7 @@
             </div>
             <span>Facturas</span>
         </x-dropdown-link>
+        @endrole
         <x-dropdown-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.*')"
             class="flex justify-start space-x-2 items-center cursor-pointer hover:bg-gray-900 hover:text-white p-3 border-b-2">
             <div class="w-1/6 h-full">
@@ -120,7 +121,6 @@
             </div>
             <span>Ventas</span>
         </x-dropdown-link>
-        @endrole
 
         <x-dropdown-link id="linkcart"
             class=" flex justify-start space-x-2 items-center cursor-pointer hover:bg-gray-900 hover:text-white p-3 border-b-2">

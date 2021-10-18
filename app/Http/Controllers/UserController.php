@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+
+        $this->middleware(['role:admin'])->except('show', 'store');
+    }
     public function index()
     {
         $users = User::paginate(9);
@@ -31,13 +36,17 @@ class UserController extends Controller
 
     public function store(AuthRequest $request)
     {
-        $data=$request->all();
-        $data['password']=bcrypt($data['password']);
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
         $user = User::updateOrCreate(['id' => $data['id']], $data);
         if ($request->role) {
             $user->syncRoles($request->role);
         }
-        return redirect()->route('users.index');
+        if (Auth::user()->hasRole('admin')) {
+            return redirect()->route('users.index');
+        }
+        return redirect()->route('users.show', Auth::user())
+        ->with(['success'=>"Datos actualizados"]);
     }
 
     public function show($id)

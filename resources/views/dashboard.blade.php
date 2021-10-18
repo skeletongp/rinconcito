@@ -11,9 +11,16 @@
             <header class=" top-0 fixed w-full z-20 bg-bottom bg-cover" style="background-image: url('/fondo.jpg')">
                 <div class="flex justify-between">
                     <div class="p-1 mx-3 inline-flex items-center">
-                        <i class="fas fa-bars pr-2 text-black lg:text-2xl cursor-pointer " onclick="sidebarToggle()"></i>
-                        <a href="{{ route('home') }}"
-                            class="text-black p-2 font-bold uppercase text-xl md:text-2xl font-sans">{{ env('COMPANY_NAME', 'CoffeTech') }}</a>
+                        @hasanyrole('admin|seller')
+                            <i class="fas fa-bars pr-2 text-black lg:text-2xl cursor-pointer " onclick="sidebarToggle()"></i>
+                            <a href="{{ route('home') }}"
+                                class="text-black p-2 font-bold uppercase text-xl md:text-2xl font-sans">{{ env('COMPANY_NAME', 'CoffeTech') }}</a>
+                        @endhasanyrole
+                        @hasrole('cooker')
+                            <a
+                                class="text-black select-none p-2 font-bold uppercase text-xl md:text-2xl font-sans">{{ env('COMPANY_NAME', 'CoffeTech') }}</a>
+                        @endhasrole
+
                     </div>
                     <x-dropdown>
                         <x-slot name="trigger">
@@ -24,19 +31,24 @@
                             </div>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link href="{{ route('users.show', Auth::user()) }}" class="flex space-x-3 items-center  hover:text-blue-500">
+                            <x-dropdown-link href="{{ route('users.show', Auth::user()) }}"
+                                class="flex space-x-3 items-center  hover:text-blue-500">
                                 <span class="fas fa-user-cog"></span>
                                 <span>Mi cuenta</span>
                             </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('charts.index') }}" class="flex space-x-3 items-center  hover:text-blue-500">
-                                <span class="fas fa-shopping-cart"></span>
-                                <span>Ver Carrito</span>
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('auth.logout') }}" class="flex space-x-3 items-center hover:text-red-500">
+                            @hasanyrole('admin|seller')
+                                <x-dropdown-link href="{{ route('charts.index') }}"
+                                    class="flex space-x-3 items-center  hover:text-blue-500">
+                                    <span class="fas fa-shopping-cart"></span>
+                                    <span>Ver Carrito</span>
+                                </x-dropdown-link>  
+                            @endhasanyrole
+                            <x-dropdown-link href="{{ route('auth.logout') }}"
+                                class="flex space-x-3 items-center hover:text-red-500">
                                 <span class="fas fa-power-off"></span>
                                 <span>Salir</span>
                             </x-dropdown-link>
-                           
+
                         </x-slot>
                     </x-dropdown>
 
@@ -47,7 +59,9 @@
             <div class="flex flex-1 py-12 bg-no-repeat bg-right bg-fixed lg:bg-cover "
                 style="background-image:url('{{ asset('/fondo.jpg') }}')">
                 <!--Sidebar-->
-                <x-menu></x-menu>
+                @hasanyrole('admin|seller')
+                    <x-menu></x-menu>
+                @endhasanyrole
                 <!--/Sidebar-->
                 <!--Main-->
                 <main class="bg-transparent flex-1 p-3 lg:px-8 overflow-hidden max-w-7xl mx-auto  xl:ml-auto">

@@ -5,10 +5,10 @@
         <div class="px-6 py-2 border-b border-light-grey flex justify-between">
             <div class="font-bold text-xl">Listado de productos</div>
             @role('admin')
-            <a href="{{ route('products.create') }}" class="flex space-x-2 items-center">
-                <span class="hidden lg:block font-bold">Nuevo</span>
-                <span class="fas fa-plus"></span>
-            </a>
+                <a href="{{ route('products.create') }}" class="flex space-x-2 items-center">
+                    <span class="hidden lg:block font-bold">Nuevo</span>
+                    <span class="fas fa-plus"></span>
+                </a>
             @endrole
         </div>
         <div class="mx-8 mb-4 mt-2">
@@ -18,8 +18,8 @@
             <x-alert type="success"></x-alert>
         @endif
         @if (Session::has('error'))
-        <x-alert type="error"></x-alert>
-    @endif
+            <x-alert type="error"></x-alert>
+        @endif
         <div>
             <form action="{{ route('products.index') }}" class="px-3 lg:px-8">
                 <div class="md:w-1/2 lg:w-1/3 md:pl-8 lg:px-0">
@@ -38,7 +38,8 @@
             @if ($products->count())
                 @foreach ($products as $product)
                     <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->price"
-                        :code="$product->code" :photo="$product->pict" :id="$product->id" :type="$product->type" :show="true" />
+                        :code="$product->code" :photo="$product->pict" :id="$product->id" :type="$product->type"
+                        :show="true" />
                 @endforeach
             @else
                 <h1 class="text-center my-8 uppercase text-lg">No has añadido ningún producto</h1>

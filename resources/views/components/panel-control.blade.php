@@ -3,7 +3,9 @@
         <!-- Stats Row Starts Here -->
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
             <x-grid-stat dataUp="Productos" dataDown="Consulta el cátalogo" bg='bg-success' icon="fa-layer-group" url="{{route('products.index')}}" />
-            <x-grid-stat dataUp="Facturas" dataDown="Historial de facturas" bg='bg-info' icon="fa-file-invoice-dollar" url="{{route('invoices.index')}}" />
+           @hasrole('admin')
+           <x-grid-stat dataUp="Facturas" dataDown="Historial de facturas" bg='bg-info' icon="fa-file-invoice-dollar" url="{{route('invoices.index')}}" />
+           @endhasanyrole
     
         </div>
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">

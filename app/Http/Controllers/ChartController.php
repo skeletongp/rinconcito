@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Session;
 
 class ChartController extends Controller
 {
+    public function __construct() {
+       $this->middleware(['role:admin|seller']);
+    }
   
     public function index()
     {

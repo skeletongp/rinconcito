@@ -51,7 +51,7 @@ class User extends Authenticatable
     ];
     public function getRoleAttribute()
     {
-        $roles=['admin'=>'Administrador', 'seller'=>'Vendedor'];
+        $roles=['admin'=>'Administrador', 'seller'=>'Cajero', 'cooker'=>"Dependiente"];
         return $roles[$this->getRoleNames()[0]];
     }
 }

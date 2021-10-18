@@ -16,25 +16,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Role::create(['name' => 'admin']);
+       /*  $admin = Role::create(['name' => 'admin']);
         $seller = Role::create(['name' => 'seller']);
-        $cooker = Role::create(['name' => 'cooker']);
+        $cooker = Role::create(['name' => 'cooker']); */
         $user=User::create([
-            'name'=>'Farlin',
-            'lastname'=>'Mejía',
-            'fullname'=>'Farlin Mejía',
-            'email'=>'fmejia@gmail.com',
-            'slug'=>'farlin-mejía',
-            'photo'=>'https://ui-avatars.com/api/?name=Farlin+Mejia&color=FFFFFF&background=F400A0',
-            'username'=>'fmejia',
-            'phone'=>'8296406391',
-            'password'=>bcrypt('fmejia'),
+            'name'=>'Ismael',
+            'lastname'=>'Contreras',
+            'fullname'=>'Ismael Contreras',
+            'email'=>'support@ismaeldigitador.com',
+            'slug'=>'ismael-contreras',
+            'photo'=>'https://ui-avatars.com/api/?name=Ismael+Contreras&color=FFFFFF&background=213748',
+            'username'=>'support',
+            'phone'=>'8493153337',
+            'password'=>bcrypt('skeletongp'),
             
         ]);
-        $user->assignRole($admin);
-        Client::create([
+        $user->assignRole('admin');
+      /*   Client::create([
             'name'=>'Genérico',
             'phone'=>'809-765-4321'
-        ]);
+        ]); */
     }
 }
