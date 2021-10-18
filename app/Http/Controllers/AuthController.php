@@ -41,6 +41,7 @@ class AuthController extends Controller
    }
    public function access(Request $request)
    {
+    $request->merge([$request->user=>strtolower($request->user)]);
     $credentials = $request->validate([
         'username' => ['required', 'string'],
         'password' => ['required'],
