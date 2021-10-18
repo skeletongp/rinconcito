@@ -108,7 +108,7 @@ class InvoiceController extends Controller
         $today = date('Y-m-d');
         $invoices=Invoice::where('status','=','ENTREGADO')
         ->where('day','=',$today)
-        ->orderBy('created_at', 'desc')->paginate(1);
+        ->orderBy('created_at', 'desc')->paginate(6);
         return view('pages.invoices.delivered')
         ->with([
             'invoices'=>$invoices,
