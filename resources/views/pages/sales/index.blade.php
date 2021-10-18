@@ -174,7 +174,7 @@
         $('document').ready(function(){
             $('.searchForm').each(function(){
                 $(this).on('change',function(){
-                    form=$("#   searchForm");
+                    form=$("#searchForm");
                     form.submit();
                 })
             })
