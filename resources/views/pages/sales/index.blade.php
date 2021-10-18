@@ -33,8 +33,8 @@
                 </x-select>
             </div>
         </form>
-        <div class="p-4 pt-0 overflow-auto max-h-screen ">
-            <table class=" relative border" style="max-height: 80vh">
+        <div class="p-4 pt-0 overflow-auto max-h-screen md:max-h-96">
+            <table class=" relative border">
                 <tbody>
                     @foreach ($sales as $days)
                         <thead class="md:sticky top-0">
