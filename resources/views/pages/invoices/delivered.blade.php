@@ -54,6 +54,7 @@
                                 value="${{ number_format($invoice->total, 2) }}" />
                         </p>
                     </div>
+                    <hr class="my-3 h-1 border-4 bg-blue-300">
                 @endforeach
             @else
                 <h1 class="font-bold uppercase text-center  my-8 text-2xl">No hay pedidos entregados hoy</h1>
