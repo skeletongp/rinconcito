@@ -3,6 +3,18 @@
 @section('body')
     <div class="bg-white rounded-xl max-w-4xl p-4 lg:p-8 relative">
         <h1 class="text-center font-bold uppercase text-xl lg:text-2xl my-3">Listado de ventas</h1>
+        <form action="" class="max-w-xs mx-auto my-2">
+            <x-select name="s" type="text" placeholder="Buscar por número o vendedor">
+                <x-slot name="icon">
+                    <button>
+                        <span class="fas fa-search text-blue-500"></span>
+                    </button>
+                </x-slot>
+                @foreach ($dates as $date)
+                    <option value="{{$date->day}}">{{date_format(date_create($date->day), 'd M Y')}}</option>
+                @endforeach
+            </x-select>
+        </form>
         <div class="p-4 pt-0 overflow-auto max-h-screen md:max-h-96">
             <table class=" relative border">
                 <tbody>

@@ -8,15 +8,16 @@
                 @foreach ($invoices as $invoice)
                     {{-- Botón --}}
                     @if ($invoices->count())
-                        <div class="flex justify-end space-x-4">
+                        <div class="flex justify-between space-x-4">
                             <form action="{{ route('invoices.complete') }}" method="POST" id="formInvoice">
                                 @method('put')
                                 @csrf
                                 <input type="hidden" name="invoice" value="{{ $invoice->id }}">
                             </form>
+                            <span class="text-xl font-bold">{{$invoice->num}}</span>
 
-                            <button type=" submit" form="formInvoice"
-                                class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-2xl  font-bold flex items-center space-x-3">
+                            <button type=" submit" form="formInvoice" onclick="return confirm('¿Marcar como entregado?')"
+                                class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-xl  font-bold flex items-center space-x-3">
                                 <span class="fas fa-check text-green-500"></span>
                                 <span>Entregado</span>
                             </button>
@@ -27,7 +28,7 @@
                         {{-- Producto --}}
                         @if ($invoice->details->count())
                             @foreach ($invoice->details as $detail)
-                                <li class="flex flex-col pb-3 pt-2 sm:flex-row sm:justify-between">
+                                <li class="flex flex-col pb-3 pt-2 sm:flex-row sm:justify-between my-2">
                                     <div class="flex w-full space-x-2 sm:space-x-4">
                                         <img class="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-coolGray-500"
                                             src="{{ $detail->product->pict }}" alt="Polaroid camera">
@@ -42,13 +43,12 @@
                                                 <div class="text-right w-full md:text-xl">
                                                     <p class="text-md font-semibold"> {{ $detail->cant }} x
                                                         ${{ number_format($detail->product->price, 2) }}</p>
-                                                    <p class=" text-sm md:text-2xl font-semibold">Total.
+                                                    <p class=" text-sm md:text-xl font-semibold">Total.
                                                         ${{ number_format($detail->cant * $detail->product->price, 2) }}
                                                     </p>
 
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                 </li>
                             @endforeach
@@ -62,11 +62,12 @@
                                     value="${{ number_format($invoice->discount, 2) }}" />
                             </p>
                         @endif
-                        <p>Total:
-                            <input type="text" disabled class="font-semibold  w-32 text-right " id="spTotal"
+                        <p class="font-bold">Total:
+                            <input type="text" disabled class="font-semibold  w-32 text-right text-blue-500" id="spTotal"
                                 value="${{ number_format($invoice->total, 2) }}" />
                         </p>
                     </div>
+                    <hr class="my-3 h-1 border-4 bg-blue-300">
                 @endforeach
             @else
                 <h1 class="font-bold uppercase text-center  my-8 text-2xl">NO hay pedidos pendientes</h1>

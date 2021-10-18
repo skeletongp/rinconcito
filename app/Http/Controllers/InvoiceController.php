@@ -14,7 +14,7 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        $invoices = Invoice::orderBy('created_at','desc')->paginate(6);
+        $invoices = Invoice::search(request('s'))->orderBy('created_at','desc')->paginate(6);
         return view('pages.invoices.index')
             ->with(['invoices' => $invoices]);
     }
@@ -73,13 +73,21 @@ class InvoiceController extends Controller
 
     public function edit(Invoice $invoice)
     {
-        //
+        return view('pages.invoices.edit')
+        ->with([
+            'invoice'=>$invoice
+        ]);
     }
 
 
     public function update(Request $request, Invoice $invoice)
     {
-        //
+        $invoice->update([
+            'payed'=>$request->payed,
+            'note'=>$request->note,
+            'discount'=>$invoice->total-$request->payed,
+        ]);
+        return redirect()->route('invoices.index');
     }
 
  
@@ -89,7 +97,7 @@ class InvoiceController extends Controller
     }
     public function pendings()
     {
-        $invoices=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->paginate(1);
+        $invoices=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->paginate(3);
         return view('pages.invoices.pendings')
         ->with([
             'invoices'=>$invoices,

@@ -13,10 +13,13 @@ class SaleController extends Controller
     public function index()
     {
 
-        $sales = Invoice::orderBy('created_at','desc')->get()->groupBy('day');
+        $sales = Invoice::search(request('s'))->orderBy('created_at','desc')->get()->groupBy('day');
+        $dates=Invoice::distinct('day')->get();
         return view('pages.sales.index')
             ->with([
                 'sales' => $sales,
+                'dates' => $dates,
+
             ]);
     }
 }

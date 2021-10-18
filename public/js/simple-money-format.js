@@ -1,1 +1,78 @@
-(()=>{var t;(t=jQuery).fn.simpleMoneyFormat=function(){function e(e,n,l){for(var a="",p=l.split(""),r=[],i=0,u="",o=p.length-1;o>=0;o--)u+=p[o],3==++i&&(r.push(u),i=0,u="");for(i>0&&r.push(u),o=r.length-1;o>=0;o--){for(var s=r[o].split(""),c=s.length-1;c>=0;c--)a+=s[c];o>0&&(a+=",")}"input"==n?t(e).val(a):t(e).empty().text(a)}this.each((function(n,l){var a=null,p=null;t(l).is("input")||t(l).is("textarea")?(p=t(l).val().replace(/,/g,""),a="input"):(p=t(l).text().replace(/,/g,""),a="other"),t(l).on("paste keyup",(function(){p=t(l).val().replace(/,/g,""),e(l,a,p)})),e(l,a,p)}))}})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*********************************************!*\
+  !*** ./resources/js/simple-money-format.js ***!
+  \*********************************************/
+(function ($) {
+  $.fn.simpleMoneyFormat = function () {
+    this.each(function (index, el) {
+      var elType = null; // input or other
+
+      var value = null; // get value
+
+      if ($(el).is('input') || $(el).is('textarea')) {
+        value = $(el).val().replace(/,/g, '');
+        elType = 'input';
+      } else {
+        value = $(el).text().replace(/,/g, '');
+        elType = 'other';
+      } // if value changes
+
+
+      $(el).on('paste keyup', function () {
+        value = $(el).val().replace(/,/g, '');
+        formatElement(el, elType, value); // format element
+      });
+      formatElement(el, elType, value); // format element
+    });
+
+    function formatElement(el, elType, value) {
+      var result = '';
+      var valueArray = value.split('');
+      var resultArray = [];
+      var counter = 0;
+      var temp = '';
+
+      for (var i = valueArray.length - 1; i >= 0; i--) {
+        temp += valueArray[i];
+        counter++;
+
+        if (counter == 3) {
+          resultArray.push(temp);
+          counter = 0;
+          temp = '';
+        }
+      }
+
+      ;
+
+      if (counter > 0) {
+        resultArray.push(temp);
+      }
+
+      for (var i = resultArray.length - 1; i >= 0; i--) {
+        var resTemp = resultArray[i].split('');
+
+        for (var j = resTemp.length - 1; j >= 0; j--) {
+          result += resTemp[j];
+        }
+
+        ;
+
+        if (i > 0) {
+          result += ',';
+        }
+      }
+
+      ;
+
+      if (elType == 'input') {
+        $(el).val(result);
+      } else {
+        $(el).empty().text(result);
+      }
+    }
+  };
+})(jQuery);
+/******/ })()
+;

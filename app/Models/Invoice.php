@@ -6,11 +6,25 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Nicolaslopezj\Searchable\SearchableTrait;
+
 class Invoice extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, SearchableTrait;
     protected $guarded=[];
    
+    protected $searchable = [
+        
+        'columns' => [
+            'invoices.number' => 10,
+            'invoices.day' => 10,
+            'users.fullname' => 10,
+            
+        ],
+        'joins' => [
+            'users' => ['users.id','invoices.user_id'],
+        ],
+    ];
     
     /* Relacionts */
     public function client()
