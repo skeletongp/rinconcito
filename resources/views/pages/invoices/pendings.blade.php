@@ -31,20 +31,20 @@
                                 <li class="flex flex-col pb-3 pt-2 sm:flex-row sm:justify-between my-2">
                                     <div class="flex w-full space-x-2 sm:space-x-4">
                                         <img class="flex-shrink-0 object-cover w-20 h-20 dark:border-transparent rounded outline-none sm:w-32 sm:h-32 dark:bg-coolGray-500"
-                                            src="{{ $detail->product->pict }}" alt="Polaroid camera">
+                                            src="{{ optional($detail->product)->pict }}" alt="Polaroid camera">
                                         <div class="flex flex-col justify-between w-full pb-4">
                                             <div class="flex justify-between w-full pb-2 space-x-2">
                                                 <div class="space-y-1 w-full">
                                                     <h3 class="text-lg md:text-xl font-semibold leading-snug sm:pr-8">
-                                                        {{ $detail->product->code }}</h3>
+                                                        {{ optional($detail->product)->code }}</h3>
                                                     <p class="text-sm md:text-base dark:text-coolGray-400">
-                                                        {{ $detail->product->name }}</p>
+                                                        {{optional( $detail->product)->name }}</p>
                                                 </div>
                                                 <div class="text-right w-full md:text-xl">
                                                     <p class="text-md font-semibold"> {{ $detail->cant }} x
-                                                        ${{ number_format($detail->product->price, 2) }}</p>
+                                                        ${{ number_format(optional($detail->product)->price, 2) }}</p>
                                                     <p class=" text-sm md:text-xl font-semibold">Total.
-                                                        ${{ number_format($detail->cant * $detail->product->price, 2) }}
+                                                        ${{ number_format($detail->cant * optional($detail->product)->price, 2) }}
                                                     </p>
 
                                                 </div>
