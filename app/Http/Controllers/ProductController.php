@@ -35,9 +35,12 @@ class ProductController extends Controller
         }
         return strtoupper($output);
     }
-
+    protected $rules=[
+        'photo'=>'max:2048'
+    ];
     public function store(Request $request)
     {
+        $request->validate($this->rules);
         $filename = null;
         $data = $request->all();
         if ($request->hasFile('photo')) {

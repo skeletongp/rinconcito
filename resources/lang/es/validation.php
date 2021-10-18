@@ -155,7 +155,7 @@ return [
         'description'=>'Descripción',
         'meta'=>'Descripción',
         'cost'=>"Costo",
-        'image'=>"Imagen",
+        'photo'=>"Foto",
         'quantity'=>"Cantidad",
         'año'=>"Año",
         'titulo'=>"Título",

@@ -9,7 +9,7 @@
                 @csrf
                 <div>
                     <x-label>Nombre del producto</x-label>
-                    <x-input type="text" name="name" placeholder="Nombre claro y preciso" required></x-input>
+                    <x-input type="text" name="name" placeholder="Nombre claro y preciso" required value="{{old('name')}}"></x-input>
                 </div>
                 <div class="flex items-center space-x-2">
                     <div class="w-2/3 md:w-3/4">
@@ -21,20 +21,21 @@
                         </div>
                         <input type="file" name="photo" id="photo" class="hidden"
                             accept="image/png, image/gif, image/jpeg">
+                        </div>
+                        <div class="w-1/3 md:w-1/4">
+                            <x-label>Cantidad</x-label>
+                            <x-input name="stock" type="numbers" value="{{old('stock')}}" placeholder="Stock"></x-input>
+                        </div>
                     </div>
-                    <div class="w-1/3 md:w-1/4">
-                        <x-label>Cantidad</x-label>
-                        <x-input name="stock" type="numbers" placeholder="Stock"></x-input>
-                    </div>
-                </div>
+                    <x-input-error for="photo"></x-input-error>
                 <div class="flex items-center space-x-2 ">
                     <div class="w-full">
                         <x-label>Costo</x-label>
-                        <x-input type="number" name="cost" placeholder="Costo" value="0.00" required></x-input>
+                        <x-input type="number" name="cost" placeholder="Costo" value="{{old('cost', '0.00')}}" required></x-input>
                     </div>
                     <div class="w-full">
                         <x-label>Precio</x-label>
-                        <x-input type="number" name="price" placeholder="Precio" required></x-input>
+                        <x-input type="number" name="price" placeholder="Precio" required value="{{old('price', '0.00')}}"></x-input>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 ">
