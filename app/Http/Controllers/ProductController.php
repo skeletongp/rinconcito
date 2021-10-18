@@ -45,8 +45,8 @@ class ProductController extends Controller
         $data = $request->all();
         if ($request->hasFile('photo')) {
             $filename=time() . '.' . request()->photo->getClientOriginalExtension();
-            request()->photo->move(public_path('images'), $filename);
-            $data['photo'] = '/images/' . $filename;
+            request()->photo->move(public_path('photos'), $filename);
+            $data['photo'] = '/photos/' . $filename;
         }
         $data['utility']=$data['price']-$data['cost'];
         $product = Product::create($data);
@@ -84,8 +84,8 @@ class ProductController extends Controller
         $data = $request->all();
         if ($request->hasFile('photo')) {
             $filename = time() . '.' . request()->photo->getClientOriginalExtension();
-            request()->photo->move(public_path('images'), $filename);
-            $data['photo'] = '/images/' . $filename;
+            request()->photo->move(public_path('photos'), $filename);
+            $data['photo'] = '/photos/' . $filename;
         }
         $data['utility']=$data['price']-$data['cost'];
         $product->update($data);
