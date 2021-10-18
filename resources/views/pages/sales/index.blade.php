@@ -33,7 +33,7 @@
                 </x-select>
             </div>
         </form>
-        <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 720px">
+        <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 600px">
             <table class=" relative border">
                 <tbody>
                    @if ($sales->count())
@@ -174,7 +174,7 @@
         $('document').ready(function(){
             $('.searchForm').each(function(){
                 $(this).on('change',function(){
-                    form=$("#searchForm");
+                    form=$("#   searchForm");
                     form.submit();
                 })
             })
