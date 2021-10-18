@@ -24,7 +24,7 @@
             <form action="{{ route('products.index') }}" class="px-3 lg:px-8">
                 <div class="md:w-1/2 lg:w-1/3 md:pl-8 lg:px-0">
                     <x-label for="search">Buscar</x-label>
-                    <x-input type="text" name="q" value="{{ old('q', request('q')) }}">
+                    <x-input type="search" name="q" value="{{ old('q', request('q')) }}">
                         <x-slot name="icon">
                             <x-button>
                                 <span class="text-xl text-blue-500 fas fa-search"></span>
