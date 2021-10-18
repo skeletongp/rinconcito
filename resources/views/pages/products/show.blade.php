@@ -31,7 +31,7 @@
             </div>
             <div class=" max-w-lg mx-auto my-3">
                 <ul class="cards m-8">
-                    <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->precio"
+                    <x-card-product :name="$product->name" :stock="$product->hasStock()" :price="$product->price"
                         :code="$product->code" :photo="$product->pict" :id="$product->id" :type="$product->type" />
 
                 </ul>

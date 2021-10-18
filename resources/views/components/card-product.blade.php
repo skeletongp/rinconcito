@@ -55,7 +55,7 @@
                             <span class="font-medium capitalize">{{ substr($name, 0, 20) }}</span>-
                             <div class="w-24 ">
                                 <x-input type="number" name="price" value="{{ old('price', $price) }}"
-                                    class="">
+                                    class="" required>
                                     <x-slot name="icon">$</x-slot>
                                 </x-input>
                             </div>
