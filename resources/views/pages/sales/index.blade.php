@@ -3,21 +3,38 @@
 @section('body')
     <div class="bg-white rounded-xl max-w-4xl p-4 lg:p-8 relative">
         <h1 class="text-center font-bold uppercase text-xl lg:text-2xl my-3">Listado de ventas</h1>
-        <form action="" class="max-w-xs mx-auto my-2">
-            <x-select name="s" type="text">
-                <x-slot name="icon">
-                    <button>
-                        <span class="fas fa-search text-blue-500"></span>
-                    </button>
-                </x-slot>
-                @foreach ($dates as $date)
-                    <option {{$date->day==request('s')?'selected':''}} 
-                    value="{{$date->day}}">{{date_format(date_create($date->day), 'd M Y')}}</option>
-                @endforeach
-            </x-select>
+        <form action="" class="max-w-sm mx-auto my-2 flex items-center space-x-2">
+            <div class="w-full">
+                <x-label>Fecha</x-label>
+                <x-select name="s" type="text">
+                    <x-slot name="icon">
+                        <button>
+                            <span class="fas fa-search text-blue-500"></span>
+                        </button>
+                    </x-slot>
+                    @foreach ($dates as $date)
+                        <option {{ $date->day == request('s') ? 'selected' : '' }} value="{{ $date->day }}">
+                            {{ date_format(date_create($date->day), 'd M Y') }}</option>
+                    @endforeach
+                </x-select>
+            </div>
+            <div class="w-full">
+                <x-label>Tanda</x-label>
+                <x-select name="t" type="text">
+                    <x-slot name="icon">
+                        <button>
+                            <span class="fas fa-search text-blue-500"></span>
+                        </button>
+                    </x-slot>
+                    <option value="">Todas</option>
+                    <option {{  request('t')=='mañana' ? 'selected' : '' }} value="mañana">Mañana</option>
+                    <option {{  request('t')=='tarde' ? 'selected' : '' }} value="tarde">Tarde</option>
+                    <option {{  request('t')=='noche' ? 'selected' : '' }} value="noche">Noche</option>
+                </x-select>
+            </div>
         </form>
-        <div class="p-4 pt-0 overflow-auto max-h-screen md:max-h-96">
-            <table class=" relative border">
+        <div class="p-4 pt-0 overflow-auto max-h-screen ">
+            <table class=" relative border" style="max-height: 80vh">
                 <tbody>
                     @foreach ($sales as $days)
                         <thead class="md:sticky top-0">
@@ -36,7 +53,8 @@
                         @foreach ($days as $sale)
                             <tr>
                                 <td data-label="Fecha" class="md:hidden">{{ $sale->day }}</td>
-                                <td data-label="No. Factura"><a href="{{route('invoices.show',$sale)}}">{{ $sale->num }}</a></td>
+                                <td data-label="No. Factura"><a
+                                        href="{{ route('invoices.show', $sale) }}">{{ $sale->num }}</a></td>
                                 <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
                                     <div class="md:flex md:items-center md:space-x-2">
                                         <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
@@ -54,19 +72,19 @@
                                 </td>
                             </tr>
                         @endforeach
-                      
-                          <tr class="bg-indigo-200">
-                              <th scope="col" >Total</th>
-                              <th scope="col"></th>
-                              <th scope="col">${{number_format($days->sum('payed'),2)}}</th>
-                              <th scope="col"></th>
-                          </tr>
-                      
+
+                        <tr class="bg-indigo-200">
+                            <th scope="col">Total</th>
+                            <th scope="col"></th>
+                            <th scope="col">${{ number_format($days->sum('payed'), 2) }}</th>
+                            <th scope="col"></th>
+                        </tr>
+
                     @endforeach
                 </tbody>
             </table>
         </div>
-       
+
     </div>
     <style>
         table {
@@ -130,9 +148,9 @@
 
             table td::before {
                 /*
-                        * aria-label has no advantage, it won't be read inside a table
-                        content: attr(aria-label);
-                        */
+                            * aria-label has no advantage, it won't be read inside a table
+                            content: attr(aria-label);
+                            */
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;

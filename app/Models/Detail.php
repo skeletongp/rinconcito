@@ -14,7 +14,7 @@ class Detail extends Model
 
     public function invoice()
     {
-        return $this->belongsTo(Invoice::class);
+        return $this->belongsTo(Invoice::class)->withTrashed();
     }
     public function product()
     {
@@ -22,6 +22,6 @@ class Detail extends Model
     }
     public function client()
     {
-       return $this->belongsTo(Client::class);
+       return $this->belongsTo(Client::class)->withTrashed();
     }
 }
