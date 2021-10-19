@@ -4,6 +4,7 @@
 /public/photos
 /public/pictures
 /storage/*.key
+/storage/app/public
 /vendor
 .env
 .env.backup
@@ -15,3 +16,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+
+ 
+ 
