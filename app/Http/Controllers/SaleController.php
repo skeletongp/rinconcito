@@ -14,7 +14,7 @@ class SaleController extends Controller
     {
 
         $sales = Invoice::search(request('s'))->tanda(request('t'))->orderBy('created_at','desc')->get()->groupBy('day');
-        $dates=Invoice::distinct()->get('day');
+        $dates=Invoice::distinct()->orderBy('day','desc')->get('day');
         return view('pages.sales.index')
             ->with([
                 'sales' => $sales,

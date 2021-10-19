@@ -65,14 +65,19 @@
                 <!--/Sidebar-->
                 <!--Main-->
                 <main class="bg-transparent flex-1 p-3 lg:px-8 overflow-hidden max-w-7xl mx-auto  xl:ml-auto relative pt-4">
-
+                    @php
+                        $count=App\Models\Chart::where('status','pendiente')->get()->count();
+                    @endphp
                     @hasSection('body')
                         @yield('body')
                     @else
                         <x-panel-control></x-panel-control>
                     @endif
                     <div title="Carrito"
-                        class="sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center rounded-full fixed z-40 bg-indigo-700 bottom-12 right-2 p-1">
+                        class="sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center rounded-full fixed z-40 bg-indigo-700 bottom-12 right-2 p-1 ">
+                        <div class="w-4 h-4 lg:w-6 lg:h-6 bg-white shadow-xl text-green-800 rounded-full absolute -top-2 lg:-top-3 left-0 flex items-center justify-center">
+                            <span class="text-xs lg:text-base font-bold">{{$count}}</span>
+                        </div>
                         <a href="{{ route('charts.index') }}">
                         <span class="fas fa-shopping-cart sm:text-sm lg:text-xl text-white"></span>
                         </a>
