@@ -15,7 +15,7 @@ trait InvoicesTrait
                 return $query->whereTime('created_at', '<=', Carbon::parse('12:00'));
                 break;
             case 'tarde':
-                return $query->whereBetween('created_at', [Carbon::parse('12:00'), Carbon::parse('18:00')]);
+                return $query->whereTime('created_at','>', Carbon::parse('12:00'))->whereTime('created_at','<=', Carbon::parse('18:00'));
                 break;
             case 'noche':
                 return $query->whereTime('created_at', '>', Carbon::parse('18:00'));
