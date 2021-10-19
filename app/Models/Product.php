@@ -13,54 +13,61 @@ class Product extends Model
 {
     use HasFactory, SearchableTrait, SoftDeletes;
     protected $searchable = [
-       
+
         'columns' => [
             'products.code' => 10,
             'products.name' => 10,
             'products.photo' => 2,
-       
+
         ],
     ];
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function getCostoAttribute(){
-        $cost= '$'.number_format($this->cost, 2);
-        return $cost;
-
-    }
-    public function getPrecioAttribute(){
-        $price= '$'.number_format($this->price, 2);
-        return $price;
-
-    }
-    public function getPictAttribute(){
-        if (str_contains($this->photo,'http')) {
-            return $this->photo;
-        }
-
-       if (!$this->photo || !file_exists(public_path($this->photo))) {
-          return "https://res.cloudinary.com/dboafhu31/image/upload/v1615693056/sample_image.jpg";
-       }
-       return $this->photo;
-    }
-    public function chart($status='PENDIENTE')
+    public function getCostoAttribute()
     {
-        return $this->hasOne(Chart::class)->where('status','=',$status)->first();
+        $cost = '$' . number_format($this->cost, 2);
+        return $cost;
     }
-    
+    public function getPrecioAttribute()
+    {
+        $price = '$' . number_format($this->price, 2);
+        return $price;
+    }
+    public function getPictAttribute()
+    {
+
+        if (!$this->photo) {
+            return "https://res.cloudinary.com/dboafhu31/image/upload/v1615693056/sample_image.jpg";
+        }
+            $photo = $this->photo;
+            $header = @get_headers($photo);
+          if (gettype($header)=='array') {
+            if (strpos($header[0], '404')) {
+                return "https://res.cloudinary.com/dboafhu31/image/upload/v1615693056/sample_image.jpg";
+            }
+          } 
+          
+            
+        return $this->photo;
+    }
+    public function chart($status = 'PENDIENTE')
+    {
+        return $this->hasOne(Chart::class)->where('status', '=', $status)->first();
+    }
+
     public function ingredients()
     {
         return $this->belongsToMany(Ingredient::class, 'ingredient_products')->withPivot('cant');
     }
     public function hasStock()
     {
-        if ($this->type=='COMIDA') {
+        if ($this->type == 'COMIDA') {
             if ($this->ingredients->count()) {
-               foreach ($this->ingredients as $ing) {
-                   if ($ing->stock<1.00 ) {
-                       return 0;
-                   }
-               }
+                foreach ($this->ingredients as $ing) {
+                    if ($ing->stock < 1.00) {
+                        return 0;
+                    }
+                }
             } else {
                 return 0;
             }
@@ -68,7 +75,6 @@ class Product extends Model
         } else {
             return $this->stock;
         }
-        
     }
     public function details()
     {
