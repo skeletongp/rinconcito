@@ -12,6 +12,7 @@
                             <span class="fas fa-search text-blue-500"></span>
                         </button>
                     </x-slot>
+                    <option value="">Todas</option>
                     @foreach ($dates as $date)
                         <option {{ $date->day == request('s') ? 'selected' : '' }} value="{{ $date->day }}">
                             {{ date_format(date_create($date->day), 'd M Y') }}</option>
