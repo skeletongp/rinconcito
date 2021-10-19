@@ -34,6 +34,7 @@ class Product extends Model
 
     }
     public function getPictAttribute(){
+        return $this->photo;
         if (str_contains($this->photo,'http')) {
             return $this->photo;
         }
