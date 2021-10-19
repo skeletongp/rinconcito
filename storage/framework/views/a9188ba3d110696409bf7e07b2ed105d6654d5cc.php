@@ -100,7 +100,7 @@
         
         
         <div>
-            <form action="<?php echo e(route('invoices.store')); ?>" method="POST" id="formInvoice">
+            <form action="<?php echo e(route('invoices.store')); ?>" method="POST" id="formInvoice" class="flex flex-col">
                 <?php echo csrf_field(); ?>
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.input','data' => ['id' => 'subtotal','class' => 'text-right hidden','type' => 'hidden','money' => 'true','name' => 'subtotal','readonly' => true,'required' => true,'value' => ''.e($carts->sum('total')).'']]); ?>
@@ -198,7 +198,6 @@
                         </div>
                     </div>
                     <div class="">
-                                <div class=" w-full">
                         <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.label','data' => []]); ?>
 <?php $component->withName('label'); ?>
@@ -223,6 +222,31 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
                     </div>
+                </div> 
+                <div class="md:w-1/2 xl:w-1/3">
+                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.label','data' => []]); ?>
+<?php $component->withName('label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>Nombre del cliente <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.input','data' => ['id' => 'discount','class' => 'text-right ','type' => 'text','name' => 'name','placeholder' => 'Ingrese nombre del cliente']]); ?>
+<?php $component->withName('input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['id' => 'discount','class' => 'text-right ','type' => 'text','name' => 'name','placeholder' => 'Ingrese nombre del cliente']); ?>
+                     <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
                 </div>
             </form>
         </div>

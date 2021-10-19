@@ -1,8 +1,8 @@
 <div class="invoice-card" id="div">
-    
+
     <div class="back hide-print">
         <a href="{{ route('products.index') }}">
-            <- Volver</a>
+            <- Volver </a>
     </div>
     <div class="invoice-title">
         <div id="main-title">
@@ -15,6 +15,13 @@
             <span id="date">{{ $invoice->client->name }}</span>
         </div>
     </div>
+    @if ($invoice->name)
+        <div style="margin-bottom: 10px; width:100%; text-align:center">
+        
+            <span style="font-weight: bold">Vendido a: </span>
+            <span style="text-transform: uppercase">{{$invoice->name}}</span>
+        </div>
+    @endif
 
     <div class="invoice-details">
         <table class="invoice-table">
@@ -72,8 +79,8 @@
 <button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button>
 <script>
     window.addEventListener('load', function() {
-        
-        
+
+
         const btn = document.getElementById('printbtn');
         btn.addEventListener('click', function() {
             console.log(btn)
@@ -151,7 +158,7 @@
     }
 
     .invoice-title {
-        flex: 3;
+        margin-bottom: 10px;
     }
 
     .invoice-title #date {
@@ -238,28 +245,33 @@
         font-size: small;
         text-transform: uppercase;
     }
-    .calc-row td  {
+
+    .calc-row td {
         padding: 8px;
         padding-top: 1px;
         text-transform: uppercase;
     }
+
     .calc-row td span {
         padding: 8px;
         padding-top: 1px;
         text-transform: uppercase;
     }
-    .subtotal{
+
+    .subtotal {
         font-size: small;
     }
-    .subtotal td{
+
+    .subtotal td {
         padding: 1px !important;
         padding-top: 1px;
     }
-    .subtotal td span{
+
+    .subtotal td span {
         padding: 1px !important;
     }
-    
-   
+
+
     #printbtn {
         padding: 6px 8px;
         background: none;
@@ -277,8 +289,9 @@
         .hide-print {
             display: none;
         }
+
         .invoice-card {
-            margin:5px;
+            margin: 5px;
         }
     }
 

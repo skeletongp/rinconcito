@@ -81,7 +81,7 @@
         {{--  --}}
         {{-- Formulario --}}
         <div>
-            <form action="{{ route('invoices.store') }}" method="POST" id="formInvoice">
+            <form action="{{ route('invoices.store') }}" method="POST" id="formInvoice" class="flex flex-col">
                 @csrf
                 <x-input id="subtotal" class="text-right hidden" type="hidden" money="true" name="subtotal" readonly
                     required value="{{ $carts->sum('total') }}">
@@ -111,12 +111,17 @@
                         </div>
                     </div>
                     <div class="">
-                                <div class=" w-full">
                         <x-label>Descuento</x-label>
                         <x-input id="discount" class="text-right "  type="text" name="discount" required
                             value="0" min="0" max="{{ $carts->sum('total') }}">
                         </x-input>
                     </div>
+                </div> 
+                <div class="md:w-1/2 xl:w-1/3">
+                    <x-label>Nombre del cliente</x-label>
+                    <x-input id="discount" class="text-right "  type="text" name="name" 
+                        placeholder="Ingrese nombre del cliente">
+                    </x-input>
                 </div>
             </form>
         </div>
