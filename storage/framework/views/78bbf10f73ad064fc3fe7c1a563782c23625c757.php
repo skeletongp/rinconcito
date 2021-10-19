@@ -1,7 +1,7 @@
 <div class="invoice-card" id="div">
     
     <div class="back hide-print">
-        <a href="<?php echo e(route('invoices.index')); ?>">
+        <a href="<?php echo e(route('products.index')); ?>">
             <- Volver</a>
     </div>
     <div class="invoice-title">

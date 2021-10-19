@@ -1,7 +1,7 @@
 <div class="invoice-card" id="div">
     
     <div class="back hide-print">
-        <a href="{{ route('invoices.index') }}">
+        <a href="{{ route('products.index') }}">
             <- Volver</a>
     </div>
     <div class="invoice-title">
