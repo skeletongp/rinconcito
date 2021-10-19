@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ingredient;
 use App\Models\Product;
 use Carbon\Carbon;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,13 +41,15 @@ class ProductController extends Controller
     ];
     public function store(Request $request)
     {
+        
         $request->validate($this->rules);
         $filename = null;
         $data = $request->all();
         if ($request->hasFile('photo')) {
+            $this->up_image($request->photo);
             $filename=time() . '.' . request()->photo->getClientOriginalExtension();
             request()->photo->move(public_path('storage/pictures'), $filename);
-            $data['photo'] = '/storage/pictures/' . $filename;
+            $data['photo'] = $this->up_image(public_path('storage/pictures/'.$filename));;
         }
         $data['utility']=$data['price']-$data['cost'];
         $product = Product::create($data);
@@ -58,6 +61,22 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
+    public function up_image($image)
+    {
+        
+        $cloudinary = new Cloudinary(
+            [
+                'cloud' => [
+                    'cloud_name' => 'dboafhu31',
+                    'api_key'    => '886995784495164',
+                    'api_secret' => 'raL4LYLJOVTs1jOn9XrvJPY50j4',
+                ],
+            ]
+        );
+      $photo=$cloudinary->uploadApi()->upload($image);
+      return json_decode(json_encode($photo))->url;
+
+    }
 
     public function show(Product $product)
     {
@@ -83,9 +102,9 @@ class ProductController extends Controller
     {
         $data = $request->all();
         if ($request->hasFile('photo')) {
-            $filename = time() . '.' . request()->photo->getClientOriginalExtension();
+            $filename = time() . '.' . request()->file('photo')->getClientOriginalExtension();
             request()->photo->move(public_path('storage/pictures'), $filename);
-            $data['photo'] = '/storage/pictures/' . $filename;
+            $data['photo'] =$this->up_image(public_path('storage/pictures/'.$filename));
         }
         $data['utility']=$data['price']-$data['cost'];
         $product->update($data);
@@ -100,6 +119,7 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index');
     }
+
     public function add_ingredients(Request $request, Product $product)
     {   
         $ingredient_id=$request->ingredient_id;
@@ -112,6 +132,7 @@ class ProductController extends Controller
         $product->ingredients()->attach($ingredient_id, ['cant'=>$request->cant]);
         return redirect(request()->header('Referer'));
     }
+
     public function upstock(Request $request, Product $product)
     {
         $product->stock=$product->stock+$request->stock;
