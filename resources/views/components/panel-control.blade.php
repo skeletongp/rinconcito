@@ -10,7 +10,7 @@
         </div>
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
             <x-grid-stat dataUp="Pendientes" dataDown="{{$pendings->count()}} Pedidos por entregar" bg='bg-info'  icon="fa-hourglass-half" url="{{route('invoices.pendings')}}"/>
-            <x-grid-stat dataUp="Entregados" dataDown="{{$delivered->count()}} Pedidos entregados" bg='bg-success' icon="fa-check-double" url="{{route('invoices.delivered')}}" />
+            <x-grid-stat dataUp="Entregados" dataDown="{{$delivered->count()}} Pedidos entregados" bg='bg-success' icon="fa-check-double text-white" url="{{route('invoices.delivered')}}" />
         </div>
        
     </div>
