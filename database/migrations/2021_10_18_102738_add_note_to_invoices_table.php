@@ -14,8 +14,8 @@ class AddNoteToInvoicesTable extends Migration
     public function up()
     {
         Schema::table('invoices', function (Blueprint $table) {
-            $table->string('note')->nullable();
-            $table->string('name')->nullable();
+            $table->string('note')->nullable()->after('total');
+            $table->string('name')->nullable()->after('note');
         });
     }
 

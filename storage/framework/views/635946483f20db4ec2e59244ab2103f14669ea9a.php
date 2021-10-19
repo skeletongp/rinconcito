@@ -111,7 +111,7 @@
                 <?php endif; ?>
                 <!--/Sidebar-->
                 <!--Main-->
-                <main class="bg-transparent flex-1 p-3 lg:px-8 overflow-hidden max-w-7xl mx-auto  xl:ml-auto relative pt-4">
+                <main class="bg-transparent flex-1 p-3 lg:px-8 overflow-hidden max-w-7xl mx-auto  relative pt-4">
                     <?php
                         $count=App\Models\Chart::where('status','pendiente')->get()->count();
                     ?>
