@@ -15,6 +15,7 @@ class AddNoteToInvoicesTable extends Migration
     {
         Schema::table('invoices', function (Blueprint $table) {
             $table->string('note')->nullable();
+            $table->string('name')->nullable();
         });
     }
 
@@ -26,7 +27,7 @@ class AddNoteToInvoicesTable extends Migration
     public function down()
     {
         Schema::table('invoices', function (Blueprint $table) {
-            $table->dropColumn('note');
+            $table->dropColumn('note', 'name');
         });
     }
 }
