@@ -77,6 +77,7 @@
         <span style="font-size: small; "> <?php echo e($invoice->user->fullname); ?></span>
         <span style="font-size: small; margin-bottom:10px"> <?php echo e(env('COMPANY_PHONE')); ?></span>
         <span style="font-size: small"> Gracias por su compra</span>
+        
     </div>
 </div>
 <button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button>
@@ -116,6 +117,7 @@
 
     .span-content {
         padding: 10px;
+        text-transform: capitalize;
     }
 
     .invoice-card {

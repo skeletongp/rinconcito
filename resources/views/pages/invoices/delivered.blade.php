@@ -6,7 +6,18 @@
             @if ($invoices->count())
                 <h2 class="text-xl font-semibold">{{ $invoices->total() }} Pedidos entregados</h2>
                 @foreach ($invoices as $invoice)
-                  
+                   <div class="flex items-center justify-between">
+                    <span>{{$invoice->num}}</span>
+                    <form action="{{ route('invoices.repeat', $invoice) }}" method="POST" id="{{$invoice->number}}">
+                        @method('put')
+                        @csrf
+                    </form>
+                    <button type=" submit" form="{{$invoice->number}}" onclick="return confirm('¿Repetir pedido?')"
+                        class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-xl  font-bold flex items-center space-x-3">
+                        <span class="fas fa-check text-green-500"></span>
+                        <span>Repetir</span>
+                    </button>
+                   </div>
                     <ul class="flex flex-col divide-y divide-coolGray-700 shadow-xl p-3">
                         {{-- Producto --}}
                         @if ($invoice->details->count())

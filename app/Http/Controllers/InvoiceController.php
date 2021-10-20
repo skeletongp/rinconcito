@@ -121,4 +121,36 @@ class InvoiceController extends Controller
         $invoice->save();
         return redirect()->route('invoices.pendings');
     }
+    public function repeat(Invoice $invoice)
+    {
+        $details=$invoice->details;
+        unset($invoice->id, $invoice->created_at, $invoice->updated_at);
+        $newInv=Invoice::create($invoice->getAttributes());
+        $newInv->number = "Fct. " . str_pad(Invoice::get()->count(), 5, "0", STR_PAD_LEFT);
+        $newInv->status="PENDIENTE";
+        $newInv->save();
+
+        foreach ($details as $detail) {
+            Detail::create([
+                'invoice_id' => $newInv->id,
+                'product_id' => $detail->product_id,
+                'price' => $detail->price,
+                'cant' => $detail->cant,
+                'client_id' => $detail->client_id,
+                'user_id' => $detail->user_id,
+            ]);
+
+           $product = Product::find($detail->product_id);
+           if ($product->type == 'OTRO') {
+               $product->stock = $product->stock - $detail->cant;
+               $product->save();
+           } else {
+               foreach ($product->ingredients as $ing) {
+                   $ing->stock = $ing->stock - ($ing->pivot->cant * $detail->cant);
+                   $ing->save();
+               }
+           }
+        }
+        return redirect()->route('invoices.show',$newInv);
+    }
 }

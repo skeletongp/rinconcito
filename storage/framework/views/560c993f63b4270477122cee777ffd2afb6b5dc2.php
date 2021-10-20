@@ -27,6 +27,7 @@
                             <span class="fas fa-search text-blue-500"></span>
                         </button>
                      <?php $__env->endSlot(); ?>
+                    <option value="">Todas</option>
                     <?php $__currentLoopData = $dates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <option <?php echo e($date->day == request('s') ? 'selected' : ''); ?> value="<?php echo e($date->day); ?>">
                             <?php echo e(date_format(date_create($date->day), 'd M Y')); ?></option>

@@ -6,7 +6,18 @@
             <?php if($invoices->count()): ?>
                 <h2 class="text-xl font-semibold"><?php echo e($invoices->total()); ?> Pedidos entregados</h2>
                 <?php $__currentLoopData = $invoices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invoice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  
+                   <div class="flex items-center justify-between">
+                    <span><?php echo e($invoice->num); ?></span>
+                    <form action="<?php echo e(route('invoices.repeat', $invoice)); ?>" method="POST" id="<?php echo e($invoice->number); ?>">
+                        <?php echo method_field('put'); ?>
+                        <?php echo csrf_field(); ?>
+                    </form>
+                    <button type=" submit" form="<?php echo e($invoice->number); ?>" onclick="return confirm('¿Repetir pedido?')"
+                        class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-xl  font-bold flex items-center space-x-3">
+                        <span class="fas fa-check text-green-500"></span>
+                        <span>Repetir</span>
+                    </button>
+                   </div>
                     <ul class="flex flex-col divide-y divide-coolGray-700 shadow-xl p-3">
                         
                         <?php if($invoice->details->count()): ?>
@@ -55,6 +66,7 @@
                                 value="$<?php echo e(number_format($invoice->total, 2)); ?>" />
                         </p>
                     </div>
+                    <hr class="my-3 h-1 border-4 bg-blue-300">
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php else: ?>
                 <h1 class="font-bold uppercase text-center  my-8 text-2xl">No hay pedidos entregados hoy</h1>

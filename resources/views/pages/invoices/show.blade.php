@@ -114,6 +114,7 @@
 
     .span-content {
         padding: 10px;
+        text-transform: capitalize;
     }
 
     .invoice-card {

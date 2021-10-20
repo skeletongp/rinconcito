@@ -3,11 +3,11 @@
         <!-- Stats Row Starts Here -->
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Productos','dataDown' => 'Consulta el cátalogo','bg' => 'bg-success','icon' => 'fa-layer-group','url' => ''.e(route('products.index')).'']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Productos','dataDown' => 'Consulta el cátalogo','bg' => 'bg-success','icon' => 'fa-layer-group','url' => ''.e(route('products.index')).'','color' => 'text-black']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => 'Productos','dataDown' => 'Consulta el cátalogo','bg' => 'bg-success','icon' => 'fa-layer-group','url' => ''.e(route('products.index')).'']); ?>
+<?php $component->withAttributes(['dataUp' => 'Productos','dataDown' => 'Consulta el cátalogo','bg' => 'bg-success','icon' => 'fa-layer-group','url' => ''.e(route('products.index')).'','color' => 'text-black']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -16,11 +16,11 @@
 <?php endif; ?>
            <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
            <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Facturas','dataDown' => 'Historial de facturas','bg' => 'bg-info','icon' => 'fa-file-invoice-dollar','url' => ''.e(route('invoices.index')).'']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Facturas','dataDown' => 'Historial de facturas','bg' => 'bg-info','icon' => 'fa-file-invoice-dollar','url' => ''.e(route('invoices.index')).'','color' => 'text-black']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => 'Facturas','dataDown' => 'Historial de facturas','bg' => 'bg-info','icon' => 'fa-file-invoice-dollar','url' => ''.e(route('invoices.index')).'']); ?>
+<?php $component->withAttributes(['dataUp' => 'Facturas','dataDown' => 'Historial de facturas','bg' => 'bg-info','icon' => 'fa-file-invoice-dollar','url' => ''.e(route('invoices.index')).'','color' => 'text-black']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -32,11 +32,11 @@
         </div>
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Pendientes','dataDown' => ''.e($pendings->count()).' Pedidos por entregar','bg' => 'bg-info','icon' => 'fa-hourglass-half','url' => ''.e(route('invoices.pendings')).'']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Pendientes','dataDown' => ''.e($pendings->count()).' Pedidos por entregar','bg' => 'bg-info','icon' => 'fa-hourglass-half','url' => ''.e(route('invoices.pendings')).'','color' => 'text-black']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => 'Pendientes','dataDown' => ''.e($pendings->count()).' Pedidos por entregar','bg' => 'bg-info','icon' => 'fa-hourglass-half','url' => ''.e(route('invoices.pendings')).'']); ?>
+<?php $component->withAttributes(['dataUp' => 'Pendientes','dataDown' => ''.e($pendings->count()).' Pedidos por entregar','bg' => 'bg-info','icon' => 'fa-hourglass-half','url' => ''.e(route('invoices.pendings')).'','color' => 'text-black']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -44,11 +44,11 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Entregados','dataDown' => ''.e($delivered->count()).' Pedidos entregados','bg' => 'bg-success','icon' => 'fa-check-double text-white','url' => ''.e(route('invoices.delivered')).'']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => 'Entregados','dataDown' => ''.e($delivered->count()).' Pedidos entregados','bg' => 'bg-success','icon' => 'fa-check-double text-white','url' => ''.e(route('invoices.delivered')).'','color' => 'text-black']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => 'Entregados','dataDown' => ''.e($delivered->count()).' Pedidos entregados','bg' => 'bg-success','icon' => 'fa-check-double text-white','url' => ''.e(route('invoices.delivered')).'']); ?>
+<?php $component->withAttributes(['dataUp' => 'Entregados','dataDown' => ''.e($delivered->count()).' Pedidos entregados','bg' => 'bg-success','icon' => 'fa-check-double text-white','url' => ''.e(route('invoices.delivered')).'','color' => 'text-black']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -63,11 +63,11 @@
         <h1 class="text-center uppercase font-bold text-lg lg:text-3xl mb-4">Estadísticas de venta</h1>
         <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => '$'.number_format($fromWeek, 2),'dataDown' => 'Vendido esta semana','bg' => 'bg-red-dark','icon' => 'fa-calendar-week']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => '$'.number_format($fromWeek, 2),'dataDown' => 'Vendido esta semana','bg' => 'bg-red-dark','icon' => 'fa-calendar-week','url' => ''.e(route('sales.index')).'','color' => 'text-white']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('$'.number_format($fromWeek, 2)),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('Vendido esta semana'),'bg' => 'bg-red-dark','icon' => 'fa-calendar-week']); ?>
+<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('$'.number_format($fromWeek, 2)),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('Vendido esta semana'),'bg' => 'bg-red-dark','icon' => 'fa-calendar-week','url' => ''.e(route('sales.index')).'','color' => 'text-white']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -75,11 +75,11 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => '$'.number_format($fromDay, 2),'dataDown' => 'Ventas de hoy','bg' => 'bg-blue-dark ','icon' => 'fa-calendar-day']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => '$'.number_format($fromDay, 2),'dataDown' => 'Ventas de hoy','bg' => 'bg-blue-dark ','icon' => 'fa-calendar-day','color' => 'text-white','url' => ''.e(route('sales.index',['s'=>date('Y-m-d')])).'']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('$'.number_format($fromDay, 2)),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('Ventas de hoy'),'bg' => 'bg-blue-dark ','icon' => 'fa-calendar-day']); ?>
+<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('$'.number_format($fromDay, 2)),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('Ventas de hoy'),'bg' => 'bg-blue-dark ','icon' => 'fa-calendar-day','color' => 'text-white','url' => ''.e(route('sales.index',['s'=>date('Y-m-d')])).'']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -88,13 +88,13 @@
 <?php endif; ?>
     
         </div>
-        <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center">
+        <div class="flex  flex-col md:flex-row lg:flex-row mx-2 w-full justify-center"  color="text-white">
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => $fromProduct,'dataDown' => 'Productos vendidos hoy','bg' => 'bg-blue-dark ','icon' => 'fa-boxes']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => $fromProduct,'dataDown' => 'Productos vendidos hoy','bg' => 'bg-blue-dark ','icon' => 'fa-boxes','color' => 'text-white']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($fromProduct),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('Productos vendidos hoy'),'bg' => 'bg-blue-dark ','icon' => 'fa-boxes']); ?>
+<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($fromProduct),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('Productos vendidos hoy'),'bg' => 'bg-blue-dark ','icon' => 'fa-boxes','color' => 'text-white']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -102,11 +102,11 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => $fromClient,'dataDown' => ' Clientes atendidos hoy','bg' => 'bg-red-dark','icon' => 'fa-user']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.grid-stat','data' => ['dataUp' => $fromClient,'dataDown' => ' Clientes atendidos hoy','bg' => 'bg-red-dark','icon' => 'fa-user','color' => 'text-white']]); ?>
 <?php $component->withName('grid-stat'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($fromClient),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(' Clientes atendidos hoy'),'bg' => 'bg-red-dark','icon' => 'fa-user']); ?>
+<?php $component->withAttributes(['dataUp' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($fromClient),'dataDown' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(' Clientes atendidos hoy'),'bg' => 'bg-red-dark','icon' => 'fa-user','color' => 'text-white']); ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
