@@ -9,10 +9,10 @@
             <div class="flex items-center space-x-2 my-2">
                 <div
                     class="flex w-full items-center justify-between bg-white leading-none  rounded-full p-2 shadow text-teal text-sm">
-                    <form action="<?php echo e(route('charts.destroy', $cart)); ?>" method="POST">
+                    <form action="<?php echo e(route('charts.destroy', $cart)); ?>" method="POST" id="c<?php echo e($cart->id); ?>">
                         <?php echo method_field('delete'); ?>
                         <?php echo csrf_field(); ?>
-                        <button onclick="return confirm('¿Eliminar del carrito?')"><span
+                        <button data-label="¿Eliminar del carrito?" class="confirm" form="c<?php echo e($cart->id); ?>"><span
                                 class="text-red-400 fas fa-times"></span></button>
                     </form>
                     <span class="inline-flex px-2 text-pink-600 text-left w-full pl-3">
@@ -46,11 +46,11 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 
-    <form action="<?php echo e(route('charts.empty')); ?>" method="POST">
+    <form action="<?php echo e(route('charts.empty')); ?>" method="POST" id="formVaciar">
         <?php echo method_field('delete'); ?>
         <?php echo csrf_field(); ?>
-        <button onclick="return confirm('Vaciar el carrito?')"
-            class='text-white px-2 py-1 rounded xl:text-lg font-bold'><span class="text-red-700">Vaciar</span>
+        <button data-label="¿Vaciar carrito?" form="formVaciar"
+            class='text-white px-2 py-1 rounded xl:text-lg font-bold confirm'><span class="text-red-700">Vaciar</span>
         </button>
     </form>
 

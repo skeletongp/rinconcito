@@ -9,15 +9,15 @@
                     {{-- Botón --}}
                     @if ($invoices->count())
                         <div class="flex justify-between space-x-4">
-                            <form action="{{ route('invoices.complete') }}" method="POST" id="{{$invoice->number}}">
+                            <form action="{{ route('invoices.complete') }}" method="POST" id="f{{$invoice->id}}">
                                 @method('put')
                                 @csrf
                                 <input type="hidden" name="invoice" value="{{ $invoice->id }}">
                             </form>
                             <span class="text-xl font-bold">{{$invoice->num}}</span>
 
-                            <button type=" submit" form="{{$invoice->number}}" onclick="return confirm('¿Marcar como entregado?')"
-                                class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-xl  font-bold flex items-center space-x-3">
+                            <button type=" submit" form="f{{$invoice->id}}" data-label='¿Marcar como entregado?'
+                                class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-xl  font-bold flex items-center space-x-3 confirm">
                                 <span class="fas fa-check text-green-500"></span>
                                 <span>Entregado</span>
                             </button>

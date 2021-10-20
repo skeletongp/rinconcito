@@ -44,13 +44,13 @@
                     </div>
                     <div class="w-3/12 text-xl  px-4 py-2 rounded-r-xl flex items-center space-x-4 justify-end">
                         <div class="w-7 h-7 text-center  font-semibold rounded-full bg-white">
-                            <form action="{{ route('ingredients.remove') }}" method="POST">
+                            <form action="{{ route('ingredients.remove') }}" method="POST" id="i{{$product->id.$ing->id}}">
                                 @method('delete')
                                 @csrf
                                 <input type="hidden" name="ingredient" value="{{$ing->id}}">
                                 <input type="hidden" name="product" value="{{$product->id}}">
-                                <button onclick="return confirm('¿Remover ingrediente?')"
-                                    class="fas fa-times cursor-pointer text-red-500"></button>
+                                <button data-label="¿Remover ingrediente?" form="i{{$product->id.$ing->id}}"
+                                    class="fas fa-times cursor-pointer text-red-500 confirm"></button>
                             </form>
                         </div>
                         

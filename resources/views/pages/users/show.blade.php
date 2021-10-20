@@ -11,7 +11,7 @@
             <div class="leading-loose">
 
                 <form class="max-w-xl m-4 p-8 bg-white dark:bg-gray-900  shadow-xl flex flex-col space-y-4 rounded-xl"
-                    action="{{ route('users.store') }}" method="POST">
+                    action="{{ route('users.store') }}" method="POST" id="u{{optional($user)->id}}">
                     @if (Session::has('success'))
                         <x-alert type="success"></x-alert>
                     @endif
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="flex justify-end items-center">
-                        <x-button onclick="return confirm('¿Actualizar datos?')" class="bg-gray-900 text-white">
+                        <x-button data-label="¿Actualizar datos?" class="bg-gray-900 text-white confirm" form="u{{optional($user)->id}}">
                             Actualizar
                         </x-button>
                     </div>

@@ -45,11 +45,11 @@
                             <span class="fas fa-pen text-xl text-green-500"></span>
                         </a>
                         <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.button','data' => ['form' => 'formDelete','onclick' => 'return confirm(\'¿Eliminar este producto?\')','class' => ' w-8 h-8 bg-white rounded-full flex items-center justify-center']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.button','data' => ['form' => 'formDelete','dataLabel' => '¿Eliminar este producto?','class' => ' w-8 h-8 bg-white rounded-full flex items-center justify-center confirm']]); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['form' => 'formDelete','onclick' => 'return confirm(\'¿Eliminar este producto?\')','class' => ' w-8 h-8 bg-white rounded-full flex items-center justify-center']); ?>
+<?php $component->withAttributes(['form' => 'formDelete','data-label' => '¿Eliminar este producto?','class' => ' w-8 h-8 bg-white rounded-full flex items-center justify-center confirm']); ?>
                             <span class="fas fa-trash-alt text-xl text-red-500"></span>
                          <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>

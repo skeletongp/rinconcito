@@ -94,8 +94,8 @@
                                 <form action="" method="POST">
                                     <?php echo method_field('delete'); ?>
                                     <?php echo csrf_field(); ?>
-                                    <button onclick="return confirm('Remover ingrediente?')"
-                                        class="fas fa-times cursor-pointer text-red-500"></button>
+                                    <button data-label="¿Remover ingrediente?"
+                                        class="fas fa-times cursor-pointer text-red-500 confirm"></button>
                                 </form>
                             </div>
                             <a href="<?php echo e(route('ingredients.index', ['name' => $ing->name, 'stock' => $ing->stock])); ?>"

@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto py-4 lg:py-10 h-full w-full ">
         <div class="max-w-lg mx-auto shadow-xl p-4 bg-white rounded-xl">
             <h1 class="font-bold my-3 uppercase text-xl lg:text-2xl text-center bg-white">Edición de producto</h1>
-            <form action="<?php echo e(route('products.update', $product)); ?>" method="POST" class="space-y-4"
+            <form action="<?php echo e(route('products.update', $product)); ?>" method="POST" class="space-y-4" id="p<?php echo e($product->id); ?>"
                 enctype="multipart/form-data">
                 <?php echo method_field('put'); ?>
                 <?php echo csrf_field(); ?>
@@ -154,11 +154,11 @@
                     </div>
                     <div class="flex justify-end">
                         <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.button','data' => ['onclick' => 'return confirm(\'¿Actualizar producto?\')','class' => 'bg-gray-900 text-white hover:text-black hover:bg-green-200']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.button','data' => ['dataLabel' => '¿Actualizar producto?','form' => 'p'.e($product->id).'','class' => 'bg-gray-900 text-white hover:text-black hover:bg-green-200 confirm']]); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['onclick' => 'return confirm(\'¿Actualizar producto?\')','class' => 'bg-gray-900 text-white hover:text-black hover:bg-green-200']); ?>
+<?php $component->withAttributes(['data-label' => '¿Actualizar producto?','form' => 'p'.e($product->id).'','class' => 'bg-gray-900 text-white hover:text-black hover:bg-green-200 confirm']); ?>
                             Actualizar
                          <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>

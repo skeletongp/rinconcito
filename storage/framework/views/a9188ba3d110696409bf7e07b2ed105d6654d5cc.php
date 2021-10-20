@@ -30,10 +30,10 @@
                                     <div class="flex text-sm divide-x">
                                         <div class="flex justify-between items-center w-full py-1 pl-0 space-x-1">
                                             <form class="w-full hover:text-red-400"
-                                                action="<?php echo e(route('charts.destroy', $cart)); ?>" method="POST">
+                                                action="<?php echo e(route('charts.destroy', $cart)); ?>" method="POST" id="c<?php echo e($cart->id); ?>">
                                                 <?php echo method_field('delete'); ?>
                                                 <?php echo csrf_field(); ?>
-                                                <button onclick="return confirm('¿Eliminar del carrito?')">
+                                                <button data-labe="¿Eliminar del carrito?" class="confirm" form="c<?php echo e($cart->id); ?>">
                                                     <span class="fas fa-trash-alt"></span>
                                                     <span>Remover</span>
                                                 </button>

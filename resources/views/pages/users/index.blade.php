@@ -30,10 +30,10 @@
                                     <a href="{{ route('users.edit', $user) }}">
                                         <span class="fas fa-pen text-blue-700"></span>
                                     </a>
-                                    <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                    <form action="{{ route('users.destroy', $user) }}" method="POST" id="u{{$user->id}}">
                                         @csrf
                                         @method('delete')
-                                        <button onclick="return confirm('¿Eliminar usuario?')" class=" outline-none">
+                                        <button data-label="¿Eliminar usuario?" class=" outline-none confirm" form="u{{$user->id}}">
                                             <span class="fas fa-trash-alt text-red-700"></span>
                                         </button>
                                     </form>

@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto py-4 lg:py-10 h-full w-full ">
         <div class="max-w-lg mx-auto shadow-xl p-4 bg-white rounded-xl">
             <h1 class="font-bold my-3 uppercase text-xl lg:text-2xl text-center bg-white">Edición de producto</h1>
-            <form action="{{ route('products.update', $product) }}" method="POST" class="space-y-4"
+            <form action="{{ route('products.update', $product) }}" method="POST" class="space-y-4" id="p{{$product->id}}"
                 enctype="multipart/form-data">
                 @method('put')
                 @csrf
@@ -56,8 +56,8 @@
                         </x-select>
                     </div>
                     <div class="flex justify-end">
-                        <x-button onclick="return confirm('¿Actualizar producto?')"
-                            class="bg-gray-900 text-white hover:text-black hover:bg-green-200">
+                        <x-button data-label="¿Actualizar producto?" form="p{{$product->id}}"
+                            class="bg-gray-900 text-white hover:text-black hover:bg-green-200 confirm">
                             Actualizar
                         </x-button>
                     </div>

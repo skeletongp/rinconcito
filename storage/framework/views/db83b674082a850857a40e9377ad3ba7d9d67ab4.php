@@ -33,10 +33,10 @@
                                     <a href="<?php echo e(route('users.edit', $user)); ?>">
                                         <span class="fas fa-pen text-blue-700"></span>
                                     </a>
-                                    <form action="<?php echo e(route('users.destroy', $user)); ?>" method="POST">
+                                    <form action="<?php echo e(route('users.destroy', $user)); ?>" method="POST" id="u<?php echo e($user->id); ?>">
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('delete'); ?>
-                                        <button onclick="return confirm('¿Eliminar usuario?')" class=" outline-none">
+                                        <button data-label="¿Eliminar usuario?" class=" outline-none confirm" form="u<?php echo e($user->id); ?>">
                                             <span class="fas fa-trash-alt text-red-700"></span>
                                         </button>
                                     </form>

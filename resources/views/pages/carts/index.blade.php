@@ -30,10 +30,10 @@
                                     <div class="flex text-sm divide-x">
                                         <div class="flex justify-between items-center w-full py-1 pl-0 space-x-1">
                                             <form class="w-full hover:text-red-400"
-                                                action="{{ route('charts.destroy', $cart) }}" method="POST">
+                                                action="{{ route('charts.destroy', $cart) }}" method="POST" id="c{{$cart->id}}">
                                                 @method('delete')
                                                 @csrf
-                                                <button onclick="return confirm('¿Eliminar del carrito?')">
+                                                <button data-labe="¿Eliminar del carrito?" class="confirm" form="c{{$cart->id}}">
                                                     <span class="fas fa-trash-alt"></span>
                                                     <span>Remover</span>
                                                 </button>

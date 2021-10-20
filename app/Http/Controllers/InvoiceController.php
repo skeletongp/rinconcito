@@ -124,6 +124,15 @@ class InvoiceController extends Controller
     public function repeat(Invoice $invoice)
     {
         $details=$invoice->details;
+        /* Verificar si alguno de los productos está agotado */
+        foreach ($details as $det) {
+            $prod=$det->product;
+               if (!$prod->hasStock()) {
+                 return redirect()->route('products.index')
+                 ->with(['error'=>'No hay stock para '.$prod->name]);
+           }
+        }
+
         unset($invoice->id, $invoice->created_at, $invoice->updated_at, $invoice->name, $invoice->note);
         $newInv=Invoice::create($invoice->getAttributes());
         $newInv->number = "Fct. " . str_pad(Invoice::get()->count(), 5, "0", STR_PAD_LEFT);

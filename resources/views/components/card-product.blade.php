@@ -26,8 +26,8 @@
                             class="  w-8 h-8 bg-white rounded-full flex items-center justify-center">
                             <span class="fas fa-pen text-xl text-green-500"></span>
                         </a>
-                        <x-button form="formDelete" onclick="return confirm('¿Eliminar este producto?')"
-                            class=" w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                        <x-button form="formDelete" data-label="¿Eliminar este producto?"
+                            class=" w-8 h-8 bg-white rounded-full flex items-center justify-center confirm">
                             <span class="fas fa-trash-alt text-xl text-red-500"></span>
                         </x-button>
 

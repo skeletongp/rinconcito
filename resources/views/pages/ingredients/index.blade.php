@@ -42,11 +42,11 @@
                         </div>
                         <div class="w-3/12 text-xl  px-4 py-2 rounded-r-xl flex items-center space-x-4 justify-between">
                             <div class="w-7 h-7 text-center  font-semibold rounded-full bg-white">
-                                <form action="{{-- {{ route('ingredients.remove',[$product, $ing]) }} --}}" method="POST">
+                                <form action="{{-- {{ route('ingredients.remove',[$product, $ing]) }} --}}" method="POST" id="i{{$ing->id.$product->id}}">
                                     @method('delete')
                                     @csrf
-                                    <button onclick="return confirm('Remover ingrediente?')"
-                                        class="fas fa-times cursor-pointer text-red-500"></button>
+                                    <button data-label="¿Remover ingrediente?" form="i{{$ing->id.$product->id}}"
+                                        class="fas fa-times cursor-pointer text-red-500 confirm"></button>
                                 </form>
                             </div>
                             <a href="{{ route('ingredients.index', ['name' => $ing->name, 'stock' => $ing->stock]) }}"

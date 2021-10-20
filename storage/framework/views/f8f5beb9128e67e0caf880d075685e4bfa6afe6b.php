@@ -11,7 +11,7 @@
             <div class="leading-loose">
 
                 <form class="max-w-xl m-4 p-8 bg-white dark:bg-gray-900  shadow-xl flex flex-col space-y-4 rounded-xl"
-                    action="<?php echo e(route('users.store')); ?>" method="POST">
+                    action="<?php echo e(route('users.store')); ?>" method="POST" id="u<?php echo e(optional($user)->id); ?>">
                     <?php if(Session::has('success')): ?>
                         <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.alert','data' => ['type' => 'success']]); ?>
@@ -238,11 +238,11 @@
 
                     <div class="flex justify-end items-center">
                         <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.button','data' => ['onclick' => 'return confirm(\'¿Actualizar datos?\')','class' => 'bg-gray-900 text-white']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.button','data' => ['dataLabel' => '¿Actualizar datos?','class' => 'bg-gray-900 text-white confirm','form' => 'u'.e(optional($user)->id).'']]); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['onclick' => 'return confirm(\'¿Actualizar datos?\')','class' => 'bg-gray-900 text-white']); ?>
+<?php $component->withAttributes(['data-label' => '¿Actualizar datos?','class' => 'bg-gray-900 text-white confirm','form' => 'u'.e(optional($user)->id).'']); ?>
                             Actualizar
                          <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
@@ -254,7 +254,7 @@
                 </form>
             </div>
         </div>
-
+ 
     </div>
 <?php $__env->stopSection(); ?>
 

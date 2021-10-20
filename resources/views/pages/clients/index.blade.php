@@ -26,10 +26,10 @@
                                     <a {{-- href="{{ route('clients.edit', $client) }}" --}}>
                                         <span class="fas fa-pen text-blue-700"></span>
                                     </a>
-                                    <form {{-- action="{{ route('clients.destroy', $client) }}" method="POST" --}}>
+                                    <form {{-- action="{{ route('clients.destroy', $client) }}" method="POST" --}} id="c{{$client->id}}">
                                         @csrf
                                         {{-- @method('delete') --}}
-                                        <button onclick="return confirm('¿Eliminar usuario?')" class=" outline-none">
+                                        <button data-label='¿Eliminar cliente?' class="confirm outline-none" form="c{{$client->id}}">
                                             <span class="fas fa-trash-alt text-red-700"></span>
                                         </button>
                                     </form>

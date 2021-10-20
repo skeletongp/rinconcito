@@ -73,8 +73,11 @@ class Product extends Model
             }
             return 10;
         } else {
-            return $this->stock;
+            if ($this->stock<0.01) {
+               return 0;
+            }
         }
+        return $this->stock;
     }
     public function details()
     {
