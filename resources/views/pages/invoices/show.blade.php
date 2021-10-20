@@ -74,6 +74,7 @@
         <span style="font-size: small; "> {{ $invoice->user->fullname }}</span>
         <span style="font-size: small; margin-bottom:10px"> {{ env('COMPANY_PHONE') }}</span>
         <span style="font-size: small"> Gracias por su compra</span>
+        <button onclick="ok.performClick(this.value);">Prueba</button>
     </div>
 </div>
 <button class="btn btn-primary hide-print" id="printbtn">IMPRIMIR</button>

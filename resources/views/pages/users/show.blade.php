@@ -79,6 +79,6 @@
                 </form>
             </div>
         </div>
-        <button onclick="ok.performClick(this.value);">Prueba</button>
+ 
     </div>
 @endsection
