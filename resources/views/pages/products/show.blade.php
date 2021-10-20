@@ -36,7 +36,7 @@
 
                 </ul>
             </div>
-            <div class="max-w-xl mx-auto">
+            <div class="max-w-xl mx-auto ">
                 @if ($details->count())
                     <h1 class="mt-2 mb-4 text-center font-bold text-xl lg:text-2xl">Ventas de hoy</h1>
                     <table class="table p-4 bg-white shadow rounded-lg">
@@ -76,7 +76,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div>
+                    <div class="max-w-lg mx-auto relative overflow-x-hidden">
                         {{ $details->links() }}
                     </div>
                 @endif

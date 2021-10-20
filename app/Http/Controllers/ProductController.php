@@ -82,7 +82,7 @@ class ProductController extends Controller
     {
         $dt = Carbon::now();
         $today = $dt->toDateString();
-        $details=$product->details()->whereDate('created_at', '=', $today)->orderBY('created_at','desc')->paginate(3);
+        $details=$product->details()->whereDate('created_at', '=', $today)->orderBY('created_at','desc')->paginate(5);
         return view('pages.products.show')
         ->with([
             'product'=>$product,

@@ -65,7 +65,7 @@
 
                 </ul>
             </div>
-            <div class="max-w-xl mx-auto">
+            <div class="max-w-xl mx-auto ">
                 <?php if($details->count()): ?>
                     <h1 class="mt-2 mb-4 text-center font-bold text-xl lg:text-2xl">Ventas de hoy</h1>
                     <table class="table p-4 bg-white shadow rounded-lg">
@@ -109,7 +109,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
-                    <div>
+                    <div class="max-w-lg mx-auto relative overflow-x-hidden">
                         <?php echo e($details->links()); ?>
 
                     </div>
