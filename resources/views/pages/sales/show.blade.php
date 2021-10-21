@@ -11,11 +11,11 @@
                 $beforeSales = ($invoices->sum('payed') - $beforeInvoices->sum('payed')) / $invoices->sum('payed');
                 $bsPercent = $beforeSales * 100;
             }
+            $bbPercent = 0;
             if ( $outcomes->sum('amount')) {
-                $bbPercent = 0;
                 $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
+                $bbPercent = $beforeBuys * 100;
             }
-            $bbPercent = $beforeBuys * 100;
         @endphp
         <!-- component -->
         <div class="w-full py-16 bg-transparent -my-2 flex justify-center items-center">
