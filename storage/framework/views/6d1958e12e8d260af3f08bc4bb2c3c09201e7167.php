@@ -33,7 +33,8 @@
                                     style="background-image: url('<?php echo e($invoice->client->photo); ?>')">
                                 </div>
                                 <div class="flex flex-col justify-end">
-                                    <span class="text-base md:text-xl font-bold"><?php echo e($invoice->client->name); ?></span>
+                                    <span class="text-base md:text-xl font-bold"><?php echo e($invoice->num); ?> 
+                                        <span class="text-red-500 text-xl"><?php echo e($invoice->note? '*':''); ?></span></span>
                                     <p class="text-sm w-max font-bold leading-4 mt-2">
                                         <?php echo e($invoice->client->phone); ?>
 

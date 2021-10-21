@@ -16,8 +16,13 @@
         </div>
     </div>
     <?php if($invoice->name): ?>
+        <div style="text-align: center; margin-bottom:15px" class="invoice-footer">
+            <span style="font-size: medium; margin-top:10px; font-weight:bold"> <?php echo e(env('COMPANY_NAME')); ?></span>
+            <span style="font-size: small; "> <?php echo e($invoice->user->fullname); ?></span>
+            <span style="font-size: small; margin-bottom:10px"> <?php echo e(env('COMPANY_PHONE')); ?></span>
+        </div>
         <div style="margin-bottom: 10px; width:100%; text-align:center">
-        
+            
             <span style="font-weight: bold">Vendido a: </span>
             <span style="text-transform: uppercase"><?php echo e($invoice->name); ?></span>
         </div>
@@ -73,10 +78,9 @@
         </table>
     </div>
     <div class="invoice-footer">
-        <span style="font-size: medium; margin-top:10px; font-weight:bold"> <?php echo e(env('COMPANY_NAME')); ?></span>
-        <span style="font-size: small; "> <?php echo e($invoice->user->fullname); ?></span>
-        <span style="font-size: small; margin-bottom:10px"> <?php echo e(env('COMPANY_PHONE')); ?></span>
+       
         <span style="font-size: small"> Gracias por su compra</span>
+        <span style="font-size: small; margin-top:10px; font-weight:bold">*** <?php echo e($invoice->note); ?> ***</span>
         
     </div>
 </div>

@@ -14,7 +14,7 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        $invoices = Invoice::search(request('s'))->orderBy('created_at','desc')->paginate(6);
+        $invoices = Invoice::search(request('s'))->orderBy('created_at', 'desc')->paginate(6);
         return view('pages.invoices.index')
             ->with(['invoices' => $invoices]);
     }
@@ -29,8 +29,8 @@ class InvoiceController extends Controller
     {
         $carts = Chart::active()->get();
         $data = $request->all();
-        $data['day']=date('Y-m-d');
-        $data['status']='PENDIENTE';
+        $data['day'] = date('Y-m-d');
+        $data['status'] = 'PENDIENTE';
         $invoice = Invoice::create($data);
         $invoice->number = "Fct. " . str_pad(Invoice::get()->count(), 5, "0", STR_PAD_LEFT);
         $invoice->save();
@@ -66,7 +66,7 @@ class InvoiceController extends Controller
         return view('pages.invoices.show')
             ->with([
                 'invoice' => $invoice,
-                'user'=>$user,
+                'user' => $user,
             ]);
     }
 
@@ -74,69 +74,80 @@ class InvoiceController extends Controller
     public function edit(Invoice $invoice)
     {
         return view('pages.invoices.edit')
-        ->with([
-            'invoice'=>$invoice
-        ]);
+            ->with([
+                'invoice' => $invoice
+            ]);
     }
 
 
     public function update(Request $request, Invoice $invoice)
     {
         $invoice->update([
-            'payed'=>$request->payed,
-            'note'=>$request->note,
-            'discount'=>$invoice->total-$request->payed,
+            'payed' => $request->payed,
+            'note' => $request->note,
+            'discount' => $invoice->total - $request->payed,
         ]);
         return redirect()->route('invoices.index');
     }
 
- 
+
     public function destroy(Invoice $invoice)
     {
         //
     }
     public function pendings()
     {
-        $invoices=Invoice::where('status','=','PENDIENTE')->orderBy('created_at', 'desc')->paginate(3);
+        $invs = Invoice::get();
+        foreach ($invs as $inv) {
+            $date = Carbon::createFromDate($inv->created_at);
+            $now = Carbon::now();
+            $dif=$date->diffInMinutes($now);
+            if ($dif>45) {
+                $inv->status='ENTREGADO';
+                $inv->save();
+            }
+        }
+        $invoices = Invoice::where('status', '=', 'PENDIENTE')->orderBy('created_at', 'desc')->paginate(3);
+
         return view('pages.invoices.pendings')
-        ->with([
-            'invoices'=>$invoices,
-        ]);
+            ->with([
+                'invoices' => $invoices,
+            ]);
     }
     public function delivered()
-    { 
+    {
         $today = date('Y-m-d');
-        $invoices=Invoice::where('status','=','ENTREGADO')
-        ->where('day','=',$today)
-        ->orderBy('created_at', 'desc')->paginate(6);
+        $invoices = Invoice::where('status', '=', 'ENTREGADO')
+            ->where('day', '=', $today)
+            ->orderBy('created_at', 'desc')->paginate(6);
         return view('pages.invoices.delivered')
-        ->with([
-            'invoices'=>$invoices,
-        ]);
+            ->with([
+                'invoices' => $invoices,
+            ]);
     }
     public function complete(Request $request)
     {
-        $invoice=Invoice::find($request->invoice);
-        $invoice->status="ENTREGADO";
+        $invoice = Invoice::find($request->invoice);
+        $invoice->status = "ENTREGADO";
         $invoice->save();
         return redirect()->route('invoices.pendings');
     }
     public function repeat(Invoice $invoice)
     {
-        $details=$invoice->details;
+        $details = $invoice->details;
         /* Verificar si alguno de los productos está agotado */
         foreach ($details as $det) {
-            $prod=$det->product;
-               if (!$prod->hasStock()) {
-                 return redirect()->route('products.index')
-                 ->with(['error'=>'No hay stock para '.$prod->name]);
-           }
+            $prod = $det->product;
+            if (!$prod->hasStock()) {
+                return redirect()->route('products.index')
+                    ->with(['error' => 'No hay stock para ' . $prod->name]);
+            }
         }
 
         unset($invoice->id, $invoice->created_at, $invoice->updated_at, $invoice->name, $invoice->note);
-        $newInv=Invoice::create($invoice->getAttributes());
+        $newInv = Invoice::create($invoice->getAttributes());
         $newInv->number = "Fct. " . str_pad(Invoice::get()->count(), 5, "0", STR_PAD_LEFT);
-        $newInv->status="PENDIENTE";
+        $newInv->status = "PENDIENTE";
         $newInv->save();
 
         foreach ($details as $detail) {
@@ -149,17 +160,17 @@ class InvoiceController extends Controller
                 'user_id' => $detail->user_id,
             ]);
 
-           $product = Product::find($detail->product_id);
-           if ($product->type == 'OTRO') {
-               $product->stock = $product->stock - $detail->cant;
-               $product->save();
-           } else {
-               foreach ($product->ingredients as $ing) {
-                   $ing->stock = $ing->stock - ($ing->pivot->cant * $detail->cant);
-                   $ing->save();
-               }
-           }
+            $product = Product::find($detail->product_id);
+            if ($product->type == 'OTRO') {
+                $product->stock = $product->stock - $detail->cant;
+                $product->save();
+            } else {
+                foreach ($product->ingredients as $ing) {
+                    $ing->stock = $ing->stock - ($ing->pivot->cant * $detail->cant);
+                    $ing->save();
+                }
+            }
         }
-        return redirect()->route('invoices.show',$newInv);
+        return redirect()->route('invoices.show', $newInv);
     }
 }

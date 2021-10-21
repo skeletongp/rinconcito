@@ -7,6 +7,7 @@
                 <h2 class="text-xl font-semibold"><?php echo e($invoices->total()); ?> Pedidos pendientes</h2>
                 <?php $__currentLoopData = $invoices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invoice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     
+                    <h1 class="text-center font-bold"><?php echo e($invoice->name); ?></h1>
                     <?php if($invoices->count()): ?>
                         <div class="flex justify-between space-x-4">
                             <form action="<?php echo e(route('invoices.complete')); ?>" method="POST" id="f<?php echo e($invoice->id); ?>">

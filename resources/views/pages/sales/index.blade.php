@@ -28,68 +28,76 @@
                         </button>
                     </x-slot>
                     <option value="">Todas</option>
-                    <option {{  request('t')=='mañana' ? 'selected' : '' }} value="mañana">Mañana</option>
-                    <option {{  request('t')=='tarde' ? 'selected' : '' }} value="tarde">Tarde</option>
-                    <option {{  request('t')=='noche' ? 'selected' : '' }} value="noche">Noche</option>
+                    <option {{ request('t') == 'mañana' ? 'selected' : '' }} value="mañana">Mañana</option>
+                    <option {{ request('t') == 'tarde' ? 'selected' : '' }} value="tarde">Tarde</option>
+                    <option {{ request('t') == 'noche' ? 'selected' : '' }} value="noche">Noche</option>
                 </x-select>
             </div>
         </form>
         <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 600px">
             <table class=" relative border">
                 <tbody>
-                   @if ($sales->count())
-                   @foreach ($sales as $days)
-                   <thead class="md:sticky top-0">
-                       <tr class="bg-blue-300">
+                    @if ($sales->count())
+                        @foreach ($sales as $days)
+                            <thead class="md:sticky top-0">
+                                <tr class="bg-blue-300">
 
-                           <th scope="col" colspan="4" class="font-bold text-xl capitalize">{{ $days[0]->day }}</th>
-                       </tr>
-                       <tr>
-                           <th scope="col" class="md:hidden">Fecha</th>
-                           <th scope="col">No. Factura</th>
-                           <th scope="col">Cliente</th>
-                           <th scope="col">Monto</th>
-                           <th scope="col">Vendedor</th>
-                       </tr>
-                   </thead>
-                   @foreach ($days as $sale)
-                       <tr>
-                           <td data-label="Fecha" class="md:hidden">{{ $sale->day }}</td>
-                           <td data-label="No. Factura"><a
-                                   href="{{ route('invoices.show', $sale) }}">{{ $sale->num }}</a></td>
-                           <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
-                               <div class="md:flex md:items-center md:space-x-2">
-                                   <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
-                                       style="background-image: url({{ $sale->client->photo }})"></div>
-                                   <span>{{ $sale->client->name }}</span>
-                               </div>
-                           </td>
-                           <td data-label="Monto">${{ number_format($sale->payed, 2) }}</td>
-                           <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
-                               <div class="md:flex md:items-center md:space-x-2">
-                                   <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
-                                       style="background-image: url({{ $sale->user->photo }})"></div>
-                                   <span>{{ $sale->user->name }}</span>
-                               </div>
-                           </td>
-                       </tr>
-                   @endforeach
+                                    <th scope="col" colspan="4" class="font-bold text-xl capitalize">{{ $days[0]->day }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th scope="col" class="md:hidden">Fecha</th>
+                                    <th scope="col">No. Factura</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Vendedor</th>
+                                </tr>
+                            </thead>
+                            @foreach ($days as $sale)
+                                <tr>
+                                    <td data-label="Fecha" class="md:hidden">{{ $sale->day }}</td>
+                                    <td data-label="No. Factura">
+                                        <div class="flex items-center justify-end lg:justify-center space-x-2">
+                                            <a href="{{route('invoices.edit',$sale)}}" class="hidden lg:block text-blue-300"><span class="fas fa-pen"></span></a>
+                                            <a
+                                                href="{{ route('invoices.show', $sale) }}">
+                                                {{ $sale->num }} <span class="text-red-500 text-xl">{{$sale->note? '*':''}}</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
+                                        <div class="md:flex md:items-center md:space-x-2">
+                                            <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
+                                                style="background-image: url({{ $sale->client->photo }})"></div>
+                                            <span>{{ $sale->client->name }}</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Monto">${{ number_format($sale->payed, 2) }}</td>
+                                    <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
+                                        <div class="md:flex md:items-center md:space-x-2">
+                                            <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
+                                                style="background-image: url({{ $sale->user->photo }})"></div>
+                                            <span>{{ $sale->user->name }}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                   <tr class="bg-indigo-200">
-                       <th scope="col">Total</th>
-                       <th scope="col"></th>
-                       <th scope="col">${{ number_format($days->sum('payed'), 2) }}</th>
-                       <th scope="col"></th>
-                   </tr>
+                            <tr class="bg-indigo-200">
+                                <th scope="col">Total</th>
+                                <th scope="col"></th>
+                                <th scope="col">${{ number_format($days->sum('payed'), 2) }}</th>
+                                <th scope="col"></th>
+                            </tr>
 
-               @endforeach
-                   @else
-                       <tr>
-                           <td colspan="5">
-                               <h1 class="text-center font-bold text-xl uppercase">NO SE HALLARON REGISTROS</h1>
-                           </td>
-                       </tr>
-                   @endif
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5">
+                                <h1 class="text-center font-bold text-xl uppercase">NO SE HALLARON REGISTROS</h1>
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -157,9 +165,9 @@
 
             table td::before {
                 /*
-                            * aria-label has no advantage, it won't be read inside a table
-                            content: attr(aria-label);
-                            */
+                                * aria-label has no advantage, it won't be read inside a table
+                                content: attr(aria-label);
+                                */
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;
@@ -170,12 +178,13 @@
                 border-bottom: 0;
             }
         }
+
     </style>
     <script>
-        $('document').ready(function(){
-            $('.searchForm').each(function(){
-                $(this).on('change',function(){
-                    form=$("#searchForm");
+        $('document').ready(function() {
+            $('.searchForm').each(function() {
+                $(this).on('change', function() {
+                    form = $("#searchForm");
                     form.submit();
                 })
             })

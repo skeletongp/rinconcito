@@ -23,7 +23,8 @@
                                     style="background-image: url('{{ $invoice->client->photo }}')">
                                 </div>
                                 <div class="flex flex-col justify-end">
-                                    <span class="text-base md:text-xl font-bold">{{ $invoice->client->name }}</span>
+                                    <span class="text-base md:text-xl font-bold">{{ $invoice->num }} 
+                                        <span class="text-red-500 text-xl">{{$invoice->note? '*':''}}</span></span>
                                     <p class="text-sm w-max font-bold leading-4 mt-2">
                                         {{ $invoice->client->phone }}
                                         <br>Total: ${{ number_format($invoice->payed, 2) }}

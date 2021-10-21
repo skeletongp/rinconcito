@@ -7,6 +7,7 @@
                 <h2 class="text-xl font-semibold">{{ $invoices->total() }} Pedidos pendientes</h2>
                 @foreach ($invoices as $invoice)
                     {{-- Botón --}}
+                    <h1 class="text-center font-bold">{{$invoice->name}}</h1>
                     @if ($invoices->count())
                         <div class="flex justify-between space-x-4">
                             <form action="{{ route('invoices.complete') }}" method="POST" id="f{{$invoice->id}}">

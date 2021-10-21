@@ -63,9 +63,9 @@
                         </button>
                      <?php $__env->endSlot(); ?>
                     <option value="">Todas</option>
-                    <option <?php echo e(request('t')=='mañana' ? 'selected' : ''); ?> value="mañana">Mañana</option>
-                    <option <?php echo e(request('t')=='tarde' ? 'selected' : ''); ?> value="tarde">Tarde</option>
-                    <option <?php echo e(request('t')=='noche' ? 'selected' : ''); ?> value="noche">Noche</option>
+                    <option <?php echo e(request('t') == 'mañana' ? 'selected' : ''); ?> value="mañana">Mañana</option>
+                    <option <?php echo e(request('t') == 'tarde' ? 'selected' : ''); ?> value="tarde">Tarde</option>
+                    <option <?php echo e(request('t') == 'noche' ? 'selected' : ''); ?> value="noche">Noche</option>
                  <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
@@ -77,59 +77,68 @@
         <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 600px">
             <table class=" relative border">
                 <tbody>
-                   <?php if($sales->count()): ?>
-                   <?php $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $days): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                   <thead class="md:sticky top-0">
-                       <tr class="bg-blue-300">
+                    <?php if($sales->count()): ?>
+                        <?php $__currentLoopData = $sales; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $days): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <thead class="md:sticky top-0">
+                                <tr class="bg-blue-300">
 
-                           <th scope="col" colspan="4" class="font-bold text-xl capitalize"><?php echo e($days[0]->day); ?></th>
-                       </tr>
-                       <tr>
-                           <th scope="col" class="md:hidden">Fecha</th>
-                           <th scope="col">No. Factura</th>
-                           <th scope="col">Cliente</th>
-                           <th scope="col">Monto</th>
-                           <th scope="col">Vendedor</th>
-                       </tr>
-                   </thead>
-                   <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                       <tr>
-                           <td data-label="Fecha" class="md:hidden"><?php echo e($sale->day); ?></td>
-                           <td data-label="No. Factura"><a
-                                   href="<?php echo e(route('invoices.show', $sale)); ?>"><?php echo e($sale->num); ?></a></td>
-                           <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
-                               <div class="md:flex md:items-center md:space-x-2">
-                                   <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
-                                       style="background-image: url(<?php echo e($sale->client->photo); ?>)"></div>
-                                   <span><?php echo e($sale->client->name); ?></span>
-                               </div>
-                           </td>
-                           <td data-label="Monto">$<?php echo e(number_format($sale->payed, 2)); ?></td>
-                           <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
-                               <div class="md:flex md:items-center md:space-x-2">
-                                   <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
-                                       style="background-image: url(<?php echo e($sale->user->photo); ?>)"></div>
-                                   <span><?php echo e($sale->user->name); ?></span>
-                               </div>
-                           </td>
-                       </tr>
-                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <th scope="col" colspan="4" class="font-bold text-xl capitalize"><?php echo e($days[0]->day); ?>
 
-                   <tr class="bg-indigo-200">
-                       <th scope="col">Total</th>
-                       <th scope="col"></th>
-                       <th scope="col">$<?php echo e(number_format($days->sum('payed'), 2)); ?></th>
-                       <th scope="col"></th>
-                   </tr>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th scope="col" class="md:hidden">Fecha</th>
+                                    <th scope="col">No. Factura</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Vendedor</th>
+                                </tr>
+                            </thead>
+                            <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sale): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td data-label="Fecha" class="md:hidden"><?php echo e($sale->day); ?></td>
+                                    <td data-label="No. Factura">
+                                        <div class="flex items-center justify-end lg:justify-center space-x-2">
+                                            <a href="<?php echo e(route('invoices.edit',$sale)); ?>" class="hidden lg:block text-blue-300"><span class="fas fa-pen"></span></a>
+                                            <a
+                                                href="<?php echo e(route('invoices.show', $sale)); ?>">
+                                                <?php echo e($sale->num); ?> <span class="text-red-500 text-xl"><?php echo e($sale->note? '*':''); ?></span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
+                                        <div class="md:flex md:items-center md:space-x-2">
+                                            <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
+                                                style="background-image: url(<?php echo e($sale->client->photo); ?>)"></div>
+                                            <span><?php echo e($sale->client->name); ?></span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Monto">$<?php echo e(number_format($sale->payed, 2)); ?></td>
+                                    <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
+                                        <div class="md:flex md:items-center md:space-x-2">
+                                            <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
+                                                style="background-image: url(<?php echo e($sale->user->photo); ?>)"></div>
+                                            <span><?php echo e($sale->user->name); ?></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                   <?php else: ?>
-                       <tr>
-                           <td colspan="5">
-                               <h1 class="text-center font-bold text-xl uppercase">NO SE HALLARON REGISTROS</h1>
-                           </td>
-                       </tr>
-                   <?php endif; ?>
+                            <tr class="bg-indigo-200">
+                                <th scope="col">Total</th>
+                                <th scope="col"></th>
+                                <th scope="col">$<?php echo e(number_format($days->sum('payed'), 2)); ?></th>
+                                <th scope="col"></th>
+                            </tr>
+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">
+                                <h1 class="text-center font-bold text-xl uppercase">NO SE HALLARON REGISTROS</h1>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -197,9 +206,9 @@
 
             table td::before {
                 /*
-                            * aria-label has no advantage, it won't be read inside a table
-                            content: attr(aria-label);
-                            */
+                                * aria-label has no advantage, it won't be read inside a table
+                                content: attr(aria-label);
+                                */
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;
@@ -210,12 +219,13 @@
                 border-bottom: 0;
             }
         }
+
     </style>
     <script>
-        $('document').ready(function(){
-            $('.searchForm').each(function(){
-                $(this).on('change',function(){
-                    form=$("#searchForm");
+        $('document').ready(function() {
+            $('.searchForm').each(function() {
+                $(this).on('change', function() {
+                    form = $("#searchForm");
                     form.submit();
                 })
             })

@@ -11,6 +11,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use App\View\Components\InvoiceControl;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    $user=Auth::user();
+    if ($user->hasAnyRole(('admin|seller'))) {
+        return view('dashboard');
+    } else {
+        return redirect()->route('invoices.pendings');
+    }
+    
 })->middleware(['auth'])->name('home');
-
+Route::get('invoices/pendings',[InvoiceController::class, 'pendings'])->name('invoices.pendings');
 Route::get('back', function () {
    return back();
 
@@ -43,8 +50,7 @@ Route::get('/offline', function () {
     return view('vendor/laravelpwa/offline');
 });
 /* Others Routes */
-Route::middleware(['auth'])->group(function () {
-
+Route::middleware(['auth','role:admin|seller'])->group(function () {
     /* Products Routes */
     Route::post('products/upstock/{product}', [ProductController::class, 'upstock'])->name('products.upstock');
     Route::post('products/add_ingredients/{product}', [ProductController::class, 'add_ingredients'])->name('products.add_ingredients');
@@ -58,7 +64,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('charts', ChartController::class)->names('charts');
 
     /* Invoices Routes */
-    Route::get('invoices/pendings',[InvoiceController::class, 'pendings'])->name('invoices.pendings');
     Route::get('invoices/delivered',[InvoiceController::class, 'delivered'])->name('invoices.delivered');
     Route::put('invoices/complete',[InvoiceController::class, 'complete'])->name('invoices.complete');
     Route::put('invoices/repeat/{invoice}',[InvoiceController::class, 'repeat'])->name('invoices.repeat');
