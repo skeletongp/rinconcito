@@ -9,4 +9,6 @@ class Ingredient extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    
 }
