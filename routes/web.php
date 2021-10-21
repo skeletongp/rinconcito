@@ -34,7 +34,7 @@ Route::get('/', function () {
     }
     
 })->middleware(['auth'])->name('home');
-Route::get('invoices/pendings',[InvoiceController::class, 'pendings'])->name('invoices.pendings');
+Route::get('invoices/pendings',[InvoiceController::class, 'pendings'])->middleware(['auth'])->name('invoices.pendings');
 Route::get('back', function () {
    return back();
 
