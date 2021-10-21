@@ -44,7 +44,7 @@ class SaleController extends Controller
         $outcomes=Outcome::whereBetween('day',[$start,$end]);
 
         $beforeInvoices=Invoice::whereBetween('day',[$beforeStart,$beforeEnd]);
-        $beforeOutcomes=Outcome::whereBetween('day',[$beforeStart,$beforeEnd]);
+        $beforeOutcomes=Outcome::whereBetween('day',[$beforeStart   ,$beforeEnd]);
 
         return view('pages.sales.show')
         ->with([

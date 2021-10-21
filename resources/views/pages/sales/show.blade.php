@@ -6,11 +6,15 @@
             $balance = $invoices->sum('payed') - $outcomes->sum('amount');
             $percent = $balance / $invoices->sum('payed');
             $percent = $percent * 100;
-            
-            $beforeSales = ($invoices->sum('payed') - $beforeInvoices->sum('payed')) / $invoices->sum('payed');
-            $bsPercent = $beforeSales * 100;
-
-            $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
+            $bsPercent = 0;
+            if ($invoices->sum('payed') > 0) {
+                $beforeSales = ($invoices->sum('payed') - $beforeInvoices->sum('payed')) / $invoices->sum('payed');
+                $bsPercent = $beforeSales * 100;
+            }
+            if ( $outcomes->sum('amount')) {
+                $bbPercent = 0;
+                $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
+            }
             $bbPercent = $beforeBuys * 100;
         @endphp
         <!-- component -->
@@ -44,7 +48,8 @@
                     </div>
                     <div class="relative flex-1 flex flex-col gap-2 px-4">
                         <label class="text-gray-800 text-base font-semibold tracking-wider">Balance general</label>
-                        <label class="text-green-800 text-xl md:text-3xl font-bold">${{ number_format($balance, 2) }}</label>
+                        <label
+                            class="text-green-800 text-xl md:text-3xl font-bold">${{ number_format($balance, 2) }}</label>
                         <div
                             class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $percent > 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
                             <span class="fas {{ $percent > 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
