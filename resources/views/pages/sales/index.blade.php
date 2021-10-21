@@ -2,6 +2,12 @@
 
 @section('body')
     <div class="bg-white rounded-xl max-w-4xl p-4 lg:p-8 relative">
+        @role('admin')
+        <a href="{{ route('sales.show',['start'=>date('Y-m-d'),'end'=>date('Y-m-d')]) }}" class="flex space-x-2 items-center">
+            <span class="hidden lg:block font-bold">Ver Balance</span>
+            <span class="fas fa-dollar-sign"></span>
+        </a>
+        @endrole
         <h1 class="text-center font-bold uppercase text-xl lg:text-2xl my-3">Listado de ventas</h1>
         <form action="" class="max-w-sm mx-auto my-2 flex items-center space-x-2" id="searchForm">
             <div class="w-full">

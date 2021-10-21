@@ -15,7 +15,7 @@
         
         <input <?php echo e($disabled ? 'disabled' : ''); ?>
 
-            class=" w-full outline-none <?php echo e($money?'money':''); ?> text-gray-600  py-2 px-2 leading-tight  dark:text-gray-300 dark:bg-gray-800 "
+            class=" w-full outline-none text-gray-600  py-2 px-2 leading-tight  dark:text-gray-300 dark:bg-gray-800 "
             <?php echo e($attributes); ?> />
         <div class="mx-1 right-2 w-max">
             <?php if(isset($icon)): ?>

@@ -8,11 +8,11 @@
                 <?php $__currentLoopData = $invoices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invoice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                    <div class="flex items-center justify-between">
                     <span><?php echo e($invoice->num); ?></span>
-                    <form action="<?php echo e(route('invoices.repeat', $invoice)); ?>" method="POST" id="<?php echo e($invoice->number); ?>">
+                    <form action="<?php echo e(route('invoices.repeat', $invoice)); ?>" method="POST" id="f<?php echo e($invoice->id); ?>">
                         <?php echo method_field('put'); ?>
                         <?php echo csrf_field(); ?>
                     </form>
-                    <button type=" submit" form="<?php echo e($invoice->number); ?>" data-label="¿Repetir pedido?"
+                    <button type=" submit" form="f<?php echo e($invoice->id); ?>" data-label="¿Repetir pedido?"
                         class=" bg-black text-white px-6 pl-2 py-2 border rounded-md dark:bg-indigo-400 dark:text-coolGray-900 dark:border-indigo-400 md:text-xl  font-bold flex items-center space-x-3 confirm">
                         <span class="fas fa-check text-green-500"></span>
                         <span>Repetir</span>

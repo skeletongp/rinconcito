@@ -6,6 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\OutcomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
@@ -81,5 +82,9 @@ Route::middleware(['auth','role:admin|seller'])->group(function () {
     Route::resource('clients', ClientController::class)->names('clients');
 
     /* Sales Routes */
+    Route::get('sales/balance', [SaleController::class, 'show'])->name('sales.show');
     Route::get('sales', [SaleController::class, 'index'])->middleware(['role:admin|seller'])->name('sales.index');
+
+    /* Outcomes Routes */
+    Route::resource('outcomes', OutcomeController::class)->names('outcomes');
 });
