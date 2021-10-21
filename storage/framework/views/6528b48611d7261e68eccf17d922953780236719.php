@@ -91,7 +91,7 @@
                         </div>
                         <div class="w-3/12 text-xl  px-4 py-2 rounded-r-xl flex items-center space-x-4 justify-between">
                             <div class="w-7 h-7 text-center  font-semibold rounded-full bg-white">
-                                <form action="" method="POST" id="i<?php echo e($ing->id); ?>">
+                                <form action="<?php echo e(route('ingredients.destroy', $ing)); ?>" method="POST" id="i<?php echo e($ing->id); ?>">
                                     <?php echo method_field('delete'); ?>
                                     <?php echo csrf_field(); ?>
                                     <button data-label="¿Remover ingrediente?" form="i<?php echo e($ing->id); ?>"
