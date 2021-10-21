@@ -15,12 +15,13 @@
             <span id="date">{{ $invoice->client->name }}</span>
         </div>
     </div>
+    <div style="" class="invoice-footer">
+        <span style="font-size: medium; margin-top:10px; font-weight:bold"> {{ env('COMPANY_NAME') }}</span>
+        <span style="font-size: small; "> {{ $invoice->user->fullname }}</span>
+        <span style="font-size: small; margin-bottom:10px"> {{ env('COMPANY_PHONE') }}</span>
+    </div>
     @if ($invoice->name)
-        <div style="text-align: center; margin-bottom:15px" class="invoice-footer">
-            <span style="font-size: medium; margin-top:10px; font-weight:bold"> {{ env('COMPANY_NAME') }}</span>
-            <span style="font-size: small; "> {{ $invoice->user->fullname }}</span>
-            <span style="font-size: small; margin-bottom:10px"> {{ env('COMPANY_PHONE') }}</span>
-        </div>
+      
         <div style="margin-bottom: 10px; width:100%; text-align:center">
             
             <span style="font-weight: bold">Vendido a: </span>
