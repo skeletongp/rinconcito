@@ -34,8 +34,8 @@
                         <label
                             class="text-green-800 text-xl md:text-3xl font-bold">${{ number_format($invoices->sum('payed'), 2) }}</label>
                         <div title="Período anterior"
-                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $bsPercent > 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
-                            <span class="fas {{ $bsPercent > 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
+                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $bsPercent >= 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
+                            <span class="fas {{ $bsPercent >= 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
                             {{ number_format($bsPercent, 2) }}%
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                         <label
                             class="text-red-800 text-xl md:text-3xl font-bold">${{ number_format($outcomes->sum('amount'), 2) }}</label>
                         <div title="Período anterior"
-                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $bbPercent < 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
-                            <span class="fas {{ $bbPercent > 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
+                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $bbPercent <= 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
+                            <span class="fas {{ $bbPercent >= 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
                             {{ number_format($bbPercent, 2) }}%
                         </div>
                     </div>
@@ -54,8 +54,8 @@
                         <label
                             class="text-green-800 text-xl md:text-3xl font-bold">${{ number_format($balance, 2) }}</label>
                         <div
-                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $percent > 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
-                            <span class="fas {{ $percent > 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
+                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm {{ $percent >= 0 ? 'text-green-700' : 'text-red-700' }} p-2 right-4 bottom-0">
+                            <span class="fas {{ $percent >= 0 ? 'fa-angle-up' : 'fa-angle-down' }}"></span>
                             {{ number_format($percent, 2) }}%
                         </div>
                     </div>
