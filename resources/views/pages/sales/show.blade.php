@@ -4,15 +4,18 @@
     <div class=" bg-transparent rounded-xl py-2">
         @php
             $balance = $invoices->sum('payed') - $outcomes->sum('amount');
-            $percent = $balance / $invoices->sum('payed');
-            $percent = $percent * 100;
+            $percent = 0;
+            if ($invoices->sum('payed')>0) {
+                $percent = $balance / $invoices->sum('payed');
+                $percent = $percent * 100;
+            }
             $bsPercent = 0;
             if ($invoices->sum('payed') > 0) {
                 $beforeSales = ($invoices->sum('payed') - $beforeInvoices->sum('payed')) / $invoices->sum('payed');
                 $bsPercent = $beforeSales * 100;
             }
             $bbPercent = 0;
-            if ( $outcomes->sum('amount')) {
+            if ($outcomes->sum('amount')) {
                 $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
                 $bbPercent = $beforeBuys * 100;
             }
