@@ -40,6 +40,7 @@ Route::get('back', function () {
    return back();
 
 })->name('back');
+Route::put('invoices/complete',[InvoiceController::class, 'complete'])->middleware(['auth'])->name('invoices.complete');
 
 /* Auth Routes */
 Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
@@ -66,7 +67,6 @@ Route::middleware(['auth','role:admin|seller'])->group(function () {
 
     /* Invoices Routes */
     Route::get('invoices/delivered',[InvoiceController::class, 'delivered'])->name('invoices.delivered');
-    Route::put('invoices/complete',[InvoiceController::class, 'complete'])->name('invoices.complete');
     Route::put('invoices/repeat/{invoice}',[InvoiceController::class, 'repeat'])->name('invoices.repeat');
     Route::resource('invoices', InvoiceController::class)->names('invoices');
     
