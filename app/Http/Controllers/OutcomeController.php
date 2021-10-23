@@ -16,7 +16,7 @@ class OutcomeController extends Controller
             ->type(request('t'))
             ->day(request('d'))
             ->orderBy('day', 'desc')
-            ->paginate(9);
+            ->get()->groupBy('day');
         return view('pages.outcomes.index')
             ->with([
                 'outcomes' => $outcomes,

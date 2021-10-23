@@ -7,7 +7,7 @@
             <span class="fas fa-plus"></span>
         </a>
         <h1 class="text-center font-bold uppercase text-xl my-4">Historial de pagos</h1>
-        <form action="" class="mx-auto my-2 md:flex md:space-x-2" id="searchForm">
+        <form action="" class="mx-auto my-2 space-y-3 md:space-y-0 md:flex md:space-x-2" id="searchForm">
             <div class="w-full">
                 <x-label>Buscar</x-label>
                 <x-input name="s" type="search" value="{{ request('s') }}" placeholder="Buscar por número o vendedor">
@@ -20,83 +20,170 @@
             </div>
             <div class="w-full">
                 <x-label>Filtrar tipo</x-label>
-                <x-select class="searchForm"  name="t">
+                <x-select class="searchForm" name="t">
                     <option value="">Todos</option>
-                    <option {{"COMPRA"==request('t')?'selected':''}}  value="COMPRA">Compra</option>
-                    <option {{"PERSONAL"==request('t')?'selected':''}}  value="PERSONAL">Empleados</option>
-                    <option {{"SERVICIOS"==request('t')?'selected':''}}  value="SERVICIOS">Servicios</option>
+                    <option {{ 'COMPRA' == request('t') ? 'selected' : '' }} value="COMPRA">Compra</option>
+                    <option {{ 'PERSONAL' == request('t') ? 'selected' : '' }} value="PERSONAL">Empleados</option>
+                    <option {{ 'SERVICIOS' == request('t') ? 'selected' : '' }} value="SERVICIOS">Servicios</option>
                 </x-select>
             </div>
             <div class="w-full">
                 <x-label>Filtrar fecha</x-label>
                 <x-select class="searchForm" name="d">
-                    <option value="" >Todas</option>
-                   @foreach ($days as $day)
-                   <option {{$day->day==request('d')?'selected':''}} value="{{$day->day}}">{{ date('d/m/Y', strtotime($day->day)) }}</option>
-                   @endforeach
-                    
+                    <option value="">Todas</option>
+                    @foreach ($days as $day)
+                        <option {{ $day->day == request('d') ? 'selected' : '' }} value="{{ $day->day }}">
+                            {{ date('d/m/Y', strtotime($day->day)) }}</option>
+                    @endforeach
+
                 </x-select>
             </div>
         </form>
-        @if ($outcomes->count())
-            <!-- component -->
-            <table class="min-w-full border-collapse block md:table">
-                <thead class="block md:table-header-group">
-                    <tr
-                        class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                        <th
-                            class="bg-pink-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                            Nombre</th>
-                        <th
-                            class="bg-pink-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                            Fecha</th>
-                        <th
-                            class="bg-pink-700 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                            Monto</th>
-                        <th
-                            class="bg-pink-700 p-2  text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                            Descripción</th>
-                    </tr>
-                </thead>
-                <tbody class="block md:table-row-group">
-                    @foreach ($outcomes as $outcome)
-                        <tr class=" border border-grey-500 md:border-none block md:table-row">
-                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                {{ $outcome->name }}
-                            </td>
-                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                {{ date('d/m/Y', strtotime($outcome->day)) }}
-                            </td>
-                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                ${{ number_format($outcome->amount, 2) }}</td>
-                            <td class="p-2 md:border  md:border-grey-500 text-left block md:table-cell">
-                                {{ $outcome->description }}</td>
+        <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 600px">
+            <table class=" relative border">
+                <tbody>
+                    @if ($outcomes->count())
+                        @foreach ($outcomes as $days)
+                            <thead class="md:sticky top-0">
+                                <tr class="bg-blue-300">
 
+                                    <th scope="col" colspan="4" class="font-bold text-xl capitalize">{{ $days[0]->day }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th scope="col" class="md:hidden">Fecha</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Acreedor</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Responsable</th>
+                                </tr>
+                            </thead>
+                            @foreach ($days as $outcome)
+                                <tr>
+                                    <td data-label="Fecha" class="md:hidden">{{ $outcome->day }}</td>
+                                    <td data-label="No. Factura">
+                                        <div class="flex items-center justify-end lg:justify-center space-x-2">
+                                            <a href="{{route('invoices.edit',$outcome)}}" class="hidden lg:block text-blue-300"><span class="fas fa-pen"></span></a>
+                                            <a
+                                                href="{{ route('invoices.show', $outcome) }}">
+                                                {{ $outcome->type }} 
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
+                                        <div class="md:flex md:items-center md:space-x-2">
+                                            <div class="hidden md:block w-min h-8 rounded-full bg-center bg-contain"
+                                                ></div>
+                                            <span>{{ $outcome->name }}</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Monto">${{ number_format($outcome->amount, 2) }}</td>
+                                    <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
+                                        <div class="md:flex md:items-center md:space-x-2">
+                                            <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
+                                                style="background-image: url({{ $outcome->user->photo }})"></div>
+                                            <span>{{ $outcome->user->name }}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                            <tr class="bg-indigo-200">
+                                <th scope="col">Total</th>
+                                <th scope="col"></th>
+                                <th scope="col">${{ number_format($days->sum('amount'), 2) }}</th>
+                                <th scope="col"></th>
+                            </tr>
+
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="5">
+                                <h1 class="text-center font-bold text-xl uppercase">NO SE HALLARON REGISTROS</h1>
+                            </td>
                         </tr>
-
-                    @endforeach
-                    <tr class=" border border-grey-500 md:border-none block md:table-row font-bold text-lg uppercase">
-                      
-                        <td colspan="2" class="p-2 text-center block md:table-cell">
-                            Total
-                        </td>
-                        <td class="p-2 text-left block md:table-cell">
-                            ${{ number_format($outcomes->sum('amount'), 2) }}</td>
-                        <td class="p-2   text-left block md:table-cell">
-                          </td>
-
-                    </tr>
-
+                    @endif
                 </tbody>
             </table>
-            <div class="m-2">
-                {{ $outcomes->links() }}
-            </div>
-        @else
-            <h1 class="text-center my-8 uppercase text-lg font-bold">No se ha encontrado ningún gasto</h1>
-        @endif
-
+        </div>
     </div>
+    <style>
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+        }
+
+        table th,
+        table td {
+            padding: .625em;
+            text-align: center;
+        }
+
+        table th {
+            font-size: .85em;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+
+            table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            table tr {
+                border-bottom: 3px solid #ddd;
+                display: block;
+                margin-bottom: .625em;
+            }
+
+            table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .8em;
+                text-align: right;
+            }
+
+            table td::before {
+                /*
+                                * aria-label has no advantage, it won't be read inside a table
+                                content: attr(aria-label);
+                                */
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+        }
+
+    </style>
     <script>
         $('document').ready(function() {
             $('.searchForm').each(function() {
