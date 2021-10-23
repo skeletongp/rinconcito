@@ -2,12 +2,18 @@
 
 @section('body')
     <div class="max-w-4xl mx-auto bg-white p-4 rounded-xl relative">
+        @if (Session::has('success'))
+        <x-alert type="success"></x-alert>
+    @endif
+    @if (Session::has('error'))
+        <x-alert type="error"></x-alert>
+    @endif
         <a href="{{ route('outcomes.create') }}" class="flex space-x-2 items-center">
             <span class="hidden lg:block font-bold">Nuevo</span>
             <span class="fas fa-plus"></span>
         </a>
         <h1 class="text-center font-bold uppercase text-xl my-4">Historial de pagos</h1>
-        <form action="" class="mx-auto my-2 space-y-3 md:space-y-0 md:flex md:space-x-2" id="searchForm">
+        <form action="" class="mx-4  my-2 space-y-3 md:space-y-0 md:flex md:space-x-2" id="searchForm">
             <div class="w-full">
                 <x-label>Buscar</x-label>
                 <x-input name="s" type="search" value="{{ request('s') }}" placeholder="Buscar por número o vendedor">
@@ -18,25 +24,27 @@
                     </x-slot>
                 </x-input>
             </div>
-            <div class="w-full">
-                <x-label>Filtrar tipo</x-label>
-                <x-select class="searchForm" name="t">
-                    <option value="">Todos</option>
-                    <option {{ 'COMPRA' == request('t') ? 'selected' : '' }} value="COMPRA">Compra</option>
-                    <option {{ 'PERSONAL' == request('t') ? 'selected' : '' }} value="PERSONAL">Empleados</option>
-                    <option {{ 'SERVICIOS' == request('t') ? 'selected' : '' }} value="SERVICIOS">Servicios</option>
-                </x-select>
-            </div>
-            <div class="w-full">
-                <x-label>Filtrar fecha</x-label>
-                <x-select class="searchForm" name="d">
-                    <option value="">Todas</option>
-                    @foreach ($days as $day)
-                        <option {{ $day->day == request('d') ? 'selected' : '' }} value="{{ $day->day }}">
-                            {{ date('d/m/Y', strtotime($day->day)) }}</option>
-                    @endforeach
-
-                </x-select>
+            <div class="flex space-x-3  w-full">
+                <div class="w-full">
+                    <x-label>Filtrar tipo</x-label>
+                    <x-select class="searchForm" name="t">
+                        <option value="">Todos</option>
+                        <option {{ 'COMPRA' == request('t') ? 'selected' : '' }} value="COMPRA">Compra</option>
+                        <option {{ 'PERSONAL' == request('t') ? 'selected' : '' }} value="PERSONAL">Empleados</option>
+                        <option {{ 'SERVICIOS' == request('t') ? 'selected' : '' }} value="SERVICIOS">Servicios</option>
+                    </x-select>
+                </div>
+                <div class="w-full">
+                    <x-label>Filtrar fecha</x-label>
+                    <x-select class="searchForm" name="d">
+                        <option value="">Todas</option>
+                        @foreach ($days as $day)
+                            <option {{ $day->day == request('d') ? 'selected' : '' }} value="{{ $day->day }}">
+                                {{ date('d/m/Y', strtotime($day->day)) }}</option>
+                        @endforeach
+    
+                    </x-select>
+                </div>
             </div>
         </form>
         <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 600px">
@@ -63,28 +71,54 @@
                                     <td data-label="Fecha" class="md:hidden">{{ $outcome->day }}</td>
                                     <td data-label="No. Factura">
                                         <div class="flex items-center justify-end lg:justify-center space-x-2">
-                                            <a href="{{route('invoices.edit',$outcome)}}" class="hidden lg:block text-blue-300"><span class="fas fa-pen"></span></a>
-                                            <a
-                                                href="{{ route('invoices.show', $outcome) }}">
-                                                {{ $outcome->type }} 
-                                            </a>
+                                            <x-dropdown align="left" contentClasses="text-left bg-white">
+                                                <x-slot name="trigger">
+                                                    <div class=" cursor-pointer select-none">
+                                                        {{ $outcome->type }}
+                                                    </div>
+                                                </x-slot>
+                                                <x-slot name="content">
+                                                    <x-dropdown-link href="{{ route('outcomes.edit', $outcome) }}">
+                                                        <div >
+                                                            <span class="fas fa-pen text-blue-500"></span>
+                                                            <span> Editar</span>
+                                                        </div>
+                                                       
+                                                    </x-dropdown-link>
+                                                    <x-dropdown-link class=" select-none cursor-pointer">
+                                                        <div >
+                                                            <form action="{{ route('outcomes.destroy', $outcome) }}"
+                                                                method="POST" id="f{{$outcome->id}}">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button form="f{{$outcome->id}}" data-label="¿Eliminar gasto?" class="confirm">
+                                                                    <span class="fas fa-trash text-red-500"></span>
+                                                                    <span> Eliminar</span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </x-dropdown-link>
+                                                </x-slot>
+                                            </x-dropdown>
+
                                         </div>
                                     </td>
                                     <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
                                         <div class="md:flex md:items-center md:space-x-2">
-                                            <div class="hidden md:block w-min h-8 rounded-full bg-center bg-contain"
-                                                ></div>
+                                            <div class="hidden md:block w-min h-8 rounded-full bg-center bg-contain"></div>
                                             <span>{{ $outcome->name }}</span>
                                         </div>
                                     </td>
                                     <td data-label="Monto">${{ number_format($outcome->amount, 2) }}</td>
-                                    <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
+                                    <td data-label="Responsable"
+                                        class="md:flex md:flex-col md:justify-center md:items-center">
                                         <div class="md:flex md:items-center md:space-x-2">
                                             <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
                                                 style="background-image: url({{ $outcome->user->photo }})"></div>
                                             <span>{{ $outcome->user->name }}</span>
                                         </div>
                                     </td>
+
                                 </tr>
                             @endforeach
 
@@ -169,9 +203,9 @@
 
             table td::before {
                 /*
-                                * aria-label has no advantage, it won't be read inside a table
-                                content: attr(aria-label);
-                                */
+                                                * aria-label has no advantage, it won't be read inside a table
+                                                content: attr(aria-label);
+                                                */
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;

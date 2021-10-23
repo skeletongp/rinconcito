@@ -2,12 +2,38 @@
 
 <?php $__env->startSection('body'); ?>
     <div class="max-w-4xl mx-auto bg-white p-4 rounded-xl relative">
+        <?php if(Session::has('success')): ?>
+        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.alert','data' => ['type' => 'success']]); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['type' => 'success']); ?> <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+    <?php endif; ?>
+    <?php if(Session::has('error')): ?>
+        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.alert','data' => ['type' => 'error']]); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['type' => 'error']); ?> <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+    <?php endif; ?>
         <a href="<?php echo e(route('outcomes.create')); ?>" class="flex space-x-2 items-center">
             <span class="hidden lg:block font-bold">Nuevo</span>
             <span class="fas fa-plus"></span>
         </a>
         <h1 class="text-center font-bold uppercase text-xl my-4">Historial de pagos</h1>
-        <form action="" class="mx-auto my-2 space-y-3 md:space-y-0 md:flex md:space-x-2" id="searchForm">
+        <form action="" class="mx-4  my-2 space-y-3 md:space-y-0 md:flex md:space-x-2" id="searchForm">
             <div class="w-full">
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.label','data' => []]); ?>
@@ -38,8 +64,9 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
             </div>
-            <div class="w-full">
-                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+            <div class="flex space-x-3  w-full">
+                <div class="w-full">
+                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.label','data' => []]); ?>
 <?php $component->withName('label'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -50,25 +77,25 @@
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.select','data' => ['class' => 'searchForm','name' => 't']]); ?>
 <?php $component->withName('select'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php $component->withAttributes(['class' => 'searchForm','name' => 't']); ?>
-                    <option value="">Todos</option>
-                    <option <?php echo e('COMPRA' == request('t') ? 'selected' : ''); ?> value="COMPRA">Compra</option>
-                    <option <?php echo e('PERSONAL' == request('t') ? 'selected' : ''); ?> value="PERSONAL">Empleados</option>
-                    <option <?php echo e('SERVICIOS' == request('t') ? 'selected' : ''); ?> value="SERVICIOS">Servicios</option>
-                 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+                        <option value="">Todos</option>
+                        <option <?php echo e('COMPRA' == request('t') ? 'selected' : ''); ?> value="COMPRA">Compra</option>
+                        <option <?php echo e('PERSONAL' == request('t') ? 'selected' : ''); ?> value="PERSONAL">Empleados</option>
+                        <option <?php echo e('SERVICIOS' == request('t') ? 'selected' : ''); ?> value="SERVICIOS">Servicios</option>
+                     <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-            </div>
-            <div class="w-full">
-                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+                </div>
+                <div class="w-full">
+                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.label','data' => []]); ?>
 <?php $component->withName('label'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -79,24 +106,25 @@
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.select','data' => ['class' => 'searchForm','name' => 'd']]); ?>
 <?php $component->withName('select'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php $component->withAttributes(['class' => 'searchForm','name' => 'd']); ?>
-                    <option value="">Todas</option>
-                    <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option <?php echo e($day->day == request('d') ? 'selected' : ''); ?> value="<?php echo e($day->day); ?>">
-                            <?php echo e(date('d/m/Y', strtotime($day->day))); ?></option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+                        <option value="">Todas</option>
+                        <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option <?php echo e($day->day == request('d') ? 'selected' : ''); ?> value="<?php echo e($day->day); ?>">
+                                <?php echo e(date('d/m/Y', strtotime($day->day))); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    
+                     <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
+                </div>
             </div>
         </form>
         <div class="p-4 pt-0 overflow-auto max-h-screen" style="max-height: 600px">
@@ -124,28 +152,85 @@
                                     <td data-label="Fecha" class="md:hidden"><?php echo e($outcome->day); ?></td>
                                     <td data-label="No. Factura">
                                         <div class="flex items-center justify-end lg:justify-center space-x-2">
-                                            <a href="<?php echo e(route('invoices.edit',$outcome)); ?>" class="hidden lg:block text-blue-300"><span class="fas fa-pen"></span></a>
-                                            <a
-                                                href="<?php echo e(route('invoices.show', $outcome)); ?>">
-                                                <?php echo e($outcome->type); ?> 
-                                            </a>
+                                            <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.dropdown','data' => ['align' => 'left','contentClasses' => 'text-left bg-white']]); ?>
+<?php $component->withName('dropdown'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['align' => 'left','contentClasses' => 'text-left bg-white']); ?>
+                                                 <?php $__env->slot('trigger', null, []); ?> 
+                                                    <div class=" cursor-pointer select-none">
+                                                        <?php echo e($outcome->type); ?>
+
+                                                    </div>
+                                                 <?php $__env->endSlot(); ?>
+                                                 <?php $__env->slot('content', null, []); ?> 
+                                                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.dropdown-link','data' => ['href' => ''.e(route('outcomes.edit', $outcome)).'']]); ?>
+<?php $component->withName('dropdown-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['href' => ''.e(route('outcomes.edit', $outcome)).'']); ?>
+                                                        <div >
+                                                            <span class="fas fa-pen text-blue-500"></span>
+                                                            <span> Editar</span>
+                                                        </div>
+                                                       
+                                                     <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+                                                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.dropdown-link','data' => ['class' => ' select-none cursor-pointer']]); ?>
+<?php $component->withName('dropdown-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['class' => ' select-none cursor-pointer']); ?>
+                                                        <div >
+                                                            <form action="<?php echo e(route('outcomes.destroy', $outcome)); ?>"
+                                                                method="POST" id="f<?php echo e($outcome->id); ?>">
+                                                                <?php echo csrf_field(); ?>
+                                                                <?php echo method_field('delete'); ?>
+                                                                <button form="f<?php echo e($outcome->id); ?>" data-label="¿Eliminar gasto?" class="confirm">
+                                                                    <span class="fas fa-trash text-red-500"></span>
+                                                                    <span> Eliminar</span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                     <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+                                                 <?php $__env->endSlot(); ?>
+                                             <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+
                                         </div>
                                     </td>
                                     <td data-label="Cliente" class="md:flex md:flex-col md:justify-center md:items-center">
                                         <div class="md:flex md:items-center md:space-x-2">
-                                            <div class="hidden md:block w-min h-8 rounded-full bg-center bg-contain"
-                                                ></div>
+                                            <div class="hidden md:block w-min h-8 rounded-full bg-center bg-contain"></div>
                                             <span><?php echo e($outcome->name); ?></span>
                                         </div>
                                     </td>
                                     <td data-label="Monto">$<?php echo e(number_format($outcome->amount, 2)); ?></td>
-                                    <td data-label="Vendedor" class="md:flex md:flex-col md:justify-center md:items-center">
+                                    <td data-label="Responsable"
+                                        class="md:flex md:flex-col md:justify-center md:items-center">
                                         <div class="md:flex md:items-center md:space-x-2">
                                             <div class="hidden md:block w-8 h-8 rounded-full bg-center bg-contain"
                                                 style="background-image: url(<?php echo e($outcome->user->photo); ?>)"></div>
                                             <span><?php echo e($outcome->user->name); ?></span>
                                         </div>
                                     </td>
+
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -230,9 +315,9 @@
 
             table td::before {
                 /*
-                                * aria-label has no advantage, it won't be read inside a table
-                                content: attr(aria-label);
-                                */
+                                                * aria-label has no advantage, it won't be read inside a table
+                                                content: attr(aria-label);
+                                                */
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;

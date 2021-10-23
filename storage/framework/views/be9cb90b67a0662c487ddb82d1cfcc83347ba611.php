@@ -8,6 +8,9 @@
             if ($invoices->sum('payed')>0) {
                 $percent = $balance / $invoices->sum('payed');
                 $percent = $percent * 100;
+            } elseif ($outcomes->sum('amount') >0) {
+                $percent = $balance / $outcomes->sum('amount');
+                $percent = $percent * 100;
             }
             $bsPercent = 0;
             if ($invoices->sum('payed') > 0) {
@@ -15,7 +18,7 @@
                 $bsPercent = $beforeSales * 100;
             }
             $bbPercent = 0;
-            if ($outcomes->sum('amount')) {
+            if ($outcomes->sum('amount')> 0) {
                 $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
                 $bbPercent = $beforeBuys * 100;
             }
@@ -52,7 +55,7 @@
                     <div class="relative flex-1 flex flex-col gap-2 px-4">
                         <label class="text-gray-800 text-base font-semibold tracking-wider">Balance general</label>
                         <label
-                            class="text-green-800 text-xl md:text-3xl font-bold">$<?php echo e(number_format($balance, 2)); ?></label>
+                            class=" text-xl md:text-3xl font-bold <?php echo e($balance >= 0 ? 'text-green-800' : 'text-red-700'); ?>">$<?php echo e(number_format($balance, 2)); ?></label>
                         <div
                             class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($percent >= 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
                             <span class="fas <?php echo e($percent >= 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>

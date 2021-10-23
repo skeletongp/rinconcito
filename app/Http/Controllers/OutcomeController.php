@@ -51,16 +51,23 @@ class OutcomeController extends Controller
 
     public function edit(Outcome $outcome)
     {
-        //
+        return view('pages.outcomes.edit')
+        ->with([
+            'outcome'=>$outcome
+        ]);
     }
 
     public function update(Request $request, Outcome $outcome)
     {
-        //
+        $outcome->update($request->all());
+        return redirect()->route('outcomes.index')
+        ->with(['success'=>'Gasto editado']);
     }
 
     public function destroy(Outcome $outcome)
     {
-        //
+       $outcome->delete();
+       return redirect()->route('outcomes.index')
+       ->with(['success'=>'Gasto eliminado']);
     }
 }
