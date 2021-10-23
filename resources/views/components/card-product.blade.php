@@ -30,7 +30,10 @@
                             class=" w-8 h-8 bg-white rounded-full flex items-center justify-center confirm">
                             <span class="fas fa-trash-alt text-xl text-red-500"></span>
                         </x-button>
-
+                        <x-button form="outStock" data-label="¿Marcar como agotado?"
+                        class=" w-8 h-8 bg-white rounded-full flex items-center justify-center confirm">
+                        <span class="fas fa-ban text-xl text-pink-500"></span>
+                    </x-button>
 
                     </div>
                 @endrole
@@ -86,6 +89,10 @@
     </form>
     <form id="formDelete" action="{{ route('products.destroy', $id) }}" method="POST">
         @method('delete')
+        @csrf
+    </form>
+    <form id="outStock" action="{{ route('products.outStock', $id) }}" method="POST">
+        @method('put')
         @csrf
     </form>
 </li>

@@ -4,14 +4,21 @@
     <div class=" bg-transparent rounded-xl py-2">
         <?php
             $balance = $invoices->sum('payed') - $outcomes->sum('amount');
-            $percent = $balance / $invoices->sum('payed');
-            $percent = $percent * 100;
-            
-            $beforeSales = ($invoices->sum('payed') - $beforeInvoices->sum('payed')) / $invoices->sum('payed');
-            $bsPercent = $beforeSales * 100;
-
-            $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
-            $bbPercent = $beforeBuys * 100;
+            $percent = 0;
+            if ($invoices->sum('payed')>0) {
+                $percent = $balance / $invoices->sum('payed');
+                $percent = $percent * 100;
+            }
+            $bsPercent = 0;
+            if ($invoices->sum('payed') > 0) {
+                $beforeSales = ($invoices->sum('payed') - $beforeInvoices->sum('payed')) / $invoices->sum('payed');
+                $bsPercent = $beforeSales * 100;
+            }
+            $bbPercent = 0;
+            if ($outcomes->sum('amount')) {
+                $beforeBuys = ($outcomes->sum('amount') - $beforeOutcomes->sum('amount')) / $outcomes->sum('amount');
+                $bbPercent = $beforeBuys * 100;
+            }
         ?>
         <!-- component -->
         <div class="w-full py-16 bg-transparent -my-2 flex justify-center items-center">
@@ -27,8 +34,8 @@
                         <label
                             class="text-green-800 text-xl md:text-3xl font-bold">$<?php echo e(number_format($invoices->sum('payed'), 2)); ?></label>
                         <div title="Período anterior"
-                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($bsPercent > 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
-                            <span class="fas <?php echo e($bsPercent > 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>
+                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($bsPercent >= 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
+                            <span class="fas <?php echo e($bsPercent >= 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>
                             <?php echo e(number_format($bsPercent, 2)); ?>%
                         </div>
                     </div>
@@ -37,17 +44,18 @@
                         <label
                             class="text-red-800 text-xl md:text-3xl font-bold">$<?php echo e(number_format($outcomes->sum('amount'), 2)); ?></label>
                         <div title="Período anterior"
-                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($bbPercent < 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
-                            <span class="fas <?php echo e($bbPercent > 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>
+                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($bbPercent <= 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
+                            <span class="fas <?php echo e($bbPercent >= 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>
                             <?php echo e(number_format($bbPercent, 2)); ?>%
                         </div>
                     </div>
                     <div class="relative flex-1 flex flex-col gap-2 px-4">
                         <label class="text-gray-800 text-base font-semibold tracking-wider">Balance general</label>
-                        <label class="text-green-800 text-xl md:text-3xl font-bold">$<?php echo e(number_format($balance, 2)); ?></label>
+                        <label
+                            class="text-green-800 text-xl md:text-3xl font-bold">$<?php echo e(number_format($balance, 2)); ?></label>
                         <div
-                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($percent > 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
-                            <span class="fas <?php echo e($percent > 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>
+                            class="absolute bg-white shadow-xl rounded-md font-semibold text-sm <?php echo e($percent >= 0 ? 'text-green-700' : 'text-red-700'); ?> p-2 right-4 bottom-0">
+                            <span class="fas <?php echo e($percent >= 0 ? 'fa-angle-up' : 'fa-angle-down'); ?>"></span>
                             <?php echo e(number_format($percent, 2)); ?>%
                         </div>
                     </div>

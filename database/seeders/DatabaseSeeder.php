@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       /*  $admin = Role::create(['name' => 'admin']);
+        $admin = Role::create(['name' => 'admin']);
         $seller = Role::create(['name' => 'seller']);
-        $cooker = Role::create(['name' => 'cooker']); */
+        $cooker = Role::create(['name' => 'cooker']);
         $user=User::create([
             'name'=>'Ismael',
             'lastname'=>'Contreras',
@@ -32,9 +32,9 @@ class DatabaseSeeder extends Seeder
             
         ]);
         $user->assignRole('admin');
-      /*   Client::create([
+        Client::create([
             'name'=>'Genérico',
             'phone'=>'809-765-4321'
-        ]); */
+        ]);
     }
 }

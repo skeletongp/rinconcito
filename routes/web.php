@@ -56,6 +56,7 @@ Route::middleware(['auth','role:admin|seller'])->group(function () {
     /* Products Routes */
     Route::post('products/upstock/{product}', [ProductController::class, 'upstock'])->name('products.upstock');
     Route::post('products/add_ingredients/{product}', [ProductController::class, 'add_ingredients'])->name('products.add_ingredients');
+    Route::put('products/outStock/{product}', [ProductController::class, 'outStock'])->name('products.outStock');
     Route::resource('products', ProductController::class)->names('products');
 
     /* Details Routes */

@@ -140,4 +140,11 @@ class ProductController extends Controller
         return redirect()->route('products.show', $product)
         ->with(['success'=> 'Añadidos '.$request->stock.' '.$product->name.'    al inventario']);
     }
+    public function outStock(Product $product)
+    {
+       $product->stock=0;
+       $product->save();
+
+       return redirect()->route('products.show', $product);
+    }
 }
