@@ -66,7 +66,7 @@
                         <?php endif; ?>
                         <p class="font-bold">Total:
                             <input type="text" disabled class="font-semibold  w-32 text-right text-blue-500" id="spTotal"
-                                value="$<?php echo e(number_format($invoice->total, 2)); ?>" />
+                                value="$<?php echo e(number_format($invoice->payed, 2)); ?>" />
                         </p>
                     </div>
                     <hr class="my-3 h-1 border-4 bg-blue-300">

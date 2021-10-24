@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BalanceTrait;
 use App\Traits\OutcomesTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Outcome extends Model
 {
-    use HasFactory, SoftDeletes, SearchableTrait, OutcomesTrait;
+    use HasFactory, SoftDeletes, SearchableTrait, OutcomesTrait, BalanceTrait;
 
     protected $guarded=[];
     protected $searchable = [

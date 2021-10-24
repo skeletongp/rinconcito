@@ -14,8 +14,8 @@ class SaleController extends Controller
     public function index()
     {
 
-        $sales = Invoice::search(request('s'))->tanda(request('t'))->orderBy('created_at','desc')->get()->groupBy('day');
-        $dates=Invoice::distinct()->orderBy('day','desc')->get('day');
+        $sales = Invoice::search(request('s'))->tanda(request('t'))->orderBy('created_at', 'desc')->get()->groupBy('day');
+        $dates = Invoice::distinct()->orderBy('day', 'desc')->get('day');
         return view('pages.sales.index')
             ->with([
                 'sales' => $sales,
@@ -25,35 +25,33 @@ class SaleController extends Controller
     }
     public function show()
     {
-        if (!request('start') || !request('end')) {
-            $start = Carbon::now()->subDays(7);
-            $end = Carbon::now();
-            $start=date('Y-m-d',strtotime($start));
-            $end=date('Y-m-d',strtotime($end));
-        } else{
-            $start=request('start');
-            $end=request('end');
-        }
-        $beforeStart=Carbon::parse($start)->subMonth(1);
-        $beforeStart=date('Y-m-d',strtotime($beforeStart));
+        $time=request('time');
+        
+        $invoicesInterval = Invoice::interval();
+        $invoices = $invoicesInterval['actual'];
+        $start = $invoicesInterval['start'];
+        $end = $invoicesInterval['end'];
+        $invoicesBefore=Invoice::early($time);
+        $beforeInvoices = $invoicesBefore['early'];
 
-        $beforeEnd=Carbon::parse($end)->subMonth(1);
-        $beforeEnd=date('Y-m-d',strtotime($beforeEnd));
-       
-        $invoices=Invoice::whereBetween('day',[$start,$end]);
-        $outcomes=Outcome::whereBetween('day',[$start,$end]);
 
-        $beforeInvoices=Invoice::whereBetween('day',[$beforeStart,$beforeEnd]);
-        $beforeOutcomes=Outcome::whereBetween('day',[$beforeStart   ,$beforeEnd]);
+        $outcomesInterval = Outcome::interval();
+        $outcomes = $outcomesInterval['actual'];
+        $outcomesBefore=Outcome::early($time);
+        $beforeStart = $outcomesBefore['beforeStart'];
+        $beforeEnd = $outcomesBefore['beforeEnd'];
+        $beforeOutcomes = $outcomesBefore['early'];
 
-        return view('pages.sales.show')
-        ->with([
-            'invoices'=>$invoices,
-            'outcomes'=>$outcomes,
-            'beforeInvoices'=>$beforeInvoices,
-            'beforeOutcomes'=>$beforeOutcomes,
-            'start'=>date('d/m/Y',strtotime($start)),
-            'end'=>date('d/m/Y',strtotime($end)),
-        ]);
+            return view('pages.sales.show')
+            ->with([
+                'invoices' => $invoices,
+                'outcomes' => $outcomes,
+                'beforeInvoices' => $beforeInvoices,
+                'beforeOutcomes' => $beforeOutcomes,
+                'start' => $start,
+                'end' => $end,
+                'beforeStart' => $beforeStart,
+                'beforeEnd' => $beforeEnd,
+            ]);
     }
 }

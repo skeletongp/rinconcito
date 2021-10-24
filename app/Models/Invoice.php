@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BalanceTrait;
 use App\Traits\InvoicesTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Invoice extends Model
 {
-    use HasFactory, SoftDeletes, SearchableTrait, InvoicesTrait;
+    use HasFactory, SoftDeletes, SearchableTrait, InvoicesTrait, BalanceTrait;
     protected $guarded=[];
    
     protected $searchable = [
