@@ -24,9 +24,9 @@ class PanelControl extends Component
         $delivered=Invoice::where('status','=','ENTREGADO')
         ->where('day','=',$today)->orderBy('created_at', 'desc')->get();
         $searchDate = new Carbon();
-        $lastMonday = Carbon::createFromTimeStamp(strtotime("last monday", $searchDate->timestamp));
-        $nextSunday = Carbon::createFromTimeStamp(strtotime("next sunday", $searchDate->timestamp));
-        $fromWeek = Invoice::whereBetween('created_at', [$lastMonday, $nextSunday])->sum('payed');
+        $lastSunday = Carbon::createFromTimeStamp(strtotime("last sunday", $searchDate->timestamp));
+        $nextSaturday = Carbon::createFromTimeStamp(strtotime("next saturday", $searchDate->timestamp));
+        $fromWeek = Invoice::whereBetween('day', [$lastSunday, $nextSaturday])->sum('payed');
 
         $dt = Carbon::now();
         $today = $dt->toDateString();
