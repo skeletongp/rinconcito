@@ -25,7 +25,7 @@
         @endphp
         <!-- component -->
         <div class="w-full py-16 bg-transparent -my-2 flex justify-center items-center">
-            <div class="container p-5 mx-8 bg-white">
+            <div class="container p-6 mx-8 bg-white">
                 <h1 class="text-center uppercase font-bold text-lg md:text-xl">Balances del negocio</h1>
                 <h1 class="text-black font-bold tracking-wider text-center my-3 text-sm  md:text-lg flex flex-col md:flex-row md:space-x-2 justify-center">
                     <div>
