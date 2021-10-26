@@ -7,7 +7,7 @@
                 <div class="leading-loose">
                     <form class="max-w-xl m-4 p-10 bg-white dark:bg-white rounded shadow-xl space-y-4"
                         action="{{ route('auth.access') }}" method="POST">
-                        {{ csrf_field }}
+                        @csrf
                         <h1 class="text-gray-800 mb-4  text-center text-lg font-bold uppercase">Iniciar Sesión</h1>
                         <div class="">
                             <x-label for="username">Nombre de Usuario</x-label>
